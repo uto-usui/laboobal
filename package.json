@@ -18,5 +18,10 @@
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs"
+  },
+  "dependencies": {
+    "createjs": "^1.0.1",
+    "gsap": "^2.0.1",
+    "three": "^0.95.0"
   }
 }

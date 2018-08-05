@@ -79,8 +79,8 @@ export default {
   .hero
     text-align center
     img
-      max-height 280px
-      display block
+      max-height 180px
+      max-width: 100%
       margin 3rem auto 1.5rem
     h1
       font-size 3rem

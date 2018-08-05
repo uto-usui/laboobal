@@ -1,15 +1,15 @@
 ---
-sidebar: auto
+#sidebar: auto
 ---
 # Info
 
 ## News
 
-* 2018-04-16 リリース
+* 2018-08-06 release
 
-## directory
+## Directory
 
-```bath(5)
+```bath{5}
 - .vuepress/        VuePress関連のファイルを格納するディレクトリ
     - public/       静的ファイルを格納するディレクトリ
     - components/   mdファイルから呼び出すコンポーネント
