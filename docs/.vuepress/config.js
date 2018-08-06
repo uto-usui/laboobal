@@ -21,6 +21,10 @@ module.exports = {
         text: 'info',
         link: '/info/',
       },
+      {
+        text: 'easing',
+        link: '/easing/',
+      },
 //      {
 //        text: 'Guide',
 //        items: [
@@ -34,7 +38,7 @@ module.exports = {
     ],
     sidebar: {
       '/info/': [
-        ''
+        '',
       ],
       '/': [
         '',
@@ -57,7 +61,7 @@ module.exports = {
     repo: 'uto-usui/laboobal',
     docsRepo: 'uto-usui/laboobal',
     editLinks: true,
-    editLinkText: 'edit?'
+    editLinkText: 'edit?',
   },
   markdown: {
     // markdown の行番号

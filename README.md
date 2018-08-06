@@ -1,3 +1,3 @@
-# grandstar, inc. documents
+# laboobal
 
-社内ドキュメントをまとめます。
+色々なインタラクションを集めたアニメーションのt ipsc集。
