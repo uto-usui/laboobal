@@ -3,6 +3,10 @@
 ---
 # Info
 
+## Overview
+
+This site consists of VuePress x Gihub x Netlify and is published.
+
 ## News
 
 * 2018-08-06 release

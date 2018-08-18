@@ -40,7 +40,7 @@ module.exports = {
       '/info/': [
         '',
       ],
-      '/': [
+      '/easing/': [
         '',
       ],
 //      '/guide/': [{

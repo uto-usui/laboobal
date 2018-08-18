@@ -14,7 +14,3 @@ pageClass: home
 sidebar: auto
 footer: ©︎ uto-usui
 ---
-
-## overview
-
-This site consists of VuePress x Gihub x Netlify and is published.
