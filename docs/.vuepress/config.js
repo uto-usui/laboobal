@@ -25,6 +25,10 @@ module.exports = {
         text: 'easing',
         link: '/easing/',
       },
+      {
+        text: 'effects',
+        link: '/effects/',
+      },
 //      {
 //        text: 'Guide',
 //        items: [
@@ -43,16 +47,12 @@ module.exports = {
       '/easing/': [
         '',
       ],
-//      '/guide/': [{
-//        title: 'ガイド',
-//        children: [
-//          'linehighlight',
-//          'emoji',
-//          'toc',
-//          'customblock',
-//          'component',
-//        ],
-//      }],
+      '/effects/': [{
+        title: 'effects',
+        children: [
+          'mouse',
+        ],
+      }],
     },
     // 子ページの見出しはデフォルトでは見出しレベルが2 までがぶら下がって表示される
     // 見出しレベルが3の見出しをサイドバーに表示したいとき、sidebarDepthを設定する
