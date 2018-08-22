@@ -1,6 +1,6 @@
 <template>
   <section class="wrap" id="js-wrap">
-    <div class="item js-item">
+    <div class="item js-item" data-speed-x=".5" data-speed-Y=".5">
       <DummyImage/>
     </div>
   </section>

@@ -1,6 +1,6 @@
 <template>
   <section class="wrap" id="js-wrap-skew">
-    <div class="item js-item" data-mouse-parallax=".8">
+    <div class="item js-item" data-mouse-parallax=".2">
       <DummyImage/>
     </div>
   </section>
