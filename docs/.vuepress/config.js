@@ -51,6 +51,7 @@ module.exports = {
         title: 'effects',
         children: [
           'mouse',
+          'reveal',
         ],
       }],
     },
