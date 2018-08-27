@@ -21,14 +21,14 @@ class RevealCurtain {
     this.target = target;
     this.direction = direction;
 
-    this.layout();
+    this._layout();
 
   }
 
   /**
    * 高さを取得
    */
-  getHeight() {
+  _getHeight() {
 
     return this.target.clientHeight;
 
@@ -37,7 +37,7 @@ class RevealCurtain {
   /**
    * 幅を取得
    */
-  getWidth() {
+  _getWidth() {
 
     return this.target.clientWidth;
 
@@ -47,10 +47,10 @@ class RevealCurtain {
    * rectの初期値を返す
    * @returns {string}
    */
-  initRect() {
+  _initRect() {
 
-    const height = this.getHeight(),
-          width  = this.getWidth();
+    const height = this._getHeight(),
+          width  = this._getWidth();
 
     console.log('height', height)
     console.log('width', width)
@@ -77,7 +77,7 @@ class RevealCurtain {
   /**
    * mask要素の作成
    */
-  layout() {
+  _layout() {
 
     let position = getComputedStyle(this.target).position;
 
@@ -113,13 +113,13 @@ class RevealCurtain {
 
     console.log(this.mask)
 
-//    this.mask.style.clip = this.initRect(this.direction)
+//    this.mask.style.clip = this._initRect(this.direction)
 
-    console.log('initRect', this.initRect())
+    console.log('_initRect', this._initRect())
 
     TweenMax.set(this.mask, {
 
-      clip: this.initRect(this.direction),
+      clip: this._initRect(this.direction),
 
     });
 
@@ -132,7 +132,7 @@ class RevealCurtain {
    * @param end
    * @returns {string}
    */
-  getRect(width, height, end) {
+  _getRect(width, height, end) {
 
     let rect = {
 
@@ -201,10 +201,10 @@ class RevealCurtain {
   anim() {
 
     const tl       = new TimelineMax({}),
-          height   = this.getHeight(),
-          width    = this.getWidth(),
-          fromRect = this.getRect(width, height, false),
-          toRect   = this.getRect(width, height, true),
+          height   = this._getHeight(),
+          width    = this._getWidth(),
+          fromRect = this._getRect(width, height, false),
+          toRect   = this._getRect(width, height, true),
           self     = this;
 
     tl.to(this.mask, .75, {
@@ -228,6 +228,8 @@ class RevealCurtain {
 
 }
 
+export default RevealCurtain;
+
 /**
  *
  * @param type
@@ -241,7 +243,6 @@ function createDOMElement(type, className, content) {
   el.innerHTML = content || '';
   return el;
 }
-
 ```
  
 ## clip

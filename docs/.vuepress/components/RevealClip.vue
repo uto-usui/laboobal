@@ -13,7 +13,7 @@
   import DummyImage from './DummyImage';
 
   export default {
-    name: 'RevealCurtain',
+    name: 'RevealClip',
     components: {DummyImage},
     data() {
       return {

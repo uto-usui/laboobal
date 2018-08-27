@@ -8,6 +8,7 @@ import {TweenMax, TimelineMax, Power1, Power2, Power3} from 'gsap';
  *
  *
  */
+
 class RevealCurtain {
 
   /**
