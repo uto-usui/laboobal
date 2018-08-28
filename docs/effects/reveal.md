@@ -14,32 +14,30 @@ class RevealCurtain {
    * Constructor
    *
    * @param target {Element} DOM
-   * @param direction {String} アニメーションの方向を決定します
+   * @param direction {String} animation direction
+   * @param speed {Number}
    */
-  constructor(target, direction) {
+  constructor(target, direction, speed = 1) {
 
     this.target = target;
     this.direction = direction;
+    this.speed = speed;
+
+    this.height = 0;
+    this.width = 0;
 
     this._layout();
 
   }
 
   /**
-   * 高さを取得
+   * set original size
+   * @private
    */
-  _getHeight() {
+  _getSize() {
 
-    return this.target.clientHeight;
-
-  }
-
-  /**
-   * 幅を取得
-   */
-  _getWidth() {
-
-    return this.target.clientWidth;
+    this.height = this.target.clientHeight;
+    this.width = this.target.clientWidth;
 
   }
 
@@ -49,37 +47,34 @@ class RevealCurtain {
    */
   _initRect() {
 
-    const height = this._getHeight(),
-          width  = this._getWidth();
-
-    console.log('height', height)
-    console.log('width', width)
+//    console.log('height', height)
+//    console.log('width', width)
 
     if (this.direction === 'lr') {
 
-      return `rect(0px 0px ${height}px 0px)`;
+      return `rect(0px 0px ${this.height}px 0px)`;
 
     } else if (this.direction === 'rl') {
 
-      return `rect(0px ${width}px ${height}px ${width}px)`;
+      return `rect(0px ${this.width}px ${this.height}px ${this.width}px)`;
     } else if (this.direction === 'tb') {
 
-      return `rect(0px ${width}px 0px 0px)`;
+      return `rect(0px ${this.width}px 0px 0px)`;
 
     } else if (this.direction === 'bt') {
 
-      return `rect(${height}px ${width}px ${height}px 0px)`;
+      return `rect(${this.height}px ${this.width}px ${this.height}px 0px)`;
 
     }
 
   }
 
   /**
-   * mask要素の作成
+   * create mask
    */
   _layout() {
 
-    let position = getComputedStyle(this.target).position;
+    const position = getComputedStyle(this.target).position;
 
     if (position !== 'fixed' && position !== 'absolute' && position !== 'relative') {
 
@@ -87,17 +82,28 @@ class RevealCurtain {
 
     }
 
+    /**
+     * get box size
+     */
+    this._getSize();
+
     this._createMask();
 
+    /**
+     * create wrap target div
+     * @type {string}
+     */
     this.target.innerHTML = '<div class="block_inner" style="opacity: 0">' + this.target.innerHTML + '</div>';
 
-    this.target.prepend(this.mask);
-//    this.target.insertAdjacentHTML('afterbegin', this.mask);
+    /**
+     * insert mask
+     */
+    this.target.insertAdjacentElement('afterbegin', this.mask);
 
   }
 
   /**
-   * create mask
+   * create mask element
    * @type {HTMLElement}
    */
   _createMask() {
@@ -111,11 +117,11 @@ class RevealCurtain {
     this.mask.style.bottom = 0;
     this.mask.style.backgroundColor = '#282828';
 
-    console.log(this.mask)
+//    console.log(this.mask)
 
 //    this.mask.style.clip = this._initRect(this.direction)
 
-    console.log('_initRect', this._initRect())
+//    console.log('_initRect', this._initRect())
 
     TweenMax.set(this.mask, {
 
@@ -126,13 +132,11 @@ class RevealCurtain {
   }
 
   /**
-   * アニメーション用のrectの値を取得する
-   * @param width
-   * @param height
+   * get animation rect position
    * @param end
    * @returns {string}
    */
-  _getRect(width, height, end) {
+  _getRect(end) {
 
     let rect = {
 
@@ -145,19 +149,19 @@ class RevealCurtain {
 
     if (this.direction === 'lr') {
 
-      rect.bottom = height;
-      rect.right = width;
+      rect.bottom = this.height;
+      rect.right = this.width;
 
       if (end) {
 
-        rect.left = width;
+        rect.left = this.width;
 
       }
 
     } else if (this.direction === 'rl') {
 
-      rect.bottom = height;
-      rect.right = width;
+      rect.bottom = this.height;
+      rect.right = this.width;
 
       if (end) {
 
@@ -167,19 +171,19 @@ class RevealCurtain {
 
     } else if (this.direction === 'tb') {
 
-      rect.right = width;
-      rect.bottom = height;
+      rect.right = this.width;
+      rect.bottom = this.height;
 
       if (end) {
 
-        rect.top = height;
+        rect.top = this.height;
 
       }
 
     } else if (this.direction === 'bt') {
 
-      rect.right = width;
-      rect.bottom = height;
+      rect.right = this.width;
+      rect.bottom = this.height;
 
       if (end) {
 
@@ -201,11 +205,8 @@ class RevealCurtain {
   anim() {
 
     const tl       = new TimelineMax({}),
-          height   = this._getHeight(),
-          width    = this._getWidth(),
-          fromRect = this._getRect(width, height, false),
-          toRect   = this._getRect(width, height, true),
-          self     = this;
+          fromRect = this._getRect(false),
+          toRect   = this._getRect(true);
 
     tl.to(this.mask, .75, {
 
@@ -228,7 +229,20 @@ class RevealCurtain {
 
 }
 
-export default RevealCurtain;
+/**
+ *
+ * @param a
+ * @param b
+ * @returns {*}
+ */
+function extend(a, b) {
+  for (var key in b) {
+    if (b.hasOwnProperty(key)) {
+      a[key] = b[key];
+    }
+  }
+  return a;
+}
 
 /**
  *
@@ -247,4 +261,206 @@ function createDOMElement(type, className, content) {
  
 ## clip
 
+<RevealClip/>
 
+```javascript
+/**
+ *  RevealClip
+ */
+class RevealClip {
+
+  /**
+   * Constructor
+   *
+   * @param target {Element} target element
+   * @param direction {String} animation direction
+   */
+  constructor(target, direction, speed = 1) {
+
+    this.target = target;
+    this.direction = direction;
+    this.speed = speed;
+
+    this.height = 0;
+    this.width = 0;
+
+    this._init();
+
+  }
+
+  /**
+   * set original size
+   * @private
+   */
+  _getSize() {
+
+    this.height = this.target.clientHeight;
+    this.width = this.target.clientWidth;
+
+    this._setSize();
+
+  }
+
+  /**
+   * set wrapper size
+   * @private
+   */
+  _setSize() {
+
+    this.target.style.height = this.height + 'px';
+    this.target.style.width = this.width + 'px';
+
+  }
+
+  /**
+   * initialize rect position
+   * @returns {string}
+   */
+  _getInitRect() {
+
+    if (this.direction === 'lr') {
+
+      return `rect(0px 0px ${this.height}px 0px)`;
+
+    } else if (this.direction === 'rl') {
+
+      return `rect(0px ${this.width}px ${this.height}px ${this.width}px)`;
+    } else if (this.direction === 'tb') {
+
+      return `rect(0px ${this.width}px 0px 0px)`;
+
+    } else if (this.direction === 'bt') {
+
+      return `rect(${this.height}px ${this.width}px ${this.height}px 0px)`;
+
+    }
+
+  }
+
+  /**
+   * initialize
+   * @private
+   */
+  _init() {
+
+    /**
+     * get position prop
+     * @type {string}
+     */
+    const position = getComputedStyle(this.target).position;
+
+    /**
+     * set position prop
+     */
+    if (position !== 'fixed' && position !== 'absolute' && position !== 'relative') {
+
+      this.target.style.position = 'relative';
+
+    }
+
+    this._getSize();
+
+    /**
+     * create inner div
+     * @type {string}
+     */
+    this.target.innerHTML = '<div class="reveal-curtain__inner" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 9;">' + this.target.innerHTML + '</div>';
+
+    TweenMax.set(this.target.firstElementChild, {
+
+      clip: this._getInitRect(),
+
+    });
+
+  }
+
+  /**
+   * get rect animation position
+   * @returns {string}
+   */
+  _getRect() {
+
+    let rect = {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    };
+
+    if (this.direction === 'lr') {
+
+      rect.bottom = this.height;
+      rect.right = this.width;
+
+    } else if (this.direction === 'rl') {
+
+      rect.bottom = this.height;
+      rect.right = this.width;
+
+    } else if (this.direction === 'tb') {
+
+      rect.right = this.width;
+      rect.bottom = this.height;
+
+    } else if (this.direction === 'bt') {
+
+      rect.right = this.width;
+      rect.bottom = this.height;
+
+    }
+
+    return `rect(${rect.top}px ${rect.right}px ${rect.bottom}px ${rect.left}px)`;
+
+  }
+
+  /**
+   * animation start to
+   */
+  animTo() {
+
+    TweenMax.to(this.target.firstElementChild, this.speed, {
+
+      clip: this._getRect(),
+      ease: Expo.easeOut,
+
+    });
+
+  }
+
+  /**
+   * animation start from
+   */
+  animFrom() {
+
+    TweenMax.to(this.target.firstElementChild, this.speed, {
+
+      clip: this._getInitRect(),
+      ease: Expo.easeOut,
+
+    });
+
+  }
+
+  /**
+   * animation start from to
+   */
+  animFromTo() {
+
+    const tl = new TimelineMax({});
+
+    tl
+      .to(this.target.firstElementChild, this.speed, {
+
+        clip: this._getInitRect(),
+        ease: Expo.easeOut,
+
+      })
+      .to(this.target.firstElementChild, this.speed, {
+        clip: this._getRect(),
+        ease: Expo.easeOut,
+      });
+
+  }
+
+}
+```

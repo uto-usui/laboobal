@@ -17,7 +17,7 @@
     components: {DummyImage},
     data() {
       return {
-        func
+        func: {}
       }
     },
     mounted() {

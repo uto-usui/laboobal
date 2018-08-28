@@ -1,15 +1,15 @@
 <template>
   <section class="wrap" id="js-curtain">
-    <div class="item js-item" ref="target">
+    <div class="item" ref="target">
       <DummyImage/>
     </div>
-    <button @click="start">Re:start</button>
+    <button @click="fromTo">Re:start</button>
   </section>
 </template>
 
 <script>
 
-  import Curtain from './RevealCurtainScript';
+  import clip from './RevealClipScript';
   import DummyImage from './DummyImage';
 
   export default {
@@ -17,20 +17,23 @@
     components: {DummyImage},
     data() {
       return {
-        func
+        func: {}
       }
     },
     mounted() {
       this.$nextTick(() => {
-        this.func = new Curtain(this.$refs.target, 'rl')
+        this.func = new clip(this.$refs.target, 'lr')
         setTimeout(() => {
-          this.func.anim()
+          this.to();
         }, 2000)
       })
     },
     methods: {
-      start() {
-        this.func.anim()
+      to() {
+        this.func.animTo()
+      },
+      fromTo() {
+        this.func.animFromTo()
       }
     }
   };
@@ -43,10 +46,7 @@
   }
 
   .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
+    margin: 1em;
     //
     > * {
       width: 80%;
