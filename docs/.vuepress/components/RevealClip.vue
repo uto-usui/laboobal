@@ -22,8 +22,8 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.func = new clip(this.$refs.target, 'lr')
         setTimeout(() => {
+          this.func = new clip(this.$refs.target, 'lr')
           this.to();
         }, 2000)
       })

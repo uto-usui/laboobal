@@ -264,9 +264,6 @@ function createDOMElement(type, className, content) {
 <RevealClip/>
 
 ```javascript
-/**
- *  RevealClip
- */
 class RevealClip {
 
   /**
