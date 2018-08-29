@@ -18,12 +18,8 @@ module.exports = {
         link: '/',
       },
       {
-        text: 'info',
-        link: '/info/',
-      },
-      {
-        text: 'easing',
-        link: '/easing/',
+        text: 'basic',
+        link: '/basic/',
       },
       {
         text: 'effects',
@@ -40,21 +36,24 @@ module.exports = {
 //        ]
 //      }
     ],
-    sidebar: {
-      '/info/': [
-        '',
-      ],
-      '/easing/': [
-        '',
-      ],
-      '/effects/': [{
+    sidebar: [
+      '/',
+      {
+        title: 'basic',
+        children: [
+          '/basic/',
+          '/basic/easing',
+        ],
+      },
+      {
         title: 'effects',
         children: [
-          'mouse',
-          'reveal',
+          '/effects/',
+          '/effects/mouse',
+          '/effects/reveal',
         ],
-      }],
-    },
+      }
+    ],
     // 子ページの見出しはデフォルトでは見出しレベルが2 までがぶら下がって表示される
     // 見出しレベルが3の見出しをサイドバーに表示したいとき、sidebarDepthを設定する
     // page ごとに上書きできる
