@@ -8,14 +8,16 @@
 <RevealCurtain/>
 
 ```javascript
+/**
+ *  RevealCurtain
+ */
 class RevealCurtain {
 
   /**
    * Constructor
    *
    * @param target {Element} DOM
-   * @param direction {String} animation direction
-   * @param speed {Number}
+   * @param direction {String} アニメーションの方向を決定します
    */
   constructor(target, direction, speed = 1) {
 
@@ -26,7 +28,41 @@ class RevealCurtain {
     this.height = 0;
     this.width = 0;
 
-    this._layout();
+    this._init();
+
+  }
+
+  _init() {
+
+    /**
+     * set CSS position prop
+     * @type {string}
+     */
+    const position = getComputedStyle(this.target).position;
+
+    if (position !== 'fixed' && position !== 'absolute' && position !== 'relative') {
+
+      this.target.style.position = 'relative';
+
+    }
+
+    this._getSize();
+
+    this._wrapTarget();
+
+    this._createMask();
+
+  }
+
+
+  /**
+   * create wrap target div
+   * @type {string}
+   * @private
+   */
+  _wrapTarget() {
+
+    this.target.innerHTML = '<div class="block_inner" style="opacity: 0">' + this.target.innerHTML + '</div>';
 
   }
 
@@ -42,13 +78,10 @@ class RevealCurtain {
   }
 
   /**
-   * rectの初期値を返す
+   * initialize rect size
    * @returns {string}
    */
   _initRect() {
-
-//    console.log('height', height)
-//    console.log('width', width)
 
     if (this.direction === 'lr') {
 
@@ -70,39 +103,6 @@ class RevealCurtain {
   }
 
   /**
-   * create mask
-   */
-  _layout() {
-
-    const position = getComputedStyle(this.target).position;
-
-    if (position !== 'fixed' && position !== 'absolute' && position !== 'relative') {
-
-      this.target.style.position = 'relative';
-
-    }
-
-    /**
-     * get box size
-     */
-    this._getSize();
-
-    this._createMask();
-
-    /**
-     * create wrap target div
-     * @type {string}
-     */
-    this.target.innerHTML = '<div class="block_inner" style="opacity: 0">' + this.target.innerHTML + '</div>';
-
-    /**
-     * insert mask
-     */
-    this.target.insertAdjacentElement('afterbegin', this.mask);
-
-  }
-
-  /**
    * create mask element
    * @type {HTMLElement}
    */
@@ -117,17 +117,16 @@ class RevealCurtain {
     this.mask.style.bottom = 0;
     this.mask.style.backgroundColor = '#282828';
 
-//    console.log(this.mask)
-
-//    this.mask.style.clip = this._initRect(this.direction)
-
-//    console.log('_initRect', this._initRect())
-
     TweenMax.set(this.mask, {
 
       clip: this._initRect(this.direction),
 
     });
+
+    /**
+     * insert mask
+     */
+    this.target.insertAdjacentElement('afterbegin', this.mask);
 
   }
 
@@ -138,7 +137,7 @@ class RevealCurtain {
    */
   _getRect(end) {
 
-    let rect = {
+    const rect = {
 
       top: 0,
       right: 0,
@@ -152,44 +151,28 @@ class RevealCurtain {
       rect.bottom = this.height;
       rect.right = this.width;
 
-      if (end) {
-
-        rect.left = this.width;
-
-      }
+      if (end) rect.left = this.width;
 
     } else if (this.direction === 'rl') {
 
       rect.bottom = this.height;
       rect.right = this.width;
 
-      if (end) {
-
-        rect.right = 0;
-
-      }
+      if (end) rect.right = 0;
 
     } else if (this.direction === 'tb') {
 
       rect.right = this.width;
       rect.bottom = this.height;
 
-      if (end) {
-
-        rect.top = this.height;
-
-      }
+      if (end) rect.top = this.height;
 
     } else if (this.direction === 'bt') {
 
       rect.right = this.width;
       rect.bottom = this.height;
 
-      if (end) {
-
-        rect.bottom = 0;
-
-      }
+      if (end) rect.bottom = 0;
 
     }
 
@@ -229,20 +212,7 @@ class RevealCurtain {
 
 }
 
-/**
- *
- * @param a
- * @param b
- * @returns {*}
- */
-function extend(a, b) {
-  for (var key in b) {
-    if (b.hasOwnProperty(key)) {
-      a[key] = b[key];
-    }
-  }
-  return a;
-}
+export default RevealCurtain;
 
 /**
  *
@@ -252,7 +222,7 @@ function extend(a, b) {
  * @returns {HTMLElement}
  */
 function createDOMElement(type, className, content) {
-  let el = document.createElement(type);
+  const el = document.createElement(type);
   el.className = className || '';
   el.innerHTML = content || '';
   return el;
