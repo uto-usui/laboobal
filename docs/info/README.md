@@ -21,3 +21,12 @@ This site consists of VuePress x Gihub x Netlify and is published.
     - config.js     設定ファイル
 - README.md         ここがページになる
 ```
+
+## Sitedata
+
+### color
+
+* primary #FF6473
+* sub #990027 / #458083
+* text #2a2828
+
