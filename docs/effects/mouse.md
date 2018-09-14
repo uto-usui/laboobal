@@ -72,10 +72,13 @@ class tilt {
   }
 
   addEvent() {
-    const move = (e) => this.mouseMove(e);
-    this.container.addEventListener('mousemove', move);
-    const leave = (e) => this.mouseLeave(e);
-    this.container.addEventListener('mouseleave', leave);
+    const event = (e) => this.mouseMove(e);
+    this.container.addEventListener('mousemove', event);
+  }
+
+  leaveEvent() {
+    const event = (e) => this.mouseLeave(e);
+    this.container.addEventListener('mouseleave', event);
   }
 
 }

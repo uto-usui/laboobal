@@ -43,7 +43,7 @@ module.exports = {
         children: [
           '/basic/',
           '/basic/easing',
-          '/basic/follow',
+          '/basic/follow',  
         ],
       },
       {
