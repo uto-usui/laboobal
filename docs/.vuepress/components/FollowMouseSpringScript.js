@@ -1,4 +1,4 @@
-import {TweenMax} from 'gsap';
+import { TweenLite } from 'gsap/TweenLite';
 
 /**
  *  FollowMouse
@@ -72,7 +72,7 @@ class FollowMouseSpring {
   }
 
   setStyle() {
-    TweenMax.set(this.$target, {
+    TweenLite.set(this.$target, {
       x: this.targetPosition.x - this.$target.offsetWidth / 2,
       y: this.targetPosition.y - this.$target.offsetHeight / 2,
     });

@@ -1,4 +1,5 @@
-import {TweenMax} from 'gsap';
+import { TweenLite } from 'gsap/TweenLite';
+import 'gsap/CSSPlugin';
 
 import math from './math';
 
@@ -68,7 +69,7 @@ class FollowMouseTransform {
   }
 
   setStyle() {
-    TweenMax.set(this.$target, {
+    TweenLite.set(this.$target, {
       x: this.targetPosition.x - this.$target.offsetWidth / 2,
       y: this.targetPosition.y - this.$target.offsetHeight / 2,
       scale: this.getScale(),

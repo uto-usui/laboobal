@@ -9,13 +9,18 @@
 <FollowMouse/>
 
 ```javascript
+import { TweenLite } from 'gsap/TweenLite';
+
+/**
+ *  FollowMouse
+ */
 class FollowMouse {
 
-  constructor($target, $wrapper = window, easeing = .1) {
-
+  constructor($target, $wrapper = window, easing = .1) {
     this.$target = $target;
     this.$wrapper = $wrapper;
-    this.easing = easeing;
+    this.easing = easing;
+
     /**
      * mouse position
      * @type {{x: number, y: number}}
@@ -45,32 +50,32 @@ class FollowMouse {
    * @param e
    */
   getMousePosition(e) {
-
-    this.mouse.x = e.offsetX;
-    this.mouse.y = e.offsetY;
-
+    this.mouse.x = this.$wrapper === window ? e.clientX : e.offsetX;
+    this.mouse.y = this.$wrapper === window ? e.clientY : e.offsetY;
   }
 
   update() {
-
     /**
      * Damp the target position
+     * current position + (target position - current position) * easing
      * @type {number}
      */
     this.targetPosition.x += (this.mouse.x - this.targetPosition.x) * this.easing;
     this.targetPosition.y += (this.mouse.y - this.targetPosition.y) * this.easing;
 
-    TweenMax.set(this.$target, {
+    TweenLite.set(this.$target, {
       x: this.targetPosition.x - this.$target.offsetWidth / 2,
       y: this.targetPosition.y - this.$target.offsetHeight / 2
     });
 
     const animationCall = () => this.update();
     requestAnimationFrame(animationCall);
-
   }
 
 }
+
+export default FollowMouse;
+
 ```
 
 ## mouse - spring
@@ -78,6 +83,11 @@ class FollowMouse {
 <FollowMouseSpring/>
 
 ```javascript
+import { TweenLite } from 'gsap/TweenLite';
+
+/**
+ *  FollowMouse
+ */
 class FollowMouseSpring {
 
   constructor($target, $wrapper = window, power = .8) {
@@ -147,12 +157,15 @@ class FollowMouseSpring {
   }
 
   setStyle() {
-    TweenMax.set(this.$target, {
+    TweenLite.set(this.$target, {
       x: this.targetPosition.x - this.$target.offsetWidth / 2,
       y: this.targetPosition.y - this.$target.offsetHeight / 2,
     });
   }
 }
+
+export default FollowMouseSpring;
+
 ```
 
 ## mouse - transform

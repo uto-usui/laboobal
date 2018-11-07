@@ -25,6 +25,10 @@ module.exports = {
         text: 'effects',
         link: '/effects/',
       },
+      {
+        text: 'canvas',
+        link: '/canvas/',
+      },
 //      {
 //        text: 'Guide',
 //        items: [
@@ -43,7 +47,7 @@ module.exports = {
         children: [
           '/basic/',
           '/basic/easing',
-          '/basic/follow',  
+          '/basic/follow',
         ],
       },
       {
@@ -52,6 +56,12 @@ module.exports = {
           '/effects/',
           '/effects/mouse',
           '/effects/reveal',
+        ],
+      },
+      {
+        title: 'canvas',
+        children: [
+          '/canvas/',
         ],
       }
     ],
