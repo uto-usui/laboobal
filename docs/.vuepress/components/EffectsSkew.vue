@@ -14,13 +14,12 @@
   export default {
     name: 'EffectsTilt',
     components: {DummyImage},
-    methods: {
-    },
+    methods: {},
     mounted() {
       this.$nextTick(() => {
         new skew('js-wrap-skew', '.js-item');
-      })
-    }
+      });
+    },
   };
 </script>
 

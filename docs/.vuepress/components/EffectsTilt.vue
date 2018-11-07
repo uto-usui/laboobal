@@ -1,26 +1,24 @@
 <template>
-  <section class="wrap" id="js-wrap">
-    <div class="item js-item" data-speed-x=".5" data-speed-Y=".5">
+  <section class="wrap" ref="wrap" id="wrap">
+    <div class="item" ref="item" data-speed-x=".5" data-speed-Y=".5">
       <DummyImage/>
     </div>
   </section>
 </template>
 
 <script>
-
-  import tilt from './EffectsTiltScript';
+  import Tilt from './EffectsTiltScript';
   import DummyImage from './DummyImage';
 
   export default {
     name: 'EffectsTilt',
     components: {DummyImage},
-    methods: {
-    },
+    methods: {},
     mounted() {
       this.$nextTick(() => {
-        new tilt('js-wrap', '.js-item');
-      })
-    }
+        new Tilt('wrap', '.item');
+      });
+    },
   };
 </script>
 

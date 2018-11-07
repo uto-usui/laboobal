@@ -1,69 +1,84 @@
+import TweenLite from 'gsap/TweenLite';
+import 'gsap/CSSPlugin';
 
-import {TweenMax, Expo} from 'gsap'
+import _event from './utility/EventListener'
 
 /**
- *
- */
-/**
- *
- * @param target {object} element id
+ * Effect tilting the element to make it look like 3D
+ * 要素を傾けて３Dのように見せるエフェクト
  */
 class skewElement {
 
   /**
-   *
-   * @param target {Object}
-   * @param wrapper {Object} ID
+   * @param wrapper {Object} id element
+   * @param target  {Object} some elements
    */
   constructor(wrapper, target) {
 
-    const mouseMovefn = (e) => {
+    this.app = document.getElementById(wrapper);
+    this.target = target;
+    this._eventList = []
 
-      let xMouse = e.pageX - e.currentTarget.getBoundingClientRect().left - (e.currentTarget.offsetWidth / 2),
-          yMouse = e.pageY - window.pageYOffset - e.currentTarget.getBoundingClientRect().top - (e.currentTarget.offsetHeight / 2);
-
-      let mouseElements = [...e.currentTarget.querySelectorAll(target)];
-
-      mouseElements.forEach(elem => {
-
-        let factor = elem.dataset.mouseParallax,
-            xFinal = xMouse * factor,
-            yFinal = yMouse * factor;
-
-        TweenMax.to(elem, 1.2, {
-          x: xFinal,
-          y: yFinal,
-          skewX: xFinal * 0.05,
-          skewY: xFinal * 0.05
-        });
-
-      });
-
-    };
-
-    const mouseleavefn = (e) => {
-
-      const mouseElements = [...e.currentTarget.querySelectorAll(target)];
-
-      mouseElements.forEach(elem => {
-
-        TweenMax.to(elem, 1.2, {
-          x: 0,
-          y: 0,
-          skewX: 0,
-          skewY: 0
-        });
-
-      });
-
-    };
-
-    let app = document.getElementById(wrapper);
-    app &&
-    app.addEventListener('mousemove', mouseMovefn),
-      app.addEventListener('mouseleave', mouseleavefn);
+    this.app && this.init();
 
   }
+
+  init() {
+
+    const handleMouseMove = (e) => this.mouseMoveFn(e);
+    const handleMouseLeave = (e) => this.mouseLeaveFn(e);
+
+    this._eventList.push(new _event(this.app, 'mousemove', handleMouseMove))
+    this._eventList.push(new _event(this.app, 'mouseleave', handleMouseLeave))
+
+  }
+
+  destroy() {
+
+    this._eventList.forEach(event => event.destroyed())
+
+  }
+
+  mouseMoveFn(e) {
+
+    let xMouse = e.pageX - e.currentTarget.getBoundingClientRect().left - (e.currentTarget.offsetWidth / 2),
+        yMouse = e.pageY - window.pageYOffset - e.currentTarget.getBoundingClientRect().top - (e.currentTarget.offsetHeight / 2);
+
+    let mouseElements = [...e.currentTarget.querySelectorAll(this.target)];
+
+    mouseElements.forEach(el => {
+
+      let factor = el.dataset.mouseParallax,
+          xFinal = xMouse * factor,
+          yFinal = yMouse * factor;
+
+      TweenLite.to(el, 1.2, {
+        x: xFinal,
+        y: yFinal,
+        skewX: xFinal * 0.05,
+        skewY: xFinal * 0.05,
+      });
+
+    });
+
+  };
+
+  mouseLeaveFn(e) {
+
+    const mouseElements = [...e.currentTarget.querySelectorAll(this.target)];
+
+    mouseElements.forEach(el => {
+
+      TweenLite.to(el, 1.2, {
+        x: 0,
+        y: 0,
+        skewX: 0,
+        skewY: 0,
+      });
+
+    });
+
+  };
 
 }
 
