@@ -22,7 +22,6 @@
   "dependencies": {
     "createjs": "^1.0.1",
     "gsap": "^2.0.2",
-    "pixi.js": "^4.8.2",
     "three": "^0.98.0"
   }
 }
