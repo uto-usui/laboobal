@@ -7,11 +7,11 @@
     "email": "me@uto-usui.com"
   },
   "devDependencies": {
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.10.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
-    "vuepress": "^0.14.4"
+    "vuepress": "^0.14.8"
   },
   "license": "MIT",
   "private": true,
@@ -22,6 +22,6 @@
   "dependencies": {
     "createjs": "^1.0.1",
     "gsap": "^2.0.2",
-    "three": "^0.98.0"
+    "three": "^0.100.0"
   }
 }

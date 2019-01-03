@@ -29,16 +29,6 @@ module.exports = {
         text: 'canvas',
         link: '/canvas/',
       },
-//      {
-//        text: 'Guide',
-//        items: [
-//          { text: 'toc', link: '/guide/toc' },
-//          { text: 'emoji', link: '/guide/emoji' },
-//          { text: 'component', link: '/guide/component' },
-//          { text: 'customblock', link: '/guide/customblock' },
-//          { text: 'linehighlight', link: '/guide/linehighlight' },
-//        ]
-//      }
     ],
     sidebar: [
       '/',
