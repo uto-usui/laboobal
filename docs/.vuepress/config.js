@@ -62,7 +62,7 @@ module.exports = {
     repo: 'uto-usui/laboobal',
     docsRepo: 'uto-usui/laboobal',
     editLinks: true,
-    editLinkText: 'edit?',
+    editLinkText: '✍🏻 edit?',
   },
   markdown: {
     // markdown の行番号

@@ -1,5 +1,4 @@
-import { TweenLite } from 'gsap/TweenLite';
-import 'gsap/CSSPlugin';
+import {TweenLite} from 'gsap';
 
 import math from './math';
 

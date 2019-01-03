@@ -1,6 +1,4 @@
-import TweenLite from 'gsap/TweenLite';
-import {Power2} from 'gsap/EasePack';
-import 'gsap/CSSPlugin';
+import {TweenLite, Power2} from 'gsap';
 
 class tilt {
 
