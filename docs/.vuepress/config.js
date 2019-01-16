@@ -35,15 +35,16 @@ module.exports = {
       {
         title: 'basic',
         children: [
-          '/basic/',
+//          '/basic/',
           '/basic/easing',
           '/basic/follow',
+          '/basic/trigonometry',
         ],
       },
       {
         title: 'effects',
         children: [
-          '/effects/',
+//          '/effects/',
           '/effects/mouse',
           '/effects/reveal',
         ],
