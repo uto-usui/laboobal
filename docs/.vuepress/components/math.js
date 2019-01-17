@@ -65,6 +65,87 @@ class math {
    */
   static random = (min, max) => Math.random() * (max - min) + min;
 
+  /**
+   * 2D座標回転
+   * @param cx {number}
+   * @param cy {number}
+   * @param x {number}
+   * @param y {number}
+   * @param ang {number}
+   * @returns {<number>[]}
+   */
+  static rotate2d = (cx, cy, x, y, ang) => {
+
+    const rad = (Math.PI / 180) * ang,
+          cos = Math.cos(rad),
+          sin = Math.sin(rad),
+          nx = (cos * (x - cx)) + (sin * (y - cy)) + cx,
+          ny = (cos * (y - cy)) - (sin * (x - cx)) + cy
+
+    return [nx, ny];
+
+  }
+
+  /**
+   * X軸を基準に回転
+   * x / y / z 座標をもつオブジェクトを受け取って、そのオブジェクトを更新する
+   *
+   * @param obj {object} 3Dの座標をもつオブジェクト
+   * @param angle {number} 移動したい角度 ラジアン
+   */
+  static rotateX(obj, angle) {
+
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+
+    const y = obj.y * cos - obj.z * sin;
+    const z = obj.z * cos + obj.y * sin;
+
+    obj.y = y;
+    obj.z = z;
+
+  }
+
+  /**
+   * y軸を基準に回転
+   * x / y / z 座標をもつオブジェクトを受け取って、そのオブジェクトを更新する
+   *
+   * @param obj {object} 3Dの座標をもつオブジェクト
+   * @param angle {number} 移動したい角度 ラジアン
+   */
+  static rotateY(obj, angle) {
+
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+
+    const x = obj.x * cos - obj.z * sin;
+    const z = obj.z * cos + obj.x * sin;
+
+    obj.x = x;
+    obj.z = z;
+
+  }
+
+  /**
+   * z軸を基準に回転
+   * x / y / z 座標をもつオブジェクトを受け取って、そのオブジェクトを更新する
+   *
+   * @param obj {object} 3Dの座標をもつオブジェクト
+   * @param angle {number} 移動したい角度 ラジアン
+   */
+  static rotateZ(obj, angle) {
+
+    const cos = Math.cos(angle);
+    const sin = Math.sin(angle);
+
+    const x = obj.x * cos - obj.y * sin;
+    const y = obj.y * cos + obj.x * sin;
+
+    obj.x = x;
+    obj.y = y;
+
+  }
+
 
 }
 

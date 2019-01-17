@@ -1,21 +1,21 @@
 <template>
   <section class="wrap" id="js-wrap" ref="wrap">
-    <div class="target"></div>
+    <div class="target" :ref="index" v-for="index in 12" :key="index"></div>
   </section>
 </template>
 
 <script>
 
-  import TrigonometryRandomFloating from './TrigonometryRandomFloatingScript';
+  import Rotate3dXScript from './Rotate3dXScript';
 
   export default {
-    name: 'TrigonometryRandomFloating',
+    name: 'Rotate3dX',
     components: {},
     methods: {},
     mounted() {
       this.$nextTick(() => {
 
-        const anim = new TrigonometryRandomFloating([...this.$refs.wrap.querySelectorAll('.target')], 2, this.$refs.wrap.offsetWidth, this.$refs.wrap.offsetHeight, this.$refs.wrap);
+        const anim = new Rotate3dXScript([...this.$refs.wrap.querySelectorAll('.target')], 2, this.$refs.wrap.offsetWidth, this.$refs.wrap.offsetHeight, this.$refs.wrap);
         anim.play();
 
       });
@@ -40,8 +40,20 @@
     left: 0;
     width: 50px;
     height: 50px;
-    background-color: #25ECB7;
     border-radius: 48%;
+    //
+    mix-blend-mode: multiply;
+
+    &:nth-of-type(3n) {
+      background-color: #005257;
+    }
+    &:nth-of-type(3n+1) {
+      background-color: #BEFCFE;
+    }
+    &:nth-of-type(3n+2) {
+      background-color: #FF6473;
+    }
+
   }
 
 </style>

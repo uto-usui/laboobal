@@ -39,6 +39,7 @@ module.exports = {
           '/basic/easing',
           '/basic/follow',
           '/basic/trigonometry',
+          '/basic/rotate3d',
         ],
       },
       {
