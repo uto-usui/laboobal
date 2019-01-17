@@ -9,6 +9,7 @@ class TrigonometrySine {
    * @param speed {Number}
    * @param wrapWidth {Number}
    * @param wrapHeight {Number}
+   * @param wrap {Object}
    */
   constructor(targets, speed = 2, wrapWidth = window.innerWidth, wrapHeight = window.innerHeight, wrap) {
 

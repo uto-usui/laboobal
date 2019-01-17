@@ -11,18 +11,14 @@ class math {
    */
   static map = (value, fromMin, fromMax, toMin, toMax) => {
 
-    let result = 0;
-
-    result = (value <= fromMin)
+    return (value <= fromMin)
       ? toMin : (value >= fromMax)
         ? toMax : (() => {
 
-          let ratio = (toMax - toMin) / (fromMax - fromMin);
+          const ratio = (toMax - toMin) / (fromMax - fromMin);
           return (value - fromMin) * ratio + toMin;
 
         })();
-
-    return result;
 
   };
 
