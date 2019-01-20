@@ -40,6 +40,7 @@ module.exports = {
           '/basic/follow',
           '/basic/trigonometry',
           '/basic/rotate3d',
+          '/basic/scroll',
         ],
       },
       {

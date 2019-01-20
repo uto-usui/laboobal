@@ -22,6 +22,7 @@
   "dependencies": {
     "createjs": "^1.0.1",
     "gsap": "^2.0.2",
-    "three": "^0.100.0"
+    "three": "^0.100.0",
+    "throttle-debounce": "^2.1.0"
   }
 }

@@ -27,8 +27,9 @@ class Rotate3d {
      *
      * @type {{
      *   x: {
-     *    range: number, 変化の範囲
-     *    speed: number  変化のスピード
+     *    range: number,  変化の範囲
+     *    speed: number   変化のスピード
+     *    offset: number  マウス位置をオブジェクトに適用させるためのオフセット
      *   },
      *   y: {range: number, speed: number},
      *   z: {range: number, speed: number}
