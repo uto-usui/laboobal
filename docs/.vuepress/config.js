@@ -41,6 +41,7 @@ module.exports = {
           '/basic/trigonometry',
           '/basic/rotate3d',
           '/basic/scroll',
+          '/basic/hover',
         ],
       },
       {

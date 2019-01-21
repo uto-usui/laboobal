@@ -186,7 +186,7 @@ class ScrollRevealProgress {
     this.offset = 0;
     this.callbackIn = null;
     this.callbackOut = null;
-    this.show = null;
+    this.show = false;
     this.wrapHeight = 0;
     this.offsetTop = 0;
     this.targetHeight = 0;
