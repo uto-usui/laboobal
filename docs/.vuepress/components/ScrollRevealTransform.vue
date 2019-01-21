@@ -21,19 +21,21 @@
     mounted() {
       this.$nextTick(() => {
 
-        const easing = .05;
+        const easing = .1;
         const updateValue = {
+          scaleY: 0,
           rotationX: 0,
           y: 0,
         };
 
         new ScrollRevealScript(this.$refs.target, progress => {
 
-          updateValue.rotationX += (math.map(progress, 0, 1, 90, -90) - updateValue.rotationX) * easing;
+          updateValue.scaleY += (math.map(Math.abs(progress - .5), 0, .5, 1, 1.1) - updateValue.scaleY) * easing;
+          updateValue.rotationX += (math.map(progress, 0, 1, 60, -60) - updateValue.rotationX) * easing;
           updateValue.y += (math.map(progress, 0, 1, 100, -100) - updateValue.y) * easing;
 
           TweenMax.set(this.$refs.target, {
-            //            scaleY: math.map(progress, 0, 1, .7, 1.),
+            scaleY: updateValue.scaleY,
             rotationX: updateValue.rotationX,
             y: updateValue.y,
           });
@@ -65,10 +67,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 75%;
     margin-left: auto;
     margin-right: auto;
-    height: 100px;
+    height: 200px;
     background-color: #25ECB7;
     //
     + .target {

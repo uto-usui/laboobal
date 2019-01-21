@@ -243,25 +243,25 @@ Apply easing to transforming changes
 <ScrollRevealTransform />
 
 ```javascript
-import ScrollRevealScript from './ScrollRevealScript';
-import math from './math';
-import {TweenMax} from 'gsap';
-
-const easing = .01;
-const targetValue = {
+const easing = .1;
+const updateValue = {
+  scaleY: 0,
   rotationX: 0,
-  y: 0
-}
+  y: 0,
+};
 
 new ScrollRevealScript(this.$refs.target, progress => {
 
-  targetValue.rotationX += (math.map(progress, 0, 1, 90, -90) - targetValue.rotationX) * easing;
-  targetValue.y += (math.map(progress, 0, 1, 100, -100) - targetValue.y) * easing;
+  updateValue.scaleY += (math.map(Math.abs(progress - .5), 0, .5, 1, 1.1) - updateValue.scaleY) * easing;
+  updateValue.rotationX += (math.map(progress, 0, 1, 60, -60) - updateValue.rotationX) * easing;
+  updateValue.y += (math.map(progress, 0, 1, 100, -100) - updateValue.y) * easing;
 
   TweenMax.set(this.$refs.target, {
-    rotationX: targetValue.rotationX,
-    y: targetValue.y
-  })
+    scaleY: updateValue.scaleY,
+    rotationX: updateValue.rotationX,
+    y: updateValue.y,
+  });
 
 }, null, -150, this.$refs.wrap);
+
 ```
