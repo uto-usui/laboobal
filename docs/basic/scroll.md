@@ -6,12 +6,14 @@
 
 ## progress
 
+If the element is in the visible range, process according to the progress rate.
+
 <ScrollReveal />
 
 ```javascript
 class ScrollRevealProgress {
 
-  constructor(target, callbackIn, callbackOut, offset = 150, wrapper = window) {
+  constructor(target, callbackIn, callbackOut, offset = 150, wrapper = window, always = true) {
 
     /**
      * ターゲット要素
@@ -44,6 +46,13 @@ class ScrollRevealProgress {
      */
     this.callbackOut = typeof callbackOut === 'function' ? callbackOut : () => {
     };
+
+    /**
+     * 常にコールバック関数を実行するかどうか
+     * false だと スクロール値が変わった時にだけ実行する
+     * @type {boolean}
+     */
+    this.always = always;
 
     /**
      * 可視範囲に入っているかの審議値
@@ -93,7 +102,7 @@ class ScrollRevealProgress {
 
   set scrollY(value) {
 
-    if (this._scrollY === value) {
+    if (this._scrollY === value && !this.always) {
       return;
     }
 
@@ -122,7 +131,7 @@ class ScrollRevealProgress {
    */
   getItemInfo() {
 
-    console.log('getItemInfo');
+//    console.log('getItemInfo');
 
     // ラッパーの高さをセット
     this.wrapHeight = (this.wrapper === window) ? window.innerHeight : this.wrapper.offsetHeight;
@@ -203,4 +212,56 @@ class ScrollRevealProgress {
 
 export default ScrollRevealProgress;
 
+
+```
+
+## color
+
+<ScrollRevealColor />
+
+```javascript
+import ScrollRevealScript from './ScrollRevealScript';
+import math from './math';
+import chroma from 'chroma-js';
+import {TweenMax} from 'gsap';
+
+new ScrollRevealScript(this.$refs.target, progress => {
+
+  TweenMax.set(this.$refs.target, {
+    backgroundColor: chroma.mix( chroma.hsl(110, .75, math.map(progress, 0, 1, .45, .7)), chroma.hsl(240, .75, math.map(progress, 0, 1, .45, .7)), progress, 'hsl').css()
+  })
+
+}, null, 100, this.$refs.wrap);
+
+```
+
+## transform
+
+Transform elements according to scroll.  
+Apply easing to transforming changes
+
+<ScrollRevealTransform />
+
+```javascript
+import ScrollRevealScript from './ScrollRevealScript';
+import math from './math';
+import {TweenMax} from 'gsap';
+
+const easing = .01;
+const targetValue = {
+  rotationX: 0,
+  y: 0
+}
+
+new ScrollRevealScript(this.$refs.target, progress => {
+
+  targetValue.rotationX += (math.map(progress, 0, 1, 90, -90) - targetValue.rotationX) * easing;
+  targetValue.y += (math.map(progress, 0, 1, 100, -100) - targetValue.y) * easing;
+
+  TweenMax.set(this.$refs.target, {
+    rotationX: targetValue.rotationX,
+    y: targetValue.y
+  })
+
+}, null, -150, this.$refs.wrap);
 ```

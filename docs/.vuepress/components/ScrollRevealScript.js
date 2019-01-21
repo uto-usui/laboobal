@@ -1,6 +1,6 @@
 class ScrollRevealProgress {
 
-  constructor(target, callbackIn, callbackOut, offset = 150, wrapper = window) {
+  constructor(target, callbackIn, callbackOut, offset = 150, wrapper = window, always = true) {
 
     /**
      * ターゲット要素
@@ -33,6 +33,13 @@ class ScrollRevealProgress {
      */
     this.callbackOut = typeof callbackOut === 'function' ? callbackOut : () => {
     };
+
+    /**
+     * 常にコールバック関数を実行するかどうか
+     * false だと スクロール値が変わった時にだけ実行する
+     * @type {boolean}
+     */
+    this.always = always;
 
     /**
      * 可視範囲に入っているかの審議値
@@ -82,7 +89,7 @@ class ScrollRevealProgress {
 
   set scrollY(value) {
 
-    if (this._scrollY === value) {
+    if (this._scrollY === value && !this.always) {
       return;
     }
 
@@ -111,7 +118,7 @@ class ScrollRevealProgress {
    */
   getItemInfo() {
 
-    console.log('getItemInfo');
+//    console.log('getItemInfo');
 
     // ラッパーの高さをセット
     this.wrapHeight = (this.wrapper === window) ? window.innerHeight : this.wrapper.offsetHeight;

@@ -20,6 +20,7 @@
     "docs:dev": "vuepress dev docs"
   },
   "dependencies": {
+    "chroma-js": "^2.0.2",
     "createjs": "^1.0.1",
     "gsap": "^2.0.2",
     "three": "^0.100.0",
