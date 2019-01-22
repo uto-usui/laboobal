@@ -4,10 +4,22 @@ module.exports = {
   base: '/', // base URL
   title: 'laboobal',
   description: 'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
-  //  head: [
-  //    ['link', { rel: 'icon', href: `/logo.png` }]
-  //  ],
-  // ga: 'xxxx',
+  head: [
+    ['link', {rel: 'manifest', href: '/manifest.json'}],
+  ],
+  plugins: {
+    '@vuepress/pwa': {
+      serviceWorker: true,
+      updatePopup: {
+        message: 'New content is available.',
+        buttonText: 'Refresh',
+      },
+    },
+    '@vuepress/google-analytics': {
+      ga: 'UA-12345678-9',
+    },
+  },
+  ga: 'UA-132902237-1',
   // serviceWorker: true,
   themeConfig: {
     // repo: '',
@@ -42,6 +54,7 @@ module.exports = {
           '/basic/rotate3d',
           '/basic/scroll',
           '/basic/hover',
+          '/basic/drag',
         ],
       },
       {
@@ -57,7 +70,7 @@ module.exports = {
         children: [
           '/canvas/',
         ],
-      }
+      },
     ],
     // 子ページの見出しはデフォルトでは見出しレベルが2 までがぶら下がって表示される
     // 見出しレベルが3の見出しをサイドバーに表示したいとき、sidebarDepthを設定する
@@ -71,6 +84,9 @@ module.exports = {
   markdown: {
     // markdown の行番号
     lineNumbers: true,
+    extendMarkdown(md) {
+      md.options.linkify = true;
+    }
   },
   // override webpack config
   configureWebpack: {
