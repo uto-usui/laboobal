@@ -1,6 +1,8 @@
 {
   "short_name": "laboobal",
-  "name": "laboobal",
+  "name": "laboobal.work",
+  "description": "",
+  "orientation": "any",
   "icons": [
     {
       "src": "favicon.png",
@@ -11,5 +13,5 @@
   "theme_color": "#FF6473",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "/?pwa=true"
+  "start_url": "/"
 }

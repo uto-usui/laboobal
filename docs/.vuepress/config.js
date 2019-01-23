@@ -5,7 +5,12 @@ module.exports = {
   title: 'laboobal',
   description: 'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
   head: [
-    ['link', {rel: 'manifest', href: '/manifest.json'}],
+    ['link',
+      {rel: 'manifest', href: '/manifest.json'},
+    ],
+    ['meta',
+      {name: 'theme-color', content: '#FF6473'},
+    ],
   ],
   plugins: {
     '@vuepress/pwa': {
