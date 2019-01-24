@@ -21,10 +21,9 @@ module.exports = {
       },
     },
     '@vuepress/google-analytics': {
-      ga: 'UA-12345678-9',
+      ga: 'UA-132902237-1',
     },
   },
-  ga: 'UA-132902237-1',
   // serviceWorker: true,
   themeConfig: {
     // repo: '',

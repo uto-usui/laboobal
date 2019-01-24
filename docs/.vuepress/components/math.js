@@ -58,6 +58,30 @@ class math {
   static angleToRadian = angle => angle * Math.PI / 180;
 
   /**
+   * ラジアンを角度に変換する
+   * @param angle {number}
+   * @returns {number}
+   */
+  static angleToRadian = angle => angle * Math;
+
+  /**
+   *
+   * @param val
+   * @returns {number}
+   */
+  static radianToAngle = radian => radian * 180 / Math.PI;
+
+  /**
+   * ２点間の角度を求める
+   * @param x2 {number}
+   * @param y2 {number}
+   * @param x {number}
+   * @param y {number}
+   * @returns {number}
+   */
+  static getRadian = (x2, y2, x = 0, y = 0) => Math.atan2(y2 - y, x2 - x);
+
+  /**
    * 最小値と最大値を指定したランダムな値を返す
    * @param min {number}
    * @param max {number}
@@ -79,12 +103,12 @@ class math {
     const rad = (Math.PI / 180) * ang,
           cos = Math.cos(rad),
           sin = Math.sin(rad),
-          nx = (cos * (x - cx)) + (sin * (y - cy)) + cx,
-          ny = (cos * (y - cy)) - (sin * (x - cx)) + cy
+          nx  = (cos * (x - cx)) + (sin * (y - cy)) + cx,
+          ny  = (cos * (y - cy)) - (sin * (x - cx)) + cy;
 
     return [nx, ny];
 
-  }
+  };
 
   /**
    * X軸を基準に回転

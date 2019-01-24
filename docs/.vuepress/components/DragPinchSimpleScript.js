@@ -66,8 +66,6 @@ class DragPinchSimple {
       this.targetY += (param.y - this.targetY) * this.ease;
 
       TweenMax.set(target, {
-        scaleX: 1 + Math.abs(this.targetX) * .002,
-        scaleY: 1 + Math.abs(this.targetY) * .002,
         x: this.targetX,
         y: this.targetY,
       });

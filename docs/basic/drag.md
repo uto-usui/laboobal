@@ -255,8 +255,6 @@ class DragPinchSimple {
       this.targetY += (param.y - this.targetY) * this.ease;
 
       TweenMax.set(target, {
-        scaleX: 1 + Math.abs(this.targetX) * .002,
-        scaleY: 1 + Math.abs(this.targetY) * .002,
         x: this.targetX,
         y: this.targetY,
       });
@@ -404,5 +402,396 @@ class DragPinchFriction {
 }
 
 export default DragPinchFriction;
+
+```
+
+## lines
+
+<DragPinchLines />
+
+```javascript
+import DragPinchScript from './DragPinchScript';
+import {TweenMax} from 'gsap';
+import math from './math';
+import chroma from 'chroma-js';
+
+class DragPinchSimple {
+
+  /**
+   *
+   * @param target {HTMLElement}
+   * @param wrapper {HTMLElement}
+   * @param ease {number}
+   * @returns {DragPinchSimple}
+   */
+  constructor(target, wrapper = window, ease = .1) {
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.target = target;
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.wrapper = wrapper;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapHeight = (this.wrapper === window) ? window.innerHeight : this.wrapper.offsetHeight;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapWidth = (this.wrapper === window) ? window.innerWidth : this.wrapper.offsetWidth;
+
+    /**
+     * 摩擦
+     */
+    this.friction = math.random(.5, 2);
+
+    /**
+     *
+     * @type {number}
+     */
+    this.ease = ease;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetX = 0;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetY = 0;
+
+    /**
+     *
+     * @type {{}}
+     */
+    this.dragInstance = {};
+
+    this.init();
+
+    return this;
+
+  }
+
+  /**
+   * initialize
+   */
+  init() {
+
+    TweenMax.set(this.target, {
+      top: math.random(-50, this.wrapHeight + 50),
+      left: math.random(-50, this.wrapWidth + 50),
+    });
+
+    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
+
+      param.x *= this.friction;
+      param.y *= this.friction;
+
+      // 滑らかに移動させるためにイージング (減衰)
+      this.targetX += (param.x - this.targetX) * this.ease;
+      this.targetY += (param.y - this.targetY) * this.ease;
+
+      // 中心からの距離
+      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+      // カラースケールを定義して、距離から色情報を取り出す
+      const color = chroma.scale([0x25ECB7, 0xFF6473])(math.map(distFromCenter, 0, window.innerHeight / 4, 0, 1)).css();
+
+      TweenMax.set(target, {
+        rotation: 90 + math.radianToAngle(math.getRadian(this.targetX, this.targetY)),
+        scaleY: 1 + (Math.abs(this.targetX) + Math.abs(this.targetY)) * .2,
+        x: this.targetX * .5,
+        y: this.targetY * .5,
+        backgroundColor: color,
+      });
+
+    });
+
+  }
+
+  // destroy this instance
+  destroy() {
+
+    // destroy instance
+    this.dragInstance.destroy();
+
+    this.target = {};
+    this.wrapper = {};
+    this.wrapHeight = 0;
+    this.wrapWidth = 0;
+    this.ease = 0;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.dragInstance = null;
+
+  }
+
+}
+
+export default DragPinchSimple;
+
+```
+
+```javascript
+import {TweenMax} from 'gsap';
+import math from './math';
+import chroma from 'chroma-js';
+import DragPinchScript from './DragPinchScript';
+
+class DragPinchMinimize {
+
+  /**
+   *
+   * @param target {HTMLElement}
+   * @param wrapper {HTMLElement}
+   * @param ease {number}
+   * @returns {DragPinchSimple}
+   */
+  constructor(target, wrapper, ease = .1) {
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.target = target;
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.wrapper = wrapper;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapHeight = (this.wrapper === window) ? window.innerHeight : this.wrapper.offsetHeight;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapWidth = (this.wrapper === window) ? window.innerWidth : this.wrapper.offsetWidth;
+
+    /**
+     * 摩擦
+     */
+    this.friction = .5;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.ease = ease;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetX = 0;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetY = 0;
+
+    /**
+     *
+     * @type {{}}
+     */
+    this.dragInstance = {};
+
+    this.init();
+
+    return this;
+
+  }
+
+  /**
+   * initialize
+   */
+  init() {
+
+    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
+
+      param.x *= this.friction;
+      param.y *= this.friction;
+
+      // 滑らかに移動させるためにイージング (減衰)
+      this.targetX += (param.x - this.targetX) * this.ease;
+      this.targetY += (param.y - this.targetY) * this.ease;
+
+      // 中心からの距離
+      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+
+      // 距離が大きいと小さくなる
+      const scale = 1 - math.map(distFromCenter, 0, (this.wrapHeight + this.wrapWidth) / 4 * this.friction, 0, 1);
+
+      // カラースケールを定義して、距離から色情報を取り出す
+      const color = chroma.scale([0x25ECB7, 0xFF6473])(math.map(distFromCenter, 0, (this.wrapHeight + this.wrapWidth) / 4 * this.friction, 0, 1)).css();
+
+
+      TweenMax.set(target, {
+        scale: scale,
+        backgroundColor: color,
+        x: this.targetX * 2,
+        y: this.targetY * 2,
+      });
+
+
+    });
+
+  }
+
+  // destroy this instance
+  destroy() {
+
+    // destroy instance
+    this.dragInstance.destroy();
+
+    this.target = {};
+    this.wrapper = {};
+    this.ease = 0;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.friction = 0;
+    this.dragInstance = null;
+
+  }
+
+}
+
+export default DragPinchMinimize;
+
+```
+
+## word
+
+<DragPinchWord />
+
+```javascript
+import {TweenMax} from 'gsap';
+import math from './math';
+import DragPinchScript from './DragPinchScript';
+
+class DragPinchWord {
+
+  /**
+   *
+   * @param target {HTMLElement}
+   * @param wrapper {HTMLElement}
+   * @param ease {number}
+   * @returns {DragPinchSimple}
+   */
+  constructor(target, wrapper, ease = .1) {
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.target = target;
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.wrapper = wrapper;
+
+    /**
+     * 摩擦
+     */
+    this.friction = math.random(.1, 1);
+
+    /**
+     *
+     * @type {number}
+     */
+    this.ease = ease;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetX = 0;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetY = 0;
+
+    /**
+     *
+     * @type {{}}
+     */
+    this.dragInstance = {};
+
+    this.init();
+
+    return this;
+
+  }
+
+  /**
+   * initialize
+   */
+  init() {
+
+    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
+
+      param.x *= this.friction;
+      param.y *= this.friction;
+
+      // 滑らかに移動させるためにイージング (減衰)
+      this.targetX += (param.x - this.targetX) * this.ease;
+      this.targetY += (param.y - this.targetY) * this.ease;
+
+      // 中心からの距離
+      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+
+      const letterSpacing = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), .02, 3)
+      const fontSize = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), 1, 20)
+
+      TweenMax.set(target, {
+        letterSpacing: `${letterSpacing}em`,
+        fontSize: `${fontSize}em`,
+        height: 50 + Math.abs(this.targetY) * .2
+      });
+
+    });
+
+  }
+
+  // destroy this instance
+  destroy() {
+
+    // destroy instance
+    this.dragInstance.destroy();
+
+    this.target = {};
+    this.wrapper = {};
+    this.ease = 0;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.dragInstance = null;
+
+  }
+
+}
+
+export default DragPinchWord;
 
 ```

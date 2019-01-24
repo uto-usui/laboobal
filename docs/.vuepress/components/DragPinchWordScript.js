@@ -1,9 +1,8 @@
 import {TweenMax} from 'gsap';
 import math from './math';
-import chroma from 'chroma-js';
 import DragPinchScript from './DragPinchScript';
 
-class DragPinchFriction {
+class DragPinchWord {
 
   /**
    *
@@ -29,7 +28,7 @@ class DragPinchFriction {
     /**
      * 摩擦
      */
-    this.friction = .5;
+    this.friction = math.random(.1, 1);
 
     /**
      *
@@ -77,16 +76,14 @@ class DragPinchFriction {
 
       // 中心からの距離
       const distFromCenter = Math.hypot(this.targetX, this.targetY);
-      // カラースケールを定義して、距離から色情報を取り出す
-      const color = chroma.scale([0x25ECB7, 0xFF6473])(math.map(distFromCenter, 0, 500 / 2, 0, 1)).css();
+
+      const letterSpacing = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), .02, 3)
+      const fontSize = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), 1, 20)
 
       TweenMax.set(target, {
-        rotationZ: math.angleToRadian(this.targetX * this.targetY) * 0.1,
-        scaleX: 1 + Math.abs(this.targetX) * .002,
-        scaleY: 1 + Math.abs(this.targetY) * .002,
-        x: this.targetX,
-        y: this.targetY,
-        backgroundColor: color,
+        letterSpacing: `${letterSpacing}em`,
+        fontSize: `${fontSize}em`,
+        height: 50 + Math.abs(this.targetY) * .2
       });
 
     });
@@ -110,4 +107,4 @@ class DragPinchFriction {
 
 }
 
-export default DragPinchFriction;
+export default DragPinchWord;

@@ -1,32 +1,39 @@
 <template>
   <section class="wrap" id="js-wrap" ref="wrap">
-    <div class="target" ref="target">
-      <div class="target__inner"></div>
+    <div class="target" ref="target" v-for="index in 5" :key="index">
+      dragggg
     </div>
   </section>
 </template>
 
 <script>
-  import DragPinchFrictionScript from './DragPinchFrictionScript';
+  import DragPinchWordScript from './DragPinchWordScript';
 
   export default {
-    name: 'DragPinch',
+    name: 'DragPinchWord',
     components: {},
     methods: {},
     data() {
       return {
-        dragPinch: {}
+        dragPinch: [],
       };
     },
     mounted() {
 
       this.$nextTick(() => {
-        this.dragPinch = new DragPinchFrictionScript(this.$refs.target, this.$refs.wrap, .25)
+
+        this.$refs.target.forEach((el, i) => {
+          this.dragPinch[i] = new DragPinchWordScript(el, this.$refs.wrap, .2);
+        });
+
       });
 
     },
-    destroyed() {
-      this.dragPinch.destroy();
+    beforeDestroy() {
+      this.dragPinch.forEach(el => {
+        el.destroy();
+      });
+      this.dragPinch = [];
     },
   };
 </script>
@@ -35,7 +42,10 @@
 
   .wrap {
     position: relative;
+    overflow: hidden;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 500px;
@@ -45,17 +55,16 @@
   }
 
   .target {
-    position: relative;
-    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 100%;
+    width: 100%;
+    height: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
     background-color: #25ECB7;
+    -webkit-user-select: none;
   }
+
 
 </style>
