@@ -1,7 +1,9 @@
+import {TweenMax} from 'gsap';
+import math from './math';
+import chroma from 'chroma-js';
 import DragPinchScript from './DragPinchScript';
-import {TweenMax} from 'gsap'
 
-class DragPinchSimple {
+class DragPinchFriction {
 
   /**
    *
@@ -23,6 +25,11 @@ class DragPinchSimple {
      * @type {HTMLElement}
      */
     this.wrapper = wrapper;
+
+    /**
+     * 摩擦
+     */
+    this.friction = .5;
 
     /**
      *
@@ -61,15 +68,25 @@ class DragPinchSimple {
 
     this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
 
+      param.x *= this.friction;
+      param.y *= this.friction;
+
       // 滑らかに移動させるためにイージング (減衰)
       this.targetX += (param.x - this.targetX) * this.ease;
       this.targetY += (param.y - this.targetY) * this.ease;
 
+      // 中心からの距離
+      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+      // カラースケールを定義して、距離から色情報を取り出す
+      const color = chroma.scale([0x25ECB7, 0xFF6473])(math.map(distFromCenter, 0, 500 / 4, 0, 1)).css();
+
       TweenMax.set(target, {
+        rotationZ: math.angleToRadian(this.targetX * this.targetY) * 0.1,
         scaleX: 1 + Math.abs(this.targetX) * .002,
         scaleY: 1 + Math.abs(this.targetY) * .002,
         x: this.targetX,
         y: this.targetY,
+        backgroundColor: color,
       });
 
     });
@@ -93,4 +110,4 @@ class DragPinchSimple {
 
 }
 
-export default DragPinchSimple;
+export default DragPinchFriction;

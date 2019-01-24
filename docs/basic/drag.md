@@ -4,23 +4,24 @@
 
 # drag
 
-## pinch and release
+## simple pinch and release
 
 <DragPinchSimple />
 
 ```javascript
 import isMobile from 'ismobilejs';
-import {TweenMax} from 'gsap';
+import _event from './utility/EventListener'
 
-class DragPinchSimple {
+class DragPinch {
 
   /**
-   * マウスオーバーした時のインタラクションのコントロール
-   * アニメーションを必ず100%の進捗率まで進める
+   * ドラッグに応じてオブジェクトを動かす動き
    *
    * @param target {HTMLElement}
+   * @param wrapper
+   * @param callBack
    */
-  constructor(target, wrapper = window, friction = .3, ease = 0.1) {
+  constructor(target, wrapper = window, callBack) {
 
     /**
      * ターゲット要素
@@ -35,16 +36,9 @@ class DragPinchSimple {
     this.wrapper = wrapper;
 
     /**
-     * イージング量
-     * @type {number}
+     * コールバック {function}
      */
-    this.ease = ease;
-
-    // ターゲットの移動量
-    this.param = {
-      x: 0,
-      y: 0,
-    };
+    this.callBack = callBack;
 
     // マウス
     this.mouse = {
@@ -67,6 +61,8 @@ class DragPinchSimple {
      */
     this.animationId = 0;
 
+    this.eventList = [];
+
     this.init();
 
     return this;
@@ -79,18 +75,18 @@ class DragPinchSimple {
    */
   init() {
 
-    const moveHandle = (e) => this._eMouseMove(e);
-    const downHandle = (e) => this._eMouseDown(e);
-    const upHandle = (e) => this._eMouseUp(e);
+    const downHandle = (e) => this.downHandle(e);
+    const moveHandle = (e) => this.moveHandle(e);
+    const upHandle = (e) => this.upHandle(e);
 
     if (isMobile.any) {
-      document.addEventListener('touchmove', moveHandle, {passive: false});
-      document.addEventListener('touchstart', downHandle, {passive: false});
-      document.addEventListener('touchend', upHandle, {passive: false});
+      this.eventList.push(new _event(document, 'touchmove', moveHandle));
+      this.eventList.push(new _event(document, 'touchstart', downHandle));
+      this.eventList.push(new _event(document, 'touchend', upHandle));
     } else {
-      window.addEventListener('mousemove', moveHandle);
-      window.addEventListener('mousedown', downHandle);
-      window.addEventListener('mouseup', upHandle);
+      this.eventList.push(new _event(window, 'mousemove', moveHandle));
+      this.eventList.push(new _event(window, 'mousedown', downHandle));
+      this.eventList.push(new _event(window, 'mouseup', upHandle));
     }
 
     this.play();
@@ -113,16 +109,8 @@ class DragPinchSimple {
 
     }
 
-    // 滑らかに移動させるためイージング
-    this.param.x += (this.mouse.dist.x - this.param.x) * this.ease;
-    this.param.y += (this.mouse.dist.y - this.param.y) * this.ease;
-
-    TweenMax.set(this.target, {
-      scaleX: 1 + Math.abs(this.param.x) * .002,
-      scaleY: 1 + Math.abs(this.param.y) * .002,
-      x: this.param.x,
-      y: this.param.y,
-    });
+    // マウスのドラッグ距離を与えて実行するコールバック
+    this.callBack.call(this, {target: this.target, param: this.mouse.dist});
 
     this.animationId = window.requestAnimationFrame(() => this.play());
   }
@@ -132,7 +120,7 @@ class DragPinchSimple {
    * @param e
    * @private
    */
-  _eMouseMove(e) {
+  moveHandle(e) {
 
     if (isMobile.any) {
       e.preventDefault();
@@ -153,7 +141,7 @@ class DragPinchSimple {
    * @param e
    * @private
    */
-  _eMouseDown(e) {
+  downHandle(e) {
 
     if (!this.mouse.isDown) {
       this.mouse.isDown = true;
@@ -176,7 +164,7 @@ class DragPinchSimple {
    * マウスを離した
    * @private
    */
-  _eMouseUp() {
+  upHandle() {
     this.mouse.isDown = false;
   }
 
@@ -186,23 +174,10 @@ class DragPinchSimple {
     this.target = null;
     this.wrapper = null;
     this.ease = 0;
-    this.param = null;
     this.mouse = null;
     this.animationId = 0;
 
-    const moveHandle = (e) => this._eMouseMove(e);
-    const downHandle = (e) => this._eMouseDown(e);
-    const upHandle = () => this._eMouseUp();
-
-    if (isMobile.any) {
-      document.removeEventListener('touchmove', moveHandle, {passive: false});
-      document.removeEventListener('touchstart', downHandle, {passive: false});
-      document.removeEventListener('touchend', upHandle, {passive: false});
-    } else {
-      window.removeEventListener('mousemove', moveHandle);
-      window.removeEventListener('mousedown', downHandle);
-      window.removeEventListener('mouseup', upHandle);
-    }
+    this.eventList.forEach(event => event.destroy());
   }
 
 }
@@ -211,67 +186,56 @@ export default DragPinch;
 
 ```
 
-<DragPinch />
-
-
 ```javascript
-import isMobile from 'ismobilejs';
-import {TweenMax} from 'gsap';
+import DragPinchScript from './DragPinchScript';
+import {TweenMax} from 'gsap'
 
 class DragPinchSimple {
 
   /**
-   * マウスオーバーした時のインタラクションのコントロール
-   * アニメーションを必ず100%の進捗率まで進める
    *
    * @param target {HTMLElement}
+   * @param wrapper {HTMLElement}
+   * @param ease {number}
+   * @returns {DragPinchSimple}
    */
-  constructor(target, wrapper = window, friction = .3, ease = 0.1) {
+  constructor(target, wrapper, ease = .1) {
 
     /**
-     * ターゲット要素
+     *
      * @type {HTMLElement}
      */
     this.target = target;
 
     /**
-     * ラッパー要素
+     *
      * @type {HTMLElement}
      */
     this.wrapper = wrapper;
 
     /**
-     * イージング量
+     *
      * @type {number}
      */
     this.ease = ease;
 
-    // ターゲットの移動量
-    this.param = {
-      x: 0,
-      y: 0,
-    };
-
-    // マウス
-    this.mouse = {
-      isDown: false, // マウスダウンの真偽値
-      x: 0, // マウス位置 X
-      y: 0, // マウス位置 Y
-      start: { // マウスダウン座標
-        x: 0,
-        y: 0,
-      },
-      dist: { // ドラッグ距離
-        x: 0,
-        y: 0,
-      },
-    };
-
     /**
-     * requestAnimationFrame の id
+     *
      * @type {number}
      */
-    this.animationId = 0;
+    this.targetX = 0;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetY = 0;
+
+    /**
+     *
+     * @type {{}}
+     */
+    this.dragInstance = {};
 
     this.init();
 
@@ -279,140 +243,166 @@ class DragPinchSimple {
 
   }
 
+  /**
+   * initialize
+   */
+  init() {
+
+    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
+
+      // 滑らかに移動させるためにイージング (減衰)
+      this.targetX += (param.x - this.targetX) * this.ease;
+      this.targetY += (param.y - this.targetY) * this.ease;
+
+      TweenMax.set(target, {
+        scaleX: 1 + Math.abs(this.targetX) * .002,
+        scaleY: 1 + Math.abs(this.targetY) * .002,
+        x: this.targetX,
+        y: this.targetY,
+      });
+
+    });
+
+  }
+
+  // destroy this instance
+  destroy() {
+
+    // destroy instance
+    this.dragInstance.destroy();
+
+    this.target = {};
+    this.wrapper = {};
+    this.ease = 0;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.dragInstance = null;
+
+  }
+
+}
+
+export default DragPinchSimple;
+
+```
+
+## friction
+
+<DragPinchFriction />
+
+```javascript
+import {TweenMax} from 'gsap';
+import math from './math';
+import chroma from 'chroma-js';
+import DragPinchScript from './DragPinchScript';
+
+class DragPinchFriction {
+
+  /**
+   *
+   * @param target {HTMLElement}
+   * @param wrapper {HTMLElement}
+   * @param ease {number}
+   * @returns {DragPinchSimple}
+   */
+  constructor(target, wrapper, ease = .1) {
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.target = target;
+
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.wrapper = wrapper;
+
+    /**
+     * 摩擦
+     */
+    this.friction = .5;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.ease = ease;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetX = 0;
+
+    /**
+     *
+     * @type {number}
+     */
+    this.targetY = 0;
+
+    /**
+     *
+     * @type {{}}
+     */
+    this.dragInstance = {};
+
+    this.init();
+
+    return this;
+
+  }
 
   /**
    * initialize
    */
   init() {
 
-    const moveHandle = (e) => this._eMouseMove(e);
-    const downHandle = (e) => this._eMouseDown(e);
-    const upHandle = (e) => this._eMouseUp(e);
+    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
 
-    if (isMobile.any) {
-      document.addEventListener('touchmove', moveHandle, {passive: false});
-      document.addEventListener('touchstart', downHandle, {passive: false});
-      document.addEventListener('touchend', upHandle, {passive: false});
-    } else {
-      window.addEventListener('mousemove', moveHandle);
-      window.addEventListener('mousedown', downHandle);
-      window.addEventListener('mouseup', upHandle);
-    }
+      param.x *= this.friction;
+      param.y *= this.friction;
 
-    this.play();
+      // 滑らかに移動させるためにイージング (減衰)
+      this.targetX += (param.x - this.targetX) * this.ease;
+      this.targetY += (param.y - this.targetY) * this.ease;
 
-  }
+      // 中心からの距離
+      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+      // カラースケールを定義して、距離から色情報を取り出す
+      const color = chroma.scale([0x25ECB7, 0xFF6473])(math.map(distFromCenter, 0, 500 / 4, 0, 1)).css();
 
-  play() {
+      TweenMax.set(target, {
+        rotationZ: math.angleToRadian(this.targetX * this.targetY) * 0.1,
+        scaleX: 1 + Math.abs(this.targetX) * .002,
+        scaleY: 1 + Math.abs(this.targetY) * .002,
+        x: this.targetX,
+        y: this.targetY,
+        backgroundColor: color,
+      });
 
-    if (this.mouse.isDown) {
-
-      // ドラッグ距離
-      this.mouse.dist.x = this.mouse.x - this.mouse.start.x;
-      this.mouse.dist.y = this.mouse.y - this.mouse.start.y;
-
-    } else {
-
-      // リセット
-      this.mouse.dist.x = 0;
-      this.mouse.dist.y = 0;
-
-    }
-
-    // 滑らかに移動させるためイージング
-    this.param.x += (this.mouse.dist.x - this.param.x) * this.ease;
-    this.param.y += (this.mouse.dist.y - this.param.y) * this.ease;
-
-    TweenMax.set(this.target, {
-      scaleX: 1 + Math.abs(this.param.x) * .002,
-      scaleY: 1 + Math.abs(this.param.y) * .002,
-      x: this.param.x,
-      y: this.param.y,
     });
 
-    this.animationId = window.requestAnimationFrame(() => this.play());
   }
 
-  /**
-   * ドラッグ
-   * @param e
-   * @private
-   */
-  _eMouseMove(e) {
-
-    if (isMobile.any) {
-      e.preventDefault();
-      const touches = e.touches;
-      if (touches != null && touches.length > 0) {
-        this.mouse.x = touches[0].pageX;
-        this.mouse.y = touches[0].pageY;
-      }
-    } else {
-      this.mouse.x = e.clientX;
-      this.mouse.y = e.clientY;
-    }
-
-  }
-
-  /**
-   * マウス押した
-   * @param e
-   * @private
-   */
-  _eMouseDown(e) {
-
-    if (!this.mouse.isDown) {
-      this.mouse.isDown = true;
-      if (isMobile.any) {
-        e.preventDefault();
-        const touches = e.touches;
-        if (touches != null && touches.length > 0) {
-          this.mouse.start.x = this.mouse.x = touches[0].pageX;
-          this.mouse.start.y = this.mouse.y = touches[0].pageY;
-        }
-      } else {
-        this.mouse.start.x = e.clientX;
-        this.mouse.start.y = e.clientY;
-      }
-    }
-
-  }
-
-  /**
-   * マウスを離した
-   * @private
-   */
-  _eMouseUp() {
-    this.mouse.isDown = false;
-  }
-
+  // destroy this instance
   destroy() {
-    cancelAnimationFrame(this.animationId);
 
-    this.target = null;
-    this.wrapper = null;
+    // destroy instance
+    this.dragInstance.destroy();
+
+    this.target = {};
+    this.wrapper = {};
     this.ease = 0;
-    this.param = null;
-    this.mouse = null;
-    this.animationId = 0;
+    this.targetX = 0;
+    this.targetY = 0;
+    this.dragInstance = null;
 
-    const moveHandle = (e) => this._eMouseMove(e);
-    const downHandle = (e) => this._eMouseDown(e);
-    const upHandle = () => this._eMouseUp();
-
-    if (isMobile.any) {
-      document.removeEventListener('touchmove', moveHandle, {passive: false});
-      document.removeEventListener('touchstart', downHandle, {passive: false});
-      document.removeEventListener('touchend', upHandle, {passive: false});
-    } else {
-      window.removeEventListener('mousemove', moveHandle);
-      window.removeEventListener('mousedown', downHandle);
-      window.removeEventListener('mouseup', upHandle);
-    }
   }
 
 }
 
-export default DragPinch;
+export default DragPinchFriction;
 
 ```

@@ -34,7 +34,7 @@ class skewElement {
 
   destroy() {
 
-    this._eventList.forEach(event => event.destroyed())
+    this._eventList.forEach(event => event.destroy())
 
   }
 

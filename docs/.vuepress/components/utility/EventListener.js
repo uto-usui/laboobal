@@ -1,4 +1,4 @@
-class eventListener {
+class eventManager {
 
   /**
    * add event listener
@@ -10,9 +10,10 @@ class eventListener {
    */
   constructor(target, eventType, callback) {
 
-    this.target = target
-    this.eventType = eventType
-    this.listen(callback)
+    this.target = target;
+    this.eventType = eventType;
+
+    this.listen(callback);
 
   }
 
@@ -26,7 +27,7 @@ class eventListener {
     // add
     this.target.addEventListener(this.eventType, callback);
 
-    const _this = this
+    const _this = this;
 
     // push remove method
     this._eventRemovers.push({
@@ -37,7 +38,7 @@ class eventListener {
 
   }
 
-  destroyed() {
+  destroy() {
 
     if (this._eventRemovers) {
 
@@ -46,7 +47,7 @@ class eventListener {
         eventRemover.remove();
       });
 
-      console.log('destroy', this.target, this.eventType)
+//      console.log('destroy', this.target, this.eventType);
 
     }
 
@@ -54,4 +55,4 @@ class eventListener {
 
 }
 
-export default eventListener;
+export default eventManager;

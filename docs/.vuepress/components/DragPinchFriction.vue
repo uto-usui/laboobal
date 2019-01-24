@@ -7,29 +7,26 @@
 </template>
 
 <script>
-  import DragPinchSimpleScript from './DragPinchSimpleScript';
+  import DragPinchFrictionScript from './DragPinchFrictionScript';
 
   export default {
-    name: 'DragPinchSimple',
+    name: 'DragPinch',
     components: {},
     methods: {},
     data() {
       return {
-        dragPinch: {},
+        dragPinch: {}
       };
     },
     mounted() {
 
       this.$nextTick(() => {
-
-        this.dragPinch = new DragPinchSimpleScript(this.$refs.target, this.$refs.wrap)
-
+        this.dragPinch = new DragPinchFrictionScript(this.$refs.target, this.$refs.wrap)
       });
 
     },
-    beforeDestroy() {
+    destroyed() {
       this.dragPinch.destroy();
-      this.dragPinch = null
     },
   };
 </script>
@@ -57,7 +54,6 @@
     height: 100px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 100%;
     background-color: #25ECB7;
   }
 
