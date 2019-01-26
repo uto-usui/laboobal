@@ -12,9 +12,10 @@ class RandomColor {
    * @param length {number}
    * @param tile {boolean}
    * @param deg {number}
+   * @param rotation {boolean}
    * @returns {DragPinchSimple}
    */
-  constructor(target, length = 30, tile = false, deg = 90) {
+  constructor(target, length = 30, tile = false, deg = 90, rotation = false) {
 
     /**
      * ターゲットとなる要素
@@ -39,6 +40,12 @@ class RandomColor {
      * @type {number}
      */
     this.deg = deg;
+
+    /**
+     * 回転するかどうか
+     * @type {boolean}
+     */
+    this.rotation = rotation;
 
     /**
      * animation callback id
@@ -66,6 +73,8 @@ class RandomColor {
     });
 
     this.animationId = requestAnimationFrame(() => this.play());
+
+    this.rotation && (this.deg += 2)
 
   }
 
