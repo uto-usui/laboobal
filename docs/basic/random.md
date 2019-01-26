@@ -4,6 +4,17 @@
 
 # random
 
+```javascript
+/**
+ * 最小値と最大値を指定したランダムな値を返す
+ * @param min {number}
+ * @param max {number}
+ * @returns {number}
+ */
+const random = (min, max) => Math.random() * (max - min) + min;
+  
+```
+
 ## colors
 
 with css gradient 
@@ -130,6 +141,8 @@ class RandomColor {
 export default RandomColor;
 
 ```
+
+### rotation
 
 <RandomColorRotation />
 
