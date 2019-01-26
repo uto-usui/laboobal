@@ -1,21 +1,19 @@
 <template>
   <section class="wrap" id="js-wrap" ref="wrap">
-    <div class="target" ref="target" v-for="index in 5" :key="index">
-      drag
-    </div>
+    <div class="target" ref="target" v-for="index in 8" :key="index"></div>
   </section>
 </template>
 
 <script>
-  import DragPinchWordScript from './DragPinchWordScript';
+  import RandomColorScript from './RandomColorScript';
 
   export default {
-    name: 'DragPinchWord',
+    name: 'RandomColor',
     components: {},
     methods: {},
     data() {
       return {
-        dragPinch: [],
+        instance: [],
       };
     },
     mounted() {
@@ -23,17 +21,17 @@
       this.$nextTick(() => {
 
         this.$refs.target.forEach((el, i) => {
-          this.dragPinch[i] = new DragPinchWordScript(el, this.$refs.wrap, .2);
+          this.instance[i] = new RandomColorScript(el, 40, true);
         });
 
       });
 
     },
     beforeDestroy() {
-      this.dragPinch.forEach(el => {
+      this.instance.forEach(el => {
         el.destroy();
       });
-      this.dragPinch = [];
+      this.instance = [];
     },
   };
 </script>

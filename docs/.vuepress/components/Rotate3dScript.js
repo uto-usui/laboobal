@@ -109,8 +109,8 @@ class Rotate3d {
    */
   getMousePosition(e) {
 
-    this.mouse.x = e.offsetX;
-    this.mouse.y = e.offsetY;
+    this.mouse.x = this.$wrapper === window ? e.clientX : e.offsetX;
+    this.mouse.y = this.$wrapper === window ? e.clientY : e.offsetY;
 
   }
 

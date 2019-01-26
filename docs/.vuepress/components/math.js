@@ -59,14 +59,7 @@ class math {
 
   /**
    * ラジアンを角度に変換する
-   * @param angle {number}
-   * @returns {number}
-   */
-  static angleToRadian = angle => angle * Math;
-
-  /**
-   *
-   * @param val
+   * @param radian {number}
    * @returns {number}
    */
   static radianToAngle = radian => radian * 180 / Math.PI;
@@ -85,9 +78,33 @@ class math {
    * 最小値と最大値を指定したランダムな値を返す
    * @param min {number}
    * @param max {number}
-   * @returns {*}
+   * @returns {number}
    */
   static random = (min, max) => Math.random() * (max - min) + min;
+
+  /**
+   * 最小値と最大値を指定したランダムな整数値を返す
+   * @param min {number}
+   * @param max {number}
+   * @returns {number}
+   */
+  static randomInt = (min, max) => Math.trunc(Math.random() * (max - min + 1)) + min;
+
+  /**
+   * ランダムに配列内の要素を返す
+   * @param arr {array}
+   * @returns {*}
+   */
+  static randomArr = (arr) => arr[this.randomInt(0, arr.length - 1)];
+
+  /**
+   * range の確率で true を返す
+   * @param range
+   * @returns {boolean}
+   */
+  static  rangeBoolean = (range) => (this.randomInt(0, range - 1) === 0)
+
+
 
   /**
    * 2D座標回転

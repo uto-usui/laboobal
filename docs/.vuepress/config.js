@@ -59,6 +59,7 @@ module.exports = {
           '/basic/scroll',
           '/basic/hover',
           '/basic/drag',
+          '/basic/random',
         ],
       },
       {
