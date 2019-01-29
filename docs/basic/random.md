@@ -218,3 +218,4 @@ class RandomColor {
 export default RandomColor;
 
 ```
+    

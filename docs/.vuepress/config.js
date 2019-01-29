@@ -74,6 +74,7 @@ module.exports = {
         title: 'canvas',
         children: [
           '/canvas/',
+          '/canvas/distortion',
         ],
       },
     ],
@@ -97,7 +98,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-//        '@': 'docs/.vuepress/public/'
+        '@': 'docs/.vuepress/public/'
       },
     },
   },
