@@ -27,13 +27,18 @@
 
 <script>
 
-  import DistortionSlider from './DistortionSliderScript'
+  import DistortionSlider from './DistortionSliderScript';
 
   export default {
     name: 'DistortionSliderA',
+    data() {
+      return {
+        distortionSlider: {},
+      };
+    },
     mounted() {
 
-      new DistortionSlider(this.$refs.slider, {
+      this.distortionSlider = new DistortionSlider(this.$refs.slider, {
         images: [
           'https://images.unsplash.com/photo-1548112129-b5cf67e9558d',
           'https://images.unsplash.com/photo-1548106755-5c6bf746ca84',
@@ -43,6 +48,10 @@
         deep: 10.0,
       });
 
+    },
+    destroyed() {
+      this.distortionSlider.destroy();
+      this.distortionSlider = null;
     },
   };
 

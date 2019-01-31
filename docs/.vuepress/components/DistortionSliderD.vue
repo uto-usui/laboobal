@@ -59,9 +59,14 @@
 
   export default {
     name: 'DistortionSliderD',
+    data() {
+      return {
+        distortionSlider: {}
+      }
+    },
     mounted() {
 
-      new DistortionSlider(this.$refs.slider, {
+      this.distortionSlider = new DistortionSlider(this.$refs.slider, {
         images: [
           'https://images.unsplash.com/photo-1542731242-435ab393d233',
           'https://images.unsplash.com/photo-1545911975-b998991e17d1',
@@ -72,6 +77,10 @@
         fragment,
       });
 
+    },
+    destroyed() {
+      this.distortionSlider.destroy();
+      this.distortionSlider = null;
     },
   };
 

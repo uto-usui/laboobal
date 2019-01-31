@@ -1,3 +1,4 @@
+import _event from './utility/EventListener';
 import * as THREE from 'three';
 import {TweenMax} from 'gsap';
 
@@ -56,6 +57,11 @@ class DistortionSlider {
     this.scene = null;
     this.clock = null;
     this.camera = null;
+    this.geometry = null;
+    this.material = null;
+    this.meth = null;
+    this.bg = null;
+    this.timerId = 0;
 
     /**
      * Array of images to apply the effect
@@ -92,9 +98,11 @@ class DistortionSlider {
       speed: speed ? speed : 2.5,
     };
 
-    this.bg = null;
+    this.eventList = [];
 
     this.init();
+
+    return this;
   }
 
   /**
@@ -221,16 +229,16 @@ class DistortionSlider {
     });
 
     // create geometry
-    const geometry = new THREE.PlaneBufferGeometry(
+    this.geometry = new THREE.PlaneBufferGeometry(
       this.el.offsetWidth,
       this.el.offsetHeight,
       1,
     );
 
     // create mesh
-    const mesh = new THREE.Mesh(geometry, this.material);
+    this.mesh = new THREE.Mesh(this.geometry, this.material);
 
-    this.scene.add(mesh);
+    this.scene.add(this.mesh);
   }
 
   transitionPrev() {
@@ -339,14 +347,14 @@ class DistortionSlider {
    * set wheel event
    */
   listeners() {
-    window.addEventListener('wheel', this.nextSlide, {passive: true});
+    this.eventList.push(new _event(window, 'wheel', this.nextSlide));
   }
 
   /**
    * autoplay timer
    */
   timer() {
-    setInterval(this.nextSlide, 3000);
+    this.timerId = setInterval(this.nextSlide, 3000);
   }
 
   /**
@@ -369,6 +377,39 @@ class DistortionSlider {
     this.render();
     this.listeners();
     this.timer();
+  }
+
+  destroy() {
+
+    clearInterval(this.timerId);
+    this.eventList.forEach(event => event.destroy());
+
+    this.scene.remove(this.meth);
+    this.geometry.dispose();
+    this.material.dispose();
+
+    this.renderer.domElement = null;
+//    this.texture.dispose();
+
+//    this.vertex = null;
+//    this.fragment = null;
+//    this.el = null;
+//    this.inner = null;
+//    this.bullets = null;
+////    this.renderer = null;
+//    this.scene = null;
+//    this.clock = null;
+//    this.camera = null;
+//    this.geometry = null;
+//    this.material = null;
+//    this.meth = null;
+//    this.bg = null;
+//    this.images = null;
+//    this.texture = null;
+//    this.counter = null;
+//    this.state = null;
+//    this.effect = null;
+
   }
 }
 

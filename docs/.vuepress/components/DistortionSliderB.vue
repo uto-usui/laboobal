@@ -27,7 +27,7 @@
 
 <script>
 
-  import DistortionSlider from './DistortionSliderScript'
+  import DistortionSlider from './DistortionSliderScript';
 
   const fragment = `
   varying vec2 vUv;
@@ -58,9 +58,14 @@
 
   export default {
     name: 'DistortionSliderB',
+    data() {
+      return {
+        distortionSlider: {},
+      };
+    },
     mounted() {
 
-      new DistortionSlider(this.$refs.slider, {
+      this.distortionSlider = new DistortionSlider(this.$refs.slider, {
         images: [
           'https://images.unsplash.com/photo-1494256997604-768d1f608cac',
           'https://images.unsplash.com/photo-1516125073169-9e3ecdee83e7',
@@ -68,9 +73,13 @@
         ],
         texture: '/images/texture/01.png',
         deep: .25,
-        fragment
+        fragment,
       });
 
+    },
+    destroyed() {
+      this.distortionSlider.destroy();
+      this.distortionSlider = null;
     },
   };
 
