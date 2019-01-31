@@ -102,9 +102,16 @@ class math {
    * @param range
    * @returns {boolean}
    */
-  static  rangeBoolean = (range) => (this.randomInt(0, range - 1) === 0)
+  static rangeBoolean = (range) => (this.randomInt(0, range - 1) === 0);
 
-
+  /**
+   * min ~ max に value が当てはまるとき 0 ~ 1 を返す
+   * @param min {number}
+   * @param max {number}
+   * @param value {number}
+   * @returns {number}
+   */
+  static aperture = (min, max, value) => (value - (max - min)) / min;
 
   /**
    * 2D座標回転

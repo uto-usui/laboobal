@@ -50,6 +50,7 @@ module.exports = {
       '/',
       {
         title: 'basic',
+        collapsable: false,
         children: [
 //          '/basic/',
           '/basic/easing',
@@ -75,30 +76,29 @@ module.exports = {
         children: [
           '/canvas/',
           '/canvas/distortion',
+          '/canvas/distortion2',
+          '/canvas/P5/',
         ],
       },
     ],
-    // 子ページの見出しはデフォルトでは見出しレベルが2 までがぶら下がって表示される
-    // 見出しレベルが3の見出しをサイドバーに表示したいとき、sidebarDepthを設定する
-    // page ごとに上書きできる
-//    sidebarDepth: 3,
+    sidebarDepth: 3,
     repo: 'uto-usui/laboobal',
     docsRepo: 'uto-usui/laboobal',
     editLinks: true,
     editLinkText: '✍🏻 edit?',
+    lastUpdated: 'Last Updated',
   },
   markdown: {
-    // markdown の行番号
     lineNumbers: true,
     extendMarkdown(md) {
       md.options.linkify = true;
-    }
+    },
   },
   // override webpack config
   configureWebpack: {
     resolve: {
       alias: {
-        '@': 'docs/.vuepress/public/'
+        '@': 'docs/.vuepress/public/',
       },
     },
   },
