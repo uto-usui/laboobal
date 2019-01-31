@@ -14,9 +14,6 @@
     name: 'ScrollReveal',
     components: {},
     methods: {
-      destroy() {
-        this.reveal.destroy()
-      }
     },
     data() {
       return {
@@ -36,6 +33,9 @@
         }, null, 100, this.$refs.wrap);
 
       });
+    },
+    beforeDestroy() {
+      this.reveal.destroy()
     },
   };
 </script>

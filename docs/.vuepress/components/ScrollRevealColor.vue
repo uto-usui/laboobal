@@ -17,12 +17,14 @@
     components: {},
     methods: {},
     data() {
-      return {};
+      return {
+        reveal: {}
+      };
     },
     mounted() {
       this.$nextTick(() => {
 
-        new ScrollRevealScript(this.$refs.target, progress => {
+        this.reveal = new ScrollRevealScript(this.$refs.target, progress => {
 
           TweenMax.set(this.$refs.target, {
             backgroundColor: chroma.mix( chroma.hsl(110, .75, math.map(progress, 0, 1, .45, .7)), chroma.hsl(240, .75, math.map(progress, 0, 1, .45, .7)), progress, 'hsl').css()
@@ -31,6 +33,9 @@
         }, null, 100, this.$refs.wrap);
 
       });
+    },
+    beforeDestroy() {
+      this.reveal.destroy()
     },
   };
 </script>

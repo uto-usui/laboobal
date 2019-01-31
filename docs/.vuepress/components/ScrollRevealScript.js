@@ -1,3 +1,5 @@
+import _event from './utility/EventListener';
+
 class ScrollRevealProgress {
 
   constructor(target, callbackIn, callbackOut, offset = 150, wrapper = window, always = true) {
@@ -77,6 +79,8 @@ class ScrollRevealProgress {
      */
     this.animationId = 0;
 
+    this.eventList = [];
+
     this.init();
 
     return this;
@@ -106,7 +110,7 @@ class ScrollRevealProgress {
   init() {
 
     const resizeHandle = () => this.resize();
-    window.addEventListener('resize', resizeHandle);
+    this.eventList.push(new _event(window, 'resize', resizeHandle));
 
     this.getItemInfo();
     this.play();
@@ -178,8 +182,7 @@ class ScrollRevealProgress {
 
     cancelAnimationFrame(this.animationId);
 
-    const resizeHandle = () => this.resize();
-    window.removeEventListener('resize', resizeHandle);
+    this.eventList.forEach(event => event.destroy());
 
     this.target = null;
     this.wrapper = null;

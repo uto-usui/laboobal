@@ -16,7 +16,9 @@
     components: {},
     methods: {},
     data() {
-      return {};
+      return {
+        reveal: {}
+      };
     },
     mounted() {
       this.$nextTick(() => {
@@ -28,7 +30,7 @@
           y: 0,
         };
 
-        new ScrollRevealScript(this.$refs.target, progress => {
+        this.reveal = new ScrollRevealScript(this.$refs.target, progress => {
 
           updateValue.scaleY += (math.map(Math.abs(progress - .5), 0, .5, 1, 1.1) - updateValue.scaleY) * easing;
           updateValue.rotationX += (math.map(progress, 0, 1, 60, -60) - updateValue.rotationX) * easing;
@@ -43,6 +45,9 @@
         }, null, -150, this.$refs.wrap);
 
       });
+    },
+    beforeDestroy() {
+      this.reveal.destroy()
     },
   };
 </script>
