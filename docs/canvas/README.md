@@ -8,4 +8,4 @@
 
 Read images of another domain and draw on the canvas.
 
-<CanvasCrossOrigin/>
+<Canvas-CanvasCrossOrigin/>

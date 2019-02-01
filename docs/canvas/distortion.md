@@ -8,7 +8,7 @@ with Three.js.
 
 ## DS-1
 
-<DistortionSliderA />
+<Canvas-DistortionSliderA />
 
 ```javascript
 import * as THREE from 'three';
@@ -405,7 +405,7 @@ new DistortionSlider(this.$refs.slider, {
 
 Blues drive.
 
-<DistortionSliderB />
+<Canvas-DistortionSliderB />
 
 ```javascript
 const fragment = `

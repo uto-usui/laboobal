@@ -1,9 +1,8 @@
-import {TweenMax} from 'gsap';
-import math from './math';
-import DragPinchScript from './DragPinchScript';
+import { TweenMax } from 'gsap'
+import math from './math'
+import DragPinchScript from './DragPinchScript'
 
 class DragPinchWord {
-
   /**
    *
    * @param target {HTMLElement}
@@ -11,100 +10,109 @@ class DragPinchWord {
    * @param ease {number}
    * @returns {DragPinchSimple}
    */
-  constructor(target, wrapper, ease = .1) {
+  constructor(target, wrapper, ease = 0.1) {
+    /**
+     *
+     * @type {HTMLElement}
+     */
+    this.target = target
 
     /**
      *
      * @type {HTMLElement}
      */
-    this.target = target;
-
-    /**
-     *
-     * @type {HTMLElement}
-     */
-    this.wrapper = wrapper;
+    this.wrapper = wrapper
 
     /**
      * 摩擦
      */
-    this.friction = math.random(.1, 1);
+    this.friction = math.random(0.1, 1)
 
     /**
      *
      * @type {number}
      */
-    this.ease = ease;
+    this.ease = ease
 
     /**
      *
      * @type {number}
      */
-    this.targetX = 0;
+    this.targetX = 0
 
     /**
      *
      * @type {number}
      */
-    this.targetY = 0;
+    this.targetY = 0
 
     /**
      *
      * @type {{}}
      */
-    this.dragInstance = {};
+    this.dragInstance = {}
 
-    this.init();
+    this.init()
 
-    return this;
-
+    return this
   }
 
   /**
    * initialize
    */
   init() {
+    this.dragInstance = new DragPinchScript(
+      this.target,
+      this.wrap,
+      ({ target, param }) => {
+        const _param = param
 
-    this.dragInstance = new DragPinchScript(this.target, this.wrap, ({target, param}) => {
+        _param.x *= this.friction
+        _param.y *= this.friction
 
-      param.x *= this.friction;
-      param.y *= this.friction;
+        // 滑らかに移動させるためにイージング (減衰)
+        this.targetX += (_param.x - this.targetX) * this.ease
+        this.targetY += (_param.y - this.targetY) * this.ease
 
-      // 滑らかに移動させるためにイージング (減衰)
-      this.targetX += (param.x - this.targetX) * this.ease;
-      this.targetY += (param.y - this.targetY) * this.ease;
+        // 中心からの距離
+        const distFromCenter = Math.hypot(this.targetX, this.targetY)
 
-      // 中心からの距離
-      const distFromCenter = Math.hypot(this.targetX, this.targetY);
+        const letterSpacing = math.map(
+          distFromCenter,
+          0,
+          Math.hypot(window.innerWidth / 2, window.innerHeight / 2),
+          0.02,
+          3,
+        )
+        const fontSize = math.map(
+          distFromCenter,
+          0,
+          Math.hypot(window.innerWidth / 2, window.innerHeight / 2),
+          1,
+          20,
+        )
 
-      const letterSpacing = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), .02, 3)
-      const fontSize = math.map(distFromCenter, 0, Math.hypot(window.innerWidth / 2, window.innerHeight / 2), 1, 20)
-
-      TweenMax.set(target, {
-        letterSpacing: `${letterSpacing}em`,
-        fontSize: `${fontSize}em`,
-        height: 50 + Math.abs(this.targetY) * .2
-      });
-
-    });
-
+        TweenMax.set(target, {
+          letterSpacing: `${letterSpacing}em`,
+          fontSize: `${fontSize}em`,
+          height: 50 + Math.abs(this.targetY) * 0.2,
+        })
+      },
+    )
   }
 
   // destroy this instance
   destroy() {
-
     // destroy instance
-    this.dragInstance.destroy();
+    this.dragInstance.destroy()
 
-    this.target = {};
-    this.wrapper = {};
-    this.ease = 0;
-    this.targetX = 0;
-    this.targetY = 0;
-    this.dragInstance = null;
-
+    this.target = {}
+    this.wrapper = {}
+    this.ease = 0
+    this.targetX = 0
+    this.targetY = 0
+    this.dragInstance = null
   }
-
 }
 
-export default DragPinchWord;
+export default DragPinchWord

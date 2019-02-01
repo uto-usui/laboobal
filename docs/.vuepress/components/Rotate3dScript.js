@@ -1,8 +1,7 @@
-import {TweenMax} from 'gsap';
-import math from './math';
+import { TweenMax } from 'gsap'
+import math from './math'
 
 class Rotate3d {
-
   /**
    * constructor
    * @param targets {Object}
@@ -11,15 +10,20 @@ class Rotate3d {
    * @param wrapHeight {Number}
    * @param wrap {Object}
    */
-  constructor(targets, speed = 2, wrapWidth = window.innerWidth, wrapHeight = window.innerHeight, wrap) {
+  constructor(
+    targets,
+    speed = 2,
+    wrapWidth = window.innerWidth,
+    wrapHeight = window.innerHeight,
+    wrap,
+  ) {
+    this.targets = []
+    this.wrap = wrap
 
-    this.targets = [];
-    this.wrap = wrap;
+    this.speed = speed
 
-    this.speed = speed;
-
-    this.wrapWidth = wrapWidth;
-    this.wrapHeight = wrapHeight;
+    this.wrapWidth = wrapWidth
+    this.wrapHeight = wrapHeight
 
     /**
      * オブジェクトの位置を動かすためのパラメータの基準値
@@ -37,40 +41,39 @@ class Rotate3d {
      */
     this.position = {
       x: {
-        range: .25,
+        range: 0.25,
         speed: 1,
         offset: 0,
       },
       y: {
-        range: .25,
+        range: 0.25,
         speed: 1,
         offset: 0,
       },
       z: {
-        range: .25,
+        range: 0.25,
         speed: 1,
       },
-    };
+    }
 
     // 中心座標
     this.center = {
       x: this.wrapWidth / 2 - targets[0].offsetWidth / 2,
       y: this.wrapHeight / 2 - targets[0].offsetHeight / 2,
-    };
+    }
 
     // マウスの座標
     this.mouse = {
       x: 0,
       y: 0,
-      ease: .1,
-    };
+      ease: 0.1,
+    }
 
     /**
      * init element
      * 各オブジェクトの初期値などを設定
      */
     targets.forEach((el, i) => {
-
       /**
        * @type {{
        *   el: HTMLElement,
@@ -85,22 +88,29 @@ class Rotate3d {
        */
       const obj = {
         el: el,
-        x: math.random(-this.wrapWidth * this.position.x.range, this.wrapWidth * this.position.x.range),
-        y: math.random(-this.wrapHeight * this.position.y.range, this.wrapHeight * this.position.y.range),
-        z: math.random(-this.wrapHeight * this.position.z.range, this.wrapHeight * this.position.z.range),
+        x: math.random(
+          -this.wrapWidth * this.position.x.range,
+          this.wrapWidth * this.position.x.range,
+        ),
+        y: math.random(
+          -this.wrapHeight * this.position.y.range,
+          this.wrapHeight * this.position.y.range,
+        ),
+        z: math.random(
+          -this.wrapHeight * this.position.z.range,
+          this.wrapHeight * this.position.z.range,
+        ),
         speedX: math.random(1, 4) * this.position.x.speed * this.speed,
         speedY: math.random(1, 4) * this.position.y.speed * this.speed,
         speedZ: math.random(1, 4) * this.position.z.speed * this.speed,
         scale: math.random(1, 2),
-      };
+      }
 
-      this.targets.push(obj);
-
-    });
+      this.targets.push(obj)
+    })
 
     // event
-    this.wrap.addEventListener('mousemove', e => this.getMousePosition(e));
-
+    this.wrap.addEventListener('mousemove', e => this.getMousePosition(e))
   }
 
   /**
@@ -108,43 +118,38 @@ class Rotate3d {
    * @param e
    */
   getMousePosition(e) {
-
-    this.mouse.x = this.$wrapper === window ? e.clientX : e.offsetX;
-    this.mouse.y = this.$wrapper === window ? e.clientY : e.offsetY;
-
+    this.mouse.x = this.$wrapper === window ? e.clientX : e.offsetX
+    this.mouse.y = this.$wrapper === window ? e.clientY : e.offsetY
   }
 
   /**
    * animation start
    */
   play() {
+    const offsetX = math.map(this.mouse.y, 0, this.wrapWidth, -1.25, 1.25)
+    const offsetY = math.map(this.mouse.x, 0, this.wrapHeight, -1.25, 1.25)
 
-    const offsetX = math.map(this.mouse.y, 0, this.wrapWidth, -1.25, 1.25);
-    const offsetY = math.map(this.mouse.x, 0, this.wrapHeight, -1.25, 1.25);
-
-    this.position.x.offset += (offsetX - this.position.x.offset) * this.mouse.ease;
-    this.position.y.offset += (offsetY - this.position.y.offset) * this.mouse.ease;
+    this.position.x.offset +=
+      (offsetX - this.position.x.offset) * this.mouse.ease
+    this.position.y.offset +=
+      (offsetY - this.position.y.offset) * this.mouse.ease
 
     this.targets.forEach((el, i) => {
-
       // オブジェクトの座標を更新
-      math.rotateX(el, math.angleToRadian(el.speedX * this.position.x.offset));
-      math.rotateY(el, math.angleToRadian(el.speedY * this.position.y.offset));
-      math.rotateZ(el, math.angleToRadian(el.speedZ));
+      math.rotateX(el, math.angleToRadian(el.speedX * this.position.x.offset))
+      math.rotateY(el, math.angleToRadian(el.speedY * this.position.y.offset))
+      math.rotateZ(el, math.angleToRadian(el.speedZ))
 
       TweenMax.set(el.el, {
         scale: el.scale,
         x: el.x + this.center.x,
         y: el.y + this.center.y,
         z: el.z,
-      });
+      })
+    })
 
-    });
-
-    requestAnimationFrame(() => this.play());
-
+    requestAnimationFrame(() => this.play())
   }
-
 }
 
-export default Rotate3d;
+export default Rotate3d

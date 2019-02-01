@@ -1,9 +1,8 @@
-import {TweenMax} from 'gsap';
-import math from './math';
-import chroma from 'chroma-js';
+import { TweenMax } from 'gsap'
+import math from './math'
+import chroma from 'chroma-js'
 
 class RandomColor {
-
   /**
    * ランダムなグラデーションカラーを生成する
    * シームレスなグラデーションとタイル状に描画するモードを選択する
@@ -16,103 +15,100 @@ class RandomColor {
    * @returns {DragPinchSimple}
    */
   constructor(target, length = 30, tile = false, deg = 90, rotation = false) {
-
     /**
      * ターゲットとなる要素
      * @type {HTMLElement}
      */
-    this.target = target;
+    this.target = target
 
     /**
      * グラデーションのカラーストップ数
      * @type {number}
      */
-    this.length = length;
+    this.length = length
 
     /**
      * 描画モードの真偽値
      * @type {boolean}
      */
-    this.tile = tile;
+    this.tile = tile
 
     /**
      * グラデーションの角度
      * @type {number}
      */
-    this.deg = deg;
+    this.deg = deg
 
     /**
      * 回転するかどうか
      * @type {boolean}
      */
-    this.rotation = rotation;
+    this.rotation = rotation
 
     /**
      * animation callback id
      * @type {number}
      */
-    this.animationId = 0;
+    this.animationId = 0
 
-    this.init();
+    this.init()
 
-    return this;
-
+    return this
   }
 
   /**
    * initialize
    */
   init() {
-    this.play();
+    this.play()
   }
 
   play() {
-
     TweenMax.set(this.target, {
       background: `linear-gradient(${this.deg}deg, ${this.getColor()})`,
-    });
+    })
 
-    this.animationId = requestAnimationFrame(() => this.play());
+    this.animationId = requestAnimationFrame(() => this.play())
 
     this.rotation && (this.deg += 2)
-
   }
 
   getColor() {
-
-    let gradient = '';
+    let gradient = ''
 
     for (let i = 0; i < this.length; i++) {
-
-      const color = chroma(math.random(100, 220), math.random(100, 255), math.random(180, 240)).css();
-      gradient += color;
+      const color = chroma(
+        math.random(100, 220),
+        math.random(100, 255),
+        math.random(180, 240),
+      ).css()
+      gradient += color
 
       if (this.tile && i !== this.length - 1) {
-        gradient += ` ${100 / this.length * i}%, ${color} ${100 / this.length * (i + 1)}%,`;
+        gradient += ` ${(100 / this.length) * i}%, ${color} ${(100 /
+          this.length) *
+          (i + 1)}%,`
       } else if (i === this.length - 1) {
-        gradient += ` ${100 / this.length * i}%, ${color} ${100 / this.length * (i + 1)}%`;
+        gradient += ` ${(100 / this.length) * i}%, ${color} ${(100 /
+          this.length) *
+          (i + 1)}%`
       } else if (!this.tile && i !== this.length - 1) {
-        gradient += ',';
+        gradient += ','
       }
-
     }
 
-    return gradient;
-
+    return gradient
   }
 
   // destroy this instance
   destroy() {
+    cancelAnimationFrame(this.animationId)
 
-    cancelAnimationFrame(this.animationId);
-
-    this.target = null;
-    this.length = 0;
-    this.tile = false;
-    this.animationId = 0;
-
+    this.target = null
+    this.length = 0
+    this.tile = false
+    this.animationId = 0
   }
-
 }
 
-export default RandomColor;
+export default RandomColor

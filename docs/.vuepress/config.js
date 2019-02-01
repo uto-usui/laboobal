@@ -1,4 +1,4 @@
-// https://vuepress.vuejs.org/config/
+const path = require('path')
 
 module.exports = {
   base: '/', // base URL
@@ -95,11 +95,17 @@ module.exports = {
     },
   },
   // override webpack config
-  configureWebpack: {
-    resolve: {
-      alias: {
-        '@': 'docs/.vuepress/public/',
-      },
-    },
+  configureWebpack: (config, isServer) => {
+
+    config.resolve.alias['@'] = path.resolve(__dirname, './docs/.vuepress/public/')
+
+    if (isServer) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/,
+      })
+    }
   },
 };

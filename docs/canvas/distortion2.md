@@ -8,7 +8,7 @@ with Three.js.
 
 ## horizontal
 
-<DistortionSliderC />
+<Canvas-DistortionSliderC />
 
 ```javascript
 const fragment = `
@@ -53,7 +53,7 @@ new DistortionSlider(this.$refs.slider, {
 
 ## vertical
 
-<DistortionSliderD />
+<Canvas-DistortionSliderD />
 
 ```javascript
 const fragment = `

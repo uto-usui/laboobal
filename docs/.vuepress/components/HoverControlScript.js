@@ -1,5 +1,4 @@
 class HoverControl {
-
   /**
    * マウスオーバーした時のインタラクションのコントロール
    * アニメーションを必ず100%の進捗率まで進める
@@ -9,49 +8,47 @@ class HoverControl {
    * @param outFunc {function} Promise を返す関数を受け取る
    */
   constructor(target, overFunc, outFunc) {
-
     /**
      * ターゲット要素
      * @type {HTMLElement}
      */
-    this.target = target;
+    this.target = target
 
     /**
      * マウスオーバーした時に実行する関数
      * @type {function}
      */
-    this.overFunc = overFunc;
+    this.overFunc = overFunc
 
     /**
      * マウスアウトした時に実行する関数
      * @type {function}
      */
-    this.outFunc = outFunc;
+    this.outFunc = outFunc
 
     /**
      * マウスが乗っているかどうか
      * @type {boolean}
      */
-    this.isOver = false;
+    this.isOver = false
 
     /**
      * アニメーションが進行中かどうか
      * @type {boolean}
      */
-    this.isPlaying = false;
+    this.isPlaying = false
 
-    this.init();
+    this.init()
 
-    return this;
-
+    return this
   }
 
   /**
    * initialize
    */
   init() {
-    this.target.addEventListener('mouseover', this.rollOverHandle.bind(this));
-    this.target.addEventListener('mouseout', this.rollOutHandle.bind(this));
+    this.target.addEventListener('mouseover', this.rollOverHandle.bind(this))
+    this.target.addEventListener('mouseout', this.rollOutHandle.bind(this))
   }
 
   /**
@@ -59,9 +56,9 @@ class HoverControl {
    * @param e {object} mouse event
    */
   rollOverHandle(e) {
-    this.isOver = true;
+    this.isOver = true
     if (!this.isPlaying) {
-      this.startRollOver(e);
+      this.startRollOver(e)
     }
   }
 
@@ -69,11 +66,11 @@ class HoverControl {
    * out handle
    */
   rollOutHandle() {
-    this.isOver = false;
+    this.isOver = false
     if (!this.isPlaying) {
-      this.startRollOut();
+      this.startRollOut()
     }
-  };
+  }
 
   /**
    * roll over animation
@@ -81,48 +78,47 @@ class HoverControl {
    * @returns {Promise<void>}
    */
   async startRollOver(e) {
-    this.isPlaying = true;
+    this.isPlaying = true
 
-    await this.overFunc.call(this, this.target, e);
-    this.completeRollOver();
-  };
+    await this.overFunc.call(this, this.target, e)
+    this.completeRollOver()
+  }
 
   /**
    * roll out animation
    * @returns {Promise<void>}
    */
   async startRollOut() {
-    this.isPlaying = true;
+    this.isPlaying = true
 
-    await this.outFunc.call(this, this.target);
-    this.completeRollOut();
-  };
+    await this.outFunc.call(this, this.target)
+    this.completeRollOut()
+  }
 
   /**
    * finished roll over animation
    */
   completeRollOver() {
-    this.isPlaying = false;
+    this.isPlaying = false
     if (!this.isOver) {
-      this.startRollOut();
+      this.startRollOut()
     }
-  };
+  }
 
   /**
    * finished roll out animation
    */
   completeRollOut() {
-    this.isPlaying = false;
+    this.isPlaying = false
     if (this.isOver) {
-      this.startRollOver();
+      this.startRollOver()
     }
-  };
-
-  destroy() {
-    this.target.removeEventListener('mouseover', this.rollOverHandle.bind(this));
-    this.target.removeEventListener('mouseout', this.rollOutHandle.bind(this));
   }
 
+  destroy() {
+    this.target.removeEventListener('mouseover', this.rollOverHandle.bind(this))
+    this.target.removeEventListener('mouseout', this.rollOutHandle.bind(this))
+  }
 }
 
-export default HoverControl;
+export default HoverControl
