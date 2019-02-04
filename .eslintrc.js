@@ -35,8 +35,8 @@ module.exports = {
 //    'vue/component-name-in-template-casing': [
 //      'off',
 //    ],
-    'vue/no-v-html': [
-      'off',
-    ],
+//    'vue/no-v-html': [
+//      'off',
+//    ],
   },
 };

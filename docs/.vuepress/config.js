@@ -77,6 +77,7 @@ module.exports = {
           '/canvas/',
           '/canvas/distortion',
           '/canvas/distortion2',
+          '/canvas/glitchImage',
           '/canvas/P5/',
         ],
       },
@@ -94,18 +95,18 @@ module.exports = {
       md.options.linkify = true;
     },
   },
-  // override webpack config
-  configureWebpack: (config, isServer) => {
+  chainWebpack: config => {
 
-    config.resolve.alias['@'] = path.resolve(__dirname, './docs/.vuepress/public/')
+    config.module
+      .rule('glsl')
+        .test(/\.(glsl|vs|fs|vert|frag)$/)
+        .use(['raw-loader', 'glslify-loader'])
+          .loader('glslify-loader').end()
 
-    if (isServer) {
-      config.module.rules.push({
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        exclude: /(node_modules)/,
-      })
-    }
+    config.resolve
+      .set('symlinks', true)
+      .alias
+        .set('@@', path.resolve(__dirname, './docs/.vuepress/components'))
+
   },
 };
