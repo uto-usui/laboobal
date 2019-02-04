@@ -44,7 +44,7 @@
           'https://images.unsplash.com/photo-1548106755-5c6bf746ca84',
           'https://images.unsplash.com/photo-1547962041-6d2d7c4bdf6e',
         ],
-        texture: '@/images/texture/01.png',
+        texture: '/images/texture/01.png',
         deep: 10.0,
       });
 

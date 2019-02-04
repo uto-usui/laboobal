@@ -2,7 +2,14 @@ import _event from '../utility/EventListener'
 import * as THREE from 'three'
 import { TweenMax } from 'gsap'
 
+/**
+ * default vertex shader
+ * @type {string}
+ */
 const vertex = `
+  
+  // 頂点は一括で指定する
+  
   varying vec2 vUv;
   void main() {
     vUv = uv;
@@ -10,6 +17,10 @@ const vertex = `
   }
 `
 
+/**
+ * default fragment shader
+ * @type {string}
+ */
 const fragmentDefault = `
   varying vec2 vUv;
 
@@ -57,7 +68,7 @@ class DistortionSlider {
     this.camera = null
     this.geometry = null
     this.material = null
-    this.meth = null
+    this.mesh = null
     this.bg = null
     this.timerId = 0
 
@@ -402,7 +413,7 @@ class DistortionSlider {
     clearInterval(this.timerId)
     this.eventList.forEach(event => event.destroy())
 
-    this.scene.remove(this.meth)
+    this.scene.remove(this.mesh)
     this.geometry.dispose()
     this.material.dispose()
 
@@ -420,7 +431,7 @@ class DistortionSlider {
     //    this.camera = null;
     //    this.geometry = null;
     //    this.material = null;
-    //    this.meth = null;
+    //    this.mesh = null;
     //    this.bg = null;
     //    this.images = null;
     //    this.texture = null;
