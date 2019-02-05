@@ -103,10 +103,5 @@ module.exports = {
         .use(['raw-loader', 'glslify-loader'])
           .loader('glslify-loader').end()
 
-    config.resolve
-      .set('symlinks', true)
-      .alias
-        .set('@@', path.resolve(__dirname, './docs/.vuepress/components'))
-
   },
 };
