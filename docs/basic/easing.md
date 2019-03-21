@@ -9,6 +9,7 @@
 
 * [Easing Function 早見表](https://easings.net/ja)
 * [cubic-bezier.com](http://cubic-bezier.com/#.17,.67,.83,.67)
+* [Easing Equations](http://gizma.com/easing/)
 
 
 ```sass
