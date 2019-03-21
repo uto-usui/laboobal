@@ -2,5 +2,3 @@ node_modules
 docs/.vuepress/dist
 .DS_Store
 .idea
-
-yarn.lock
