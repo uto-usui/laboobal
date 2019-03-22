@@ -94,6 +94,10 @@ module.exports = {
     extendMarkdown(md) {
       md.options.linkify = true;
     },
+    toc: {
+        listType: ['ol', 'ul'],
+        containerHeaderHtml: '<strong>Table of Contents</strong>',
+      }
   },
   chainWebpack: config => {
 

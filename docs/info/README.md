@@ -1,7 +1,10 @@
 ---
 #sidebar: auto
 ---
-# Info
+
+# Info <Badge text="beta" type="warn"/> <Badge text="Netlify build"/>
+
+[[TOC]]
 
 ## Overview
 
@@ -14,15 +17,15 @@ This site consists of VuePress x Gihub x Netlify and is published.
 ## Directory
 
 ```bath{5}
-- .vuepress/        VuePress関連のファイルを格納するディレクトリ
-    - public/       静的ファイルを格納するディレクトリ
-    - components/   mdファイルから呼び出すコンポーネント
-    - theme/        サイトテーマ
-    - config.js     設定ファイル
-- README.md         ここがページになる
+- .vuepress/        for VuePress
+    - public/       static files
+    - components/   called components to md files 
+    - theme/        site theme files
+    - config.js     config file
+- README.md         page
 ```
 
-## Sitedata
+## Site data
 
 ### color
 
