@@ -44,6 +44,7 @@
     "p5": "^0.7.3",
     "pixi.js": "^4.8.5",
     "three": "^0.100.0",
-    "throttle-debounce": "^2.1.0"
+    "throttle-debounce": "^2.1.0",
+    "vuepress-plugin-smooth-scroll": "^0.0.3"
   }
 }

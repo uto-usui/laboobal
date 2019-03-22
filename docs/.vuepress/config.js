@@ -23,6 +23,7 @@ module.exports = {
     '@vuepress/google-analytics': {
       ga: 'UA-132902237-1',
     },
+    'vuepress-plugin-smooth-scroll': true,
   },
   // serviceWorker: true,
   themeConfig: {
