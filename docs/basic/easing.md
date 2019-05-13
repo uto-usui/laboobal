@@ -7,9 +7,9 @@
 ## Sass variable
 
 
-* [Easing Function 早見表](https://easings.net/ja)
+* [Easing Function](https://easings.net/en)
 * [cubic-bezier.com](http://cubic-bezier.com/#.17,.67,.83,.67)
-* [Easing Equations](http://gizma.com/easing/)
+* [js-easing-functions](https://github.com/bameyrick/js-easing-functions/blob/master/src/index.ts)
 
 
 ```sass
