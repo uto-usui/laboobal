@@ -1,5 +1,3 @@
-const path = require('path')
-
 module.exports = {
   base: '/', // base URL
   title: 'laboobal',
@@ -12,20 +10,27 @@ module.exports = {
       {name: 'theme-color', content: '#FF6473'},
     ],
   ],
-  plugins: {
-    '@vuepress/pwa': {
-      serviceWorker: true,
-      updatePopup: {
-        message: 'New content is available.',
-        buttonText: 'Refresh',
+  plugins: [
+    [
+      '@vuepress/google-analytics',
+      {
+        ga: 'UA-132902237-1',
       },
-    },
-    '@vuepress/google-analytics': {
-      ga: 'UA-132902237-1',
-    },
-    'vuepress-plugin-smooth-scroll': true,
-  },
-  // serviceWorker: true,
+    ],
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: {
+          message: 'New content is available.',
+          buttonText: 'Refresh',
+        },
+      },
+    ],
+    '@vuepress/back-to-top',
+    'vuepress-plugin-smooth-scroll',
+    '@vuepress/last-updated',
+  ],
   themeConfig: {
     // repo: '',
     docsDir: 'docs',
@@ -51,7 +56,6 @@ module.exports = {
       '/',
       {
         title: 'basic',
-        collapsable: false,
         children: [
 //          '/basic/',
           '/basic/easing',
@@ -93,12 +97,11 @@ module.exports = {
   markdown: {
     lineNumbers: true,
     extendMarkdown(md) {
-      md.options.linkify = true;
+      md.options.linkify = true
     },
     toc: {
-        listType: ['ol', 'ul'],
-        containerHeaderHtml: '<strong>Table of Contents</strong>',
-      }
+      containerHeaderHtml: '<strong>Table of Contents</strong>',
+    },
   },
   chainWebpack: config => {
 
@@ -109,4 +112,4 @@ module.exports = {
           .loader('glslify-loader').end()
 
   },
-};
+}
