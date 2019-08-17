@@ -1,6 +1,6 @@
-import _event from '../utility/EventListener'
 import * as THREE from 'three'
 import { TweenMax } from 'gsap'
+import _event from '../utility/EventListener'
 
 /**
  * default vertex shader
@@ -56,7 +56,7 @@ class DistortionSlider {
 
     this.vertex = vertex
 
-    this.fragment = fragment ? fragment : fragmentDefault
+    this.fragment = fragment || fragmentDefault
 
     this.el = el
     this.inner = this.el.querySelector('.js-slider__inner')
@@ -103,8 +103,8 @@ class DistortionSlider {
      *  }}
      */
     this.effect = {
-      deep: deep ? deep : 0.5,
-      speed: speed ? speed : 2.5,
+      deep: deep || 0.5,
+      speed: speed || 2.5,
     }
 
     this.eventList = []
@@ -425,7 +425,7 @@ class DistortionSlider {
     //    this.el = null;
     //    this.inner = null;
     //    this.bullets = null;
-    ////    this.renderer = null;
+    /// /    this.renderer = null;
     //    this.scene = null;
     //    this.clock = null;
     //    this.camera = null;

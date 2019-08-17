@@ -1,7 +1,7 @@
-import DragPinchScript from './DragPinchScript'
 import { TweenMax } from 'gsap'
-import math from './math'
 import chroma from 'chroma-js'
+import DragPinchScript from './DragPinchScript'
+import math from './math'
 
 class DragPinchSimple {
   /**

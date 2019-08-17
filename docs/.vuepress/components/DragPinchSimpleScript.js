@@ -1,5 +1,5 @@
-import DragPinchScript from './DragPinchScript'
 import { TweenMax } from 'gsap'
+import DragPinchScript from './DragPinchScript'
 
 class DragPinchSimple {
   /**

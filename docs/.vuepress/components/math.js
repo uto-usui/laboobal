@@ -121,11 +121,11 @@ class math {
    * @returns {<number>[]}
    */
   static rotate2d = (cx, cy, x, y, ang) => {
-    const rad = (Math.PI / 180) * ang,
-      cos = Math.cos(rad),
-      sin = Math.sin(rad),
-      nx = cos * (x - cx) + sin * (y - cy) + cx,
-      ny = cos * (y - cy) - sin * (x - cx) + cy
+    const rad = (Math.PI / 180) * ang
+    const cos = Math.cos(rad)
+    const sin = Math.sin(rad)
+    const nx = cos * (x - cx) + sin * (y - cy) + cx
+    const ny = cos * (y - cy) - sin * (x - cx) + cy
 
     return [nx, ny]
   }

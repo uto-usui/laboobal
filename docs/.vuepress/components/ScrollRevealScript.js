@@ -136,7 +136,7 @@ class ScrollRevealProgress {
       this.offsetTop = rect.top - _rect.top
     }
 
-    //ターゲットの高さをセット
+    // ターゲットの高さをセット
     this.targetHeight = this.target.offsetHeight
   }
 

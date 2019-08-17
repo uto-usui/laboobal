@@ -1,61 +1,61 @@
 <template>
-  <section class="wrap" id="js-wrap" ref="wrap">
-    <div class="target" ref="target">
-      <div class="target__inner"></div>
+  <section id="js-wrap" ref="wrap" class="wrap">
+    <div ref="target" class="target">
+      <div class="target__inner" />
     </div>
   </section>
 </template>
 
 <script>
-  import DragPinchFrictionScript from './DragPinchFrictionScript';
+import DragPinchFrictionScript from './DragPinchFrictionScript'
 
-  export default {
-    name: 'DragPinch',
-    components: {},
-    methods: {},
-    data() {
-      return {
-        dragPinch: {}
-      };
-    },
-    mounted() {
-
-      this.$nextTick(() => {
-        this.dragPinch = new DragPinchFrictionScript(this.$refs.target, this.$refs.wrap, .25)
-      });
-
-    },
-    destroyed() {
-      this.dragPinch.destroy();
-    },
-  };
+export default {
+  name: 'DragPinch',
+  components: {},
+  data() {
+    return {
+      dragPinch: {},
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.dragPinch = new DragPinchFrictionScript(
+        this.$refs.target,
+        this.$refs.wrap,
+        0.25,
+      )
+    })
+  },
+  destroyed() {
+    this.dragPinch.destroy()
+  },
+  methods: {},
+}
 </script>
 
 <style scoped lang="scss">
+.wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  background-color: #f1f1f1;
+  transform-style: preserve-3d;
+  perspective: 400px;
+}
 
-  .wrap {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    background-color: #f1f1f1;
-    transform-style: preserve-3d;
-    perspective: 400px;
-  }
-
-  .target {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 100%;
-    background-color: #25ECB7;
-  }
-
+.target {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 100%;
+  background-color: #25ecb7;
+}
 </style>

@@ -148,9 +148,9 @@ class RevealCurtain {
    * アニメーション実行
    */
   anim() {
-    const tl = new TimelineMax({}),
-      fromRect = this._getRect(false),
-      toRect = this._getRect(true)
+    const tl = new TimelineMax({})
+    const fromRect = this._getRect(false)
+    const toRect = this._getRect(true)
 
     tl.to(this.mask, 0.75, {
       clip: fromRect,

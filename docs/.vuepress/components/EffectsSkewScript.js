@@ -32,22 +32,22 @@ class skewElement {
   }
 
   mouseMoveFn(e) {
-    let xMouse =
-        e.pageX -
-        e.currentTarget.getBoundingClientRect().left -
-        e.currentTarget.offsetWidth / 2,
-      yMouse =
-        e.pageY -
-        window.pageYOffset -
-        e.currentTarget.getBoundingClientRect().top -
-        e.currentTarget.offsetHeight / 2
+    const xMouse =
+      e.pageX -
+      e.currentTarget.getBoundingClientRect().left -
+      e.currentTarget.offsetWidth / 2
+    const yMouse =
+      e.pageY -
+      window.pageYOffset -
+      e.currentTarget.getBoundingClientRect().top -
+      e.currentTarget.offsetHeight / 2
 
-    let mouseElements = [...e.currentTarget.querySelectorAll(this.target)]
+    const mouseElements = [...e.currentTarget.querySelectorAll(this.target)]
 
     mouseElements.forEach(el => {
-      let factor = el.dataset.mouseParallax,
-        xFinal = xMouse * factor,
-        yFinal = yMouse * factor
+      const factor = el.dataset.mouseParallax
+      const xFinal = xMouse * factor
+      const yFinal = yMouse * factor
 
       TweenLite.to(el, 1.2, {
         x: xFinal,

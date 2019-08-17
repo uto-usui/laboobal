@@ -100,7 +100,7 @@ class RevealClip {
    * @returns {string}
    */
   _getRect() {
-    let rect = {
+    const rect = {
       top: 0,
       right: 0,
       bottom: 0,
