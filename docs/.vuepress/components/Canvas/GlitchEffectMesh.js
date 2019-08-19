@@ -1,9 +1,8 @@
 import * as THREE from 'three'
-
 import vs from 'raw-loader!glslify-loader!./GlitchEffectMesh.vs'
 import fs from 'raw-loader!glslify-loader!./GlitchEffectMesh.fs'
 
-class PostEffect {
+export class PostEffect {
   constructor(texture, width, height) {
     this.width = width
     this.height = height
@@ -23,22 +22,25 @@ class PostEffect {
         value: this.texture,
       },
     }
-    this.mesh = this.createMesh()
+
+    this.createMesh()
   }
 
   /**
+   *
    * creat effect mesh
    * @returns {Mesh}
    */
   createMesh() {
-    return new THREE.Mesh(
-      new THREE.PlaneBufferGeometry(2, 2),
-      new THREE.RawShaderMaterial({
-        uniforms: this.uniforms,
-        vertexShader: vs,
-        fragmentShader: fs,
-      }),
-    )
+
+    this.geometry = new THREE.PlaneBufferGeometry(2, 2)
+    this.material = new THREE.RawShaderMaterial({
+      uniforms: this.uniforms,
+      vertexShader: vs,
+      fragmentShader: fs,
+    })
+
+    this.mesh = new THREE.Mesh(this.geometry, this.material)
   }
 
   render(time) {
@@ -47,6 +49,11 @@ class PostEffect {
 
   resize() {
     this.uniforms.resolution.value.set(this.width, this.height)
+  }
+
+  destroy() {
+    this.geometry.dispose()
+    this.material.dispose()
   }
 }
 
