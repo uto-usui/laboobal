@@ -4,6 +4,4 @@
 
 # video
 
-<ClientOnly>
-  <ThreeVideo />
-</ClientOnly>
+<Three-Video />

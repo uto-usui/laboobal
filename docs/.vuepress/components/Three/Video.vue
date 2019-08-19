@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import { VideoScript } from './VideoScript'
+//import { VideoScript } from './VideoScript'
 
 export default {
-  name: 'Video',
+  name: 'ThreeVideo',
   data() {
     return {
       video: null,
@@ -30,7 +30,8 @@ export default {
   watch: {
     //
   },
-  mounted() {
+  async mounted() {
+    const { VideoScript } = await import('./VideoScript')
     this.video = new VideoScript({
       wrap: this.$refs.canvas,
     })
