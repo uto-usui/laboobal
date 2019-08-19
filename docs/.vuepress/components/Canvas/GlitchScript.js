@@ -34,31 +34,14 @@ export class GlitchScript {
   init() {
     this.createRenderer()
     this.createCamera()
-
-    this.bgImg.init(
-      'https://images.unsplash.com/photo-1547962041-6d2d7c4bdf6e',
-      () => {
-        // add meth
-        this.sceneBg.add(this.bgImg.mesh)
-        this.scene.add(this.postEffect.mesh)
-      },
-    )
-
+    this.createMesh()
     this.eventAttach()
     this.resizeWindow()
     //
     this.render()
   }
 
-  createRenderer() {
-    this.renderBg = new THREE.WebGLRenderTarget(this.wrapperW, this.wrapperH)
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      canvas: this.canvas,
-    })
-    this.renderer.setSize(this.wrapperW, this.wrapperH)
-    this.renderer.setClearColor(0x111111, 1.0)
-
+  createMesh() {
     /**
      * GlitchBgImageMesh instance
      * @type {BackgroundImage}
@@ -74,6 +57,25 @@ export class GlitchScript {
       this.wrapperW,
       this.wrapperH,
     )
+
+    this.bgImg.init(
+      'https://images.unsplash.com/photo-1547962041-6d2d7c4bdf6e',
+      () => {
+        // add meth
+        this.sceneBg.add(this.bgImg.mesh)
+        this.scene.add(this.postEffect.mesh)
+      },
+    )
+  }
+
+  createRenderer() {
+    this.renderBg = new THREE.WebGLRenderTarget(this.wrapperW, this.wrapperH)
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      canvas: this.canvas,
+    })
+    this.renderer.setSize(this.wrapperW, this.wrapperH)
+    this.renderer.setClearColor(0x111111, 1.0)
   }
 
   createCamera() {
@@ -90,6 +92,9 @@ export class GlitchScript {
     this.cameraBack.lookAt(new THREE.Vector3())
   }
 
+  /**
+   * render func
+   */
   render() {
     this.renderer.setRenderTarget(this.renderBg)
     this.renderer.render(this.sceneBg, this.cameraBack)
@@ -102,6 +107,9 @@ export class GlitchScript {
     this.animId = requestAnimationFrame(anim)
   }
 
+  /**
+   * attach event
+   */
   eventAttach() {
     const onResize = () => debounce(() => {
       this.resizeWindow()
@@ -109,10 +117,16 @@ export class GlitchScript {
     this._eventList.push(new _event(window, 'resize', onResize))
   }
 
+  /**
+   * remove event
+   */
   eventRemove() {
     this._eventList.forEach(event => event.destroy())
   }
 
+  /**
+   * resize handler
+   */
   resizeWindow() {
     this.canvas.width = this.wrapperW
     this.canvas.height = this.wrapperH
@@ -124,6 +138,9 @@ export class GlitchScript {
     this.renderer.setSize(this.wrapperW, this.wrapperH)
   }
 
+  /**
+   * dispose instance
+   */
   destroy() {
     this.sceneBg.remove(this.bgImg.mesh)
     this.scene.remove(this.postEffect.mesh)
