@@ -84,6 +84,14 @@ module.exports = {
           '/canvas/distortion2',
           '/canvas/glitchImage',
           '/canvas/P5/',
+          {
+            title: 'Three',
+            path: '/canvas/three/',
+            collapsable: false,
+            children: [
+              '/canvas/three/video'
+            ]
+          },
         ],
       },
     ],
@@ -104,12 +112,10 @@ module.exports = {
     },
   },
   chainWebpack: config => {
-
     config.module
       .rule('glsl')
         .test(/\.(glsl|vs|fs|vert|frag)$/)
         .use(['raw-loader', 'glslify-loader'])
           .loader('glslify-loader').end()
-
   },
 }
