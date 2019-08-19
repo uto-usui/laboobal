@@ -1,15 +1,16 @@
 import * as THREE from 'three'
-
 import Trackballcontrols from 'three-trackballcontrols'
 
 export class VideoScript {
   /**
    *
    * @param wrap {DOMElement}
+   * @param video {DOMElement}
    */
-  constructor({ wrap }) {
+  constructor({wrap, video}) {
     this.scene = new THREE.Scene()
     this.wrap = wrap
+    this.video = video
 
     this.renderer = null
     this.camera = null
@@ -19,7 +20,7 @@ export class VideoScript {
     this.spotLight = null
     this.mesh = null
     this.material = null
-    this.polyhedron = null
+    this.geometry = null
 
     this.initRenderer()
     this.initCamera()
@@ -47,7 +48,7 @@ export class VideoScript {
     //    this.renderer.shadowMapSoft = true
     //    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
-    this.renderer.setClearColor(new THREE.Color(0xaa0000))
+    this.renderer.setClearColor(new THREE.Color(0xbb0000))
     this.renderer.setSize(
       this.wrap.getBoundingClientRect().width,
       this.wrap.getBoundingClientRect().height,
@@ -63,11 +64,11 @@ export class VideoScript {
     this.camera = new THREE.PerspectiveCamera(
       45,
       this.wrap.getBoundingClientRect().width /
-        this.wrap.getBoundingClientRect().height,
+      this.wrap.getBoundingClientRect().height,
       0.1,
       1000,
     )
-    this.camera.position.copy(new THREE.Vector3(0, 20, 40))
+    this.camera.position.copy(new THREE.Vector3(40, 0, 50))
     this.camera.lookAt(new THREE.Vector3(0, 0, 0))
   }
 
@@ -77,12 +78,12 @@ export class VideoScript {
   initTrackballControls() {
     this.trackballControls = new Trackballcontrols(this.camera, this.wrap)
     this.trackballControls.rotateSpeed = 1.0
-    this.trackballControls.zoomSpeed = 1.2
-    this.trackballControls.panSpeed = 0.8
+    this.trackballControls.zoomSpeed = 1.5
+    this.trackballControls.panSpeed = 1
     this.trackballControls.noZoom = false
     this.trackballControls.noPan = false
     this.trackballControls.staticMoving = true
-    this.trackballControls.dynamicDampingFactor = 0.3
+    this.trackballControls.dynamicDampingFactor = 0.1
     this.trackballControls.keys = [65, 83, 68]
   }
 
@@ -91,7 +92,7 @@ export class VideoScript {
    */
   addLargeGroundPlane() {
     // create the ground plane
-    const planeGeometry = new THREE.PlaneGeometry(10000, 10000)
+    const planeGeometry = new THREE.PlaneGeometry(1000, 1000)
     const planeMaterial = new THREE.MeshPhongMaterial({
       color: 0xffffff,
     })
@@ -104,33 +105,30 @@ export class VideoScript {
     this.groundPlane.position.y = 0
     this.groundPlane.position.z = 0
 
-    this.groundPlane.position.y = -10
+    this.groundPlane.position.y = -20
 
     this.scene.add(this.groundPlane)
   }
 
   initDefaultLighting() {
     this.spotLight = new THREE.SpotLight(0xffffff)
-    this.spotLight.position.copy(new THREE.Vector3(-10, 30, 40))
+    this.spotLight.position.copy(new THREE.Vector3(0, 30, 50))
     this.spotLight.shadow.mapSize.width = 2048
     this.spotLight.shadow.mapSize.height = 2048
     this.spotLight.shadow.camera.fov = 15
     this.spotLight.castShadow = true
     this.spotLight.decay = 2
     this.spotLight.penumbra = 0.05
-    this.spotLight.name = 'this.spotLight'
     //
     this.scene.add(this.spotLight)
 
-    this.ambientLight = new THREE.AmbientLight(0x343434)
-    this.ambientLight.name = 'ambientLight'
+    this.ambientLight = new THREE.AmbientLight(0x444444)
     //
     this.scene.add(this.ambientLight)
   }
 
   initTexture() {
-    const video = document.getElementById('video')
-    this.texture = new THREE.VideoTexture(video)
+    this.texture = new THREE.VideoTexture(this.video)
     this.texture.minFilter = THREE.LinearFilter
     this.texture.magFilter = THREE.LinearFilter
     //    this.texture.format = THREE.RGBFormat
@@ -138,13 +136,13 @@ export class VideoScript {
   }
 
   addGeometry() {
-    this.polyhedron = new THREE.IcosahedronGeometry(8, 0)
+    this.geometry = new THREE.IcosahedronGeometry(8, 0)
     this.material = new THREE.MeshStandardMaterial({
       map: this.texture,
-      //        metalness: 0.2,
-      //        roughness: 0.07,
+      metalness: 0.2,
+      roughness: 0.05,
     })
-    this.mesh = new THREE.Mesh(this.polyhedron, this.material)
+    this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.mesh.castShadow = true
     //
     this.scene.add(this.mesh)
@@ -163,7 +161,7 @@ export class VideoScript {
     this.trackballControls.dispose()
 
     this.scene.remove(this.mesh)
-    this.polyhedron.dispose()
+    this.geometry.dispose()
     this.material.dispose()
 
     this.renderer.domElement = null
