@@ -154,7 +154,7 @@ export class VideoScript {
     this.trackballControls.update(this.clock.getDelta())
     this.renderer.render(this.scene, this.camera)
     this.mesh.rotation.x += 0.01
-    window.requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       this.render()
     })
   }
