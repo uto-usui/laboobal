@@ -89,7 +89,8 @@ module.exports = {
             path: '/canvas/three/',
             collapsable: false,
             children: [
-              '/canvas/three/video'
+              '/canvas/three/video',
+              '/canvas/three/shift'
             ]
           },
         ],

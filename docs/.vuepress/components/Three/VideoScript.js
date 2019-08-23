@@ -7,7 +7,7 @@ export class VideoScript {
    * @param wrap {DOMElement}
    * @param video {DOMElement}
    */
-  constructor({wrap, video}) {
+  constructor({ wrap, video }) {
     this.scene = new THREE.Scene()
     this.wrap = wrap
     this.video = video
@@ -28,7 +28,6 @@ export class VideoScript {
     this.addLargeGroundPlane()
     this.initDefaultLighting()
     this.initTexture()
-
     this.addGeometry()
 
     this.clock = new THREE.Clock()
@@ -45,8 +44,8 @@ export class VideoScript {
   initRenderer() {
     this.renderer = new THREE.WebGLRenderer()
     this.renderer.shadowMap.enabled = true
-    //    this.renderer.shadowMapSoft = true
-    //    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    this.renderer.shadowMapSoft = true
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
     this.renderer.setClearColor(new THREE.Color(0xbb0000))
     this.renderer.setSize(
@@ -64,7 +63,7 @@ export class VideoScript {
     this.camera = new THREE.PerspectiveCamera(
       45,
       this.wrap.getBoundingClientRect().width /
-      this.wrap.getBoundingClientRect().height,
+        this.wrap.getBoundingClientRect().height,
       0.1,
       1000,
     )
@@ -131,8 +130,10 @@ export class VideoScript {
     this.texture = new THREE.VideoTexture(this.video)
     this.texture.minFilter = THREE.LinearFilter
     this.texture.magFilter = THREE.LinearFilter
-    //    this.texture.format = THREE.RGBFormat
+    this.texture.format = THREE.RGBFormat
     this.texture.generateMipmaps = false
+
+    //    console.log(this.texture)
   }
 
   addGeometry() {
@@ -144,7 +145,7 @@ export class VideoScript {
     })
     this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.mesh.castShadow = true
-    //
+
     this.scene.add(this.mesh)
   }
 
@@ -152,9 +153,9 @@ export class VideoScript {
     this.trackballControls.update(this.clock.getDelta())
     this.renderer.render(this.scene, this.camera)
     this.mesh.rotation.x += 0.01
-    requestAnimationFrame(() => {
-      this.render()
-    })
+
+    const anim = t => this.render(t)
+    requestAnimationFrame(anim)
   }
 
   destroy() {
