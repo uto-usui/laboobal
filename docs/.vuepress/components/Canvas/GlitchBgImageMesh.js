@@ -5,7 +5,7 @@ import fs from 'raw-loader!glslify-loader!./GlitchBgImageMesh.fs'
 /**
  * 画像テクスチャのメッシュを作る
  */
- export class BackgroundImage {
+export class BackgroundImage {
   /**
    * @param width {number}
    * @param height {number}

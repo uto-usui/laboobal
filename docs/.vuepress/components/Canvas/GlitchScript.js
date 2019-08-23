@@ -1,15 +1,14 @@
 import * as THREE from 'three'
+import _event from '../utility/EventListener'
 import GlitchBgImageMesh from './GlitchBgImageMesh'
 import GlitchEffectMesh from './GlitchEffectMesh'
-
-import _event from '../utility/EventListener'
 
 export class GlitchScript {
   /**
    * @param canvas {HTMLCanvasElement}
    * @param wrap {DOMElement}
    */
-  constructor({canvas, wrap}) {
+  constructor({ canvas, wrap }) {
     this.canvas = canvas
     this.wrap = wrap
     this.wrapperW = this.wrap.offsetWidth
@@ -111,9 +110,10 @@ export class GlitchScript {
    * attach event
    */
   eventAttach() {
-    const onResize = () => debounce(() => {
-      this.resizeWindow()
-    }, 1000 / 30)
+    const onResize = () =>
+      debounce(() => {
+        this.resizeWindow()
+      }, 1000 / 30)
     this._eventList.push(new _event(window, 'resize', onResize))
   }
 

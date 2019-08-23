@@ -32,7 +32,6 @@ export class PostEffect {
    * @returns {Mesh}
    */
   createMesh() {
-
     this.geometry = new THREE.PlaneBufferGeometry(2, 2)
     this.material = new THREE.RawShaderMaterial({
       uniforms: this.uniforms,

@@ -1,6 +1,6 @@
 <template>
   <div ref="wrap" class="wrap">
-    <canvas id="canvas" class="canvas" ref="canvas" />
+    <canvas id="canvas" ref="canvas" class="canvas" />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
   name: 'GlitchImage',
   data() {
     return {
-      glitch: null
+      glitch: null,
     }
   },
   mounted() {

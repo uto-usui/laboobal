@@ -77,15 +77,13 @@ export class ShiftImageEffect {
   }
 
   distCenter() {
-    this.targetPosition.x +=
-      (this.mouse.x - this.targetPosition.x) * 0.075
-    this.targetPosition.y +=
-      (this.mouse.y - this.targetPosition.y) * 0.075
+    this.targetPosition.x += (this.mouse.x - this.targetPosition.x) * 0.075
+    this.targetPosition.y += (this.mouse.y - this.targetPosition.y) * 0.075
 
     const x = this.targetPosition.x - this.wrapW / 2
     const y = this.targetPosition.y - this.wrapH / 2
 
-//    console.log(x)
+    //    console.log(x)
 
     this.uniforms.mouse.value.x = x
     this.uniforms.mouse.value.y = y

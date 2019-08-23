@@ -1,15 +1,14 @@
 import * as THREE from 'three'
+import _event from '../utility/EventListener'
 import GlitchBgImageMesh from './GlitchBgImageMesh'
 import ShiftImageEffect from './ShiftImageEffect'
-
-import _event from '../utility/EventListener'
 
 export class ShiftImageScript {
   /**
    * @param canvas {HTMLCanvasElement}
    * @param wrap {DOMElement}
    */
-  constructor({canvas, wrap}) {
+  constructor({ canvas, wrap }) {
     this.canvas = canvas
     this.wrap = wrap
     this.wrapperW = this.wrap.offsetWidth
@@ -59,14 +58,11 @@ export class ShiftImageScript {
       this.wrap,
     )
 
-    this.bgImg.init(
-      '/images/girl/01.jpg',
-      () => {
-        // add meth
-        this.sceneBg.add(this.bgImg.mesh)
-        this.scene.add(this.postEffect.mesh)
-      },
-    )
+    this.bgImg.init('/images/girl/01.jpg', () => {
+      // add meth
+      this.sceneBg.add(this.bgImg.mesh)
+      this.scene.add(this.postEffect.mesh)
+    })
   }
 
   createRenderer() {
@@ -113,9 +109,10 @@ export class ShiftImageScript {
    * attach event
    */
   eventAttach() {
-    const onResize = () => debounce(() => {
-      this.resizeWindow()
-    }, 1000 / 30)
+    const onResize = () =>
+      debounce(() => {
+        this.resizeWindow()
+      }, 1000 / 30)
     this._eventList.push(new _event(window, 'resize', onResize))
   }
 
