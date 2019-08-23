@@ -83,6 +83,7 @@ module.exports = {
           '/canvas/distortion',
           '/canvas/distortion2',
           '/canvas/glitchImage',
+          '/canvas/shiftImage/',
           '/canvas/P5/',
           {
             title: 'Three',
@@ -90,7 +91,6 @@ module.exports = {
             collapsable: false,
             children: [
               '/canvas/three/video',
-              '/canvas/three/shift'
             ]
           },
         ],
