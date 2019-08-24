@@ -1,7 +1,7 @@
 <template>
   <div ref="wrap" class="wrap">
     <div id="canvas" />
-    <input v-model.number="circleWidth" type="number" >
+    <input v-model.number="circleWidth" type="number">
     <p ref="speed">
       {{ posX }}
     </p>
