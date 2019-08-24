@@ -80,10 +80,10 @@ module.exports = {
         title: 'canvas',
         children: [
           '/canvas/',
+          '/canvas/fillText',
           '/canvas/distortion',
           '/canvas/distortion2',
-          '/canvas/glitchImage',
-          '/canvas/shiftImage/',
+          '/canvas/shiftImage',
           '/canvas/P5/',
           {
             title: 'Three',
@@ -115,8 +115,8 @@ module.exports = {
   chainWebpack: config => {
     config.module
       .rule('glsl')
-        .test(/\.(glsl|vs|fs|vert|frag)$/)
-        .use(['raw-loader', 'glslify-loader'])
-          .loader('glslify-loader').end()
+      .test(/\.(glsl|vs|fs|vert|frag)$/)
+      .use(['raw-loader', 'glslify-loader'])
+      .loader('glslify-loader').end()
   },
 }
