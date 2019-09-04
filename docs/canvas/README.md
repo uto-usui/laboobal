@@ -9,3 +9,7 @@
 Read images of another domain and draw on the canvas.
 
 <Canvas-CanvasCrossOrigin/>
+
+## draw SVG
+
+<Canvas-DrawSvg/>
