@@ -113,11 +113,27 @@ module.exports = {
       containerHeaderHtml: '<strong>Table of Contents</strong>',
     },
   },
-  chainWebpack: config => {
-    config.module
-      .rule('glsl')
-      .test(/\.(glsl|vs|fs|vert|frag)$/)
-      .use(['raw-loader', 'glslify-loader'])
-      .loader('glslify-loader').end()
-  },
+//  chainWebpack: config => {
+//    config.module
+//      .rule('glsl')
+//      .test(/\.(glsl|vs|fs|vert|frag)$/)
+//      .use(['raw-loader', 'glslify-loader'])
+//      .end()
+//  },
+  configureWebpack: (config, isServer) => {
+    if (!isServer) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/,
+      })
+    }
+    // glsl
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs)$/,
+      use: ['raw-loader', 'glslify-loader'],
+      exclude: /(node_modules)/,
+    })
+  }
 }
