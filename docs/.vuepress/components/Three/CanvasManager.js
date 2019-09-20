@@ -2,24 +2,27 @@ import { pause } from '../utility/animation'
 
 let _this = null
 
-export class TypoScript {
+export class CanvasManager {
   /**
    *
-   * @param wrap {DOMElement}
-   * @param video {DOMElement}
+   * @param container
+   * @returns {CanvasManager}
    */
-  constructor() {
+  constructor(container = window) {
+    _this = this
+    //
+    this.container = container
     this.width = 0
     this.height = 0
     this.halfWidth = 0
     this.halfHeight = 0
+    this.aspectRatio = 0
     this.functions = []
     this.functionsLength = 0
     this.isWaiting = false
 
-    this.container = window
-
     this.init()
+
     return this
   }
 
@@ -71,10 +74,7 @@ export class TypoScript {
       this.container === window
         ? window.innerHeight
         : this.container.offsetHeight
-    this.halfWidth = this.width / 2
-    this.halfHeight = this.height / 2
 
-    //
     this.dpr = window.devicePixelRatio
     this.aspectRatio = this.width / this.height
 
@@ -89,25 +89,20 @@ export class TypoScript {
     this.isWaiting = false
 
     for (let i = 0; i < this.functionsLength; i++) {
-      this.functions[i](
-        this.width,
-        this.height,
-        this.halfWidth,
-        this.halfHeight,
-      )
+      this.functions[i](this.width, this.height)
     }
   }
 
   static getInstance() {
-    return _this || (_this = new TypoScript())
+    return _this || (_this = new CanvasManager())
   }
 
-  static add(t, ...n) {
-    this.getInstance().add(t, n)
+  static add(func, initPlay) {
+    this.getInstance().add(func, initPlay)
   }
 
-  static remove(t) {
-    this.getInstance().remove(t)
+  static remove(func) {
+    this.getInstance().remove(func)
   }
 
   static width() {
@@ -130,13 +125,39 @@ export class TypoScript {
     return this.getInstance().dpr
   }
 
-  destroy() {
-    //    this.trackballControls.dispose()
-    //
-    //    this.scene.remove(this.mesh)
-    //    this.geometry.dispose()
-    //    this.material.dispose()
-    //
-    //    this.renderer.domElement = null
+  static destroy() {
+    _this = null
   }
+
+  static disposeThreeObjects(scene, renderer) {
+    scene.children.forEach(obj => {
+      obj.traverse(obj3D => dispose(obj3D))
+      scene.remove(obj)
+    })
+
+    renderer.dispose()
+    renderer.forceContextLoss()
+    renderer.domElement = null
+  }
+}
+
+function dispose(obj) {
+  if (!!obj.geometry) {
+    obj.geometry.dispose()
+    obj.geometry = null
+  }
+  if (!!obj.material && obj.material instanceof Array) {
+    obj.material.forEach(material => disposeMaterial(material))
+  } else if (!!obj.material) {
+    disposeMaterial(obj.material)
+  }
+}
+
+function disposeMaterial(material) {
+  if (!!material.map) {
+    material.map.dispose()
+    material.map = null
+  }
+  material.dispose()
+  material = null
 }

@@ -1,11 +1,11 @@
 <template>
   <div ref="wrap" class="wrap">
-    <div id="canvas" ref="canvas" class="canvas" />
+    <canvas id="canvas" ref="canvas" class="canvas"></canvas>
   </div>
 </template>
 
 <script>
-// import { TypoScript } from './TypoScript'
+// import { CanvasManager } from './CanvasManager'
 import { pause } from '../utility/animation'
 import { TypoInit } from './TypoInit'
 
@@ -47,18 +47,13 @@ export default {
 
 <style scoped lang="scss">
 .wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  position: relative;
   z-index: 9999;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  height: 500px;
   font-family: 'helvetica neue', helvetica, sans-serif;
   font-size: 120px;
   font-weight: bold;
@@ -71,7 +66,7 @@ export default {
   z-index: 1;
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>

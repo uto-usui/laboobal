@@ -3,30 +3,42 @@ import { OrthographicCamera } from 'three'
 import { Color } from 'three'
 import { WebGLRenderer } from 'three'
 
-import { TypoScript } from './TypoScript'
+import { CanvasManager } from './CanvasManager'
 
-export class TypoCreateCanvas {
+/**
+ * create scene
+ * create camera
+ * set renderer
+ */
+export class TypoCreateRenderer {
   /**
+   * constructor
    *
    * @param wrap {DOMElement}
    * @param video {DOMElement}
    */
   constructor({ wrap }) {
-    this.scene = new THREE.Scene()
     this.container = wrap
+    new CanvasManager(this.container)
 
-    console.log('💄 set config', TypoScript.width(), TypoScript.height())
-    this.setConfig(TypoScript.width(), TypoScript.height())
+    // set size
+    this.setConfig(CanvasManager.width(), CanvasManager.height())
 
+    // create scene
+    this.scene = new THREE.Scene()
+
+    // create camera
     this.camera = new OrthographicCamera(-1, 1, 1, -1, 0.001, 1000)
     this.camera.position.set(0, 0, 50)
     this.camera.lookAt(this.scene.position)
 
-    const color = new Color('hsl(220, 50%, 5%)')
+    const color = new Color('hsl(220, 50%,0%)')
 
     this.backColor = color.getHexString()
 
+    // create renderer
     this.renderer = new WebGLRenderer({
+      canvas: this.container,
       antialias: false,
       alpha: false,
       stencil: false,
@@ -35,17 +47,8 @@ export class TypoCreateCanvas {
     this.renderer.setClearColor(color.getHex())
     this.renderer.setSize(this.width, this.height)
     this.renderer.setPixelRatio(this.dpr)
-    //
-    console.log('📱 this.dpr', this.dpr)
 
     return this
-  }
-
-  /**
-   *
-   */
-  appendCanvas() {
-    this.container.appendChild(this.renderer.domElement)
   }
 
   /**
@@ -82,7 +85,7 @@ export class TypoCreateCanvas {
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(this.width, this.height)
     //
-    console.log('🔥 TypoCreateCanvas resizeScene')
+    console.log('🔥 TypoCreateRenderer resizeScene')
   }
 
   /**
@@ -90,15 +93,5 @@ export class TypoCreateCanvas {
    */
   initRenderer() {
     //
-  }
-
-  destroy() {
-    //    this.trackballControls.dispose()
-    //
-    //    this.scene.remove(this.mesh)
-    //    this.geometry.dispose()
-    //    this.material.dispose()
-    //
-    //    this.renderer.domElement = null
   }
 }

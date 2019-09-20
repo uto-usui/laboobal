@@ -1,38 +1,58 @@
 // import * as THREE from 'three'
 
 import { Mesh } from 'three'
-import { TypoScript } from './TypoScript'
+import { CanvasManager } from './CanvasManager'
 import { TypoFontTexture } from './TypoFontTexture'
-import { TypoCreateCanvas } from './TypoCreateCanvas'
+import { TypoCreateRenderer } from './TypoCreateRenderer'
 
-export class TypoInit extends TypoCreateCanvas {
+export class TypoInit extends TypoCreateRenderer {
   /**
    *
+   * @param wrap {HTMLElement}
    * @returns {TypoInit}
    */
   constructor({ wrap }) {
     super({ wrap })
-    //
+    // resolve this
     this.resizeFunction = this.resize.bind(this)
+    // create texture
     this.title = new TypoFontTexture()
+    // create mesh
     this.meth = new Mesh(this.title.geometry, this.title.material)
+
+    // add scene
     this.scene.add(this.meth)
 
-    //    console.log(this.title.geometry, this.title.material)
-    //
     return this
   }
 
+  /**
+   * canvas start
+   */
   start() {
-    this.appendCanvas()
-    TypoScript.add(this.resizeFunction)
+    CanvasManager.add(this.resizeFunction, true)
   }
 
+  /**
+   * canvas end
+   */
   finish() {
-    TypoScript.remove(this.resizeFunction)
-    this.renderer.dispose()
+    this.needsStopUpdate = true
+    //
+    CanvasManager.remove(this.resizeFunction)
+    CanvasManager.disposeThreeObjects(this.scene, this.renderer)
+    CanvasManager.destroy()
+    //
+    this.container.width = 1
+    this.container.height = 1
   }
 
+  /**s
+   * resize handler
+   *
+   * @param width
+   * @param height
+   */
   resize(width, height) {
     this.needsStopUpdate = true
     this.setConfig(width, height)
@@ -43,16 +63,15 @@ export class TypoInit extends TypoCreateCanvas {
     console.log('🔥 TypoInit resize')
   }
 
+  /**
+   * ref animation
+   */
   update() {
-    //    console.log('this.needsStopUpdate', !this.needsStopUpdate)
     if (!this.needsStopUpdate) {
       const time = 0.001 * performance.now()
       this.title.update(time)
+      //
       this.renderer.render(this.scene, this.camera)
     }
-  }
-
-  destroy() {
-    //
   }
 }
