@@ -1,5 +1,4 @@
 export class DrawSvgScript {
-
   /**
    * constructor.
    *
@@ -38,8 +37,8 @@ export class DrawSvgScript {
     canvas.height = this.target.offsetHeight // this.img.height
 
     // 100% * aTargetWidth / aWindowW
-    const w = this.target.offsetWidth * 300 / 800
-    const h = this.target.offsetWidth * 79 / 800
+    const w = (this.target.offsetWidth * 300) / 800
+    const h = (this.target.offsetWidth * 79) / 800
     const x = this.target.offsetWidth / 2 + w / -2
     const y = this.target.offsetHeight / 2 + h / -2
 
