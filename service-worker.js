@@ -27,7 +27,7 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "1cc789219e9d5bb871fad2e588bde795"
+    "revision": "7ea76cbacfce31e964521ca6a63fbd79"
   },
   {
     "url": "assets/css/0.styles.f6084263.css",
@@ -358,96 +358,96 @@ self.__precacheManifest = [
     "revision": "e7a5d4789e4334e5a2368d12a0f7b6e8"
   },
   {
-    "url": "assets/js/app.158693e2.js",
-    "revision": "45a500d88d5bad3a2b316d09c6225dce"
+    "url": "assets/js/app.540d663b.js",
+    "revision": "bd2f837300d6020ce795844e0d19e91c"
   },
   {
     "url": "basic/drag.html",
-    "revision": "be4043d8e596e2f505b60a553dfd74bd"
+    "revision": "65dae6f91242c8eda639cb9b043371b3"
   },
   {
     "url": "basic/easing.html",
-    "revision": "6c6e16d82132b82f74bf18d63676c781"
+    "revision": "a9b895f4c3a0203542b5901038055f37"
   },
   {
     "url": "basic/follow.html",
-    "revision": "b6944dcdf4ffd1b77554bd7ccae78947"
+    "revision": "61db38f6a150b7de58e4aef40fb897c1"
   },
   {
     "url": "basic/hover.html",
-    "revision": "cc8ce45f59214f2743cd4a2f877bd5cf"
+    "revision": "04c6d1f606a7ff181bb3fb486b751eec"
   },
   {
     "url": "basic/index.html",
-    "revision": "92051643356a149c7131ca4a450a44ee"
+    "revision": "1d223d25a2fd6a8d4ffb3b13e050d03f"
   },
   {
     "url": "basic/random.html",
-    "revision": "1cc2fccd34b25aefce44281d150fe7ee"
+    "revision": "739875ceea1dbac51258787d30691338"
   },
   {
     "url": "basic/rotate3d.html",
-    "revision": "3b5e4f29507d3c9e5b416c8690563137"
+    "revision": "769d94fd22fb267090e3d8fc77b0e339"
   },
   {
     "url": "basic/scroll.html",
-    "revision": "718831a23282c3be10e15e4f38acef71"
+    "revision": "9eb5bd462401ad11bc1234c118322e88"
   },
   {
     "url": "basic/trigonometry.html",
-    "revision": "dad3f3ed1786a7c988eec1a9d28acbce"
+    "revision": "e9bc9de433f4a094b7283affe325e3ed"
   },
   {
     "url": "canvas/distortion.html",
-    "revision": "0763f13072300b7ee06727b514c6a426"
+    "revision": "ba91104c733da583ffb88824f8c98780"
   },
   {
     "url": "canvas/distortion2.html",
-    "revision": "bc78d37edd3402186517f8374479c2b5"
+    "revision": "2420a958aee0ca1c7c2fbf42bbb62019"
   },
   {
     "url": "canvas/fillText.html",
-    "revision": "3222a8a68191524ed83cac2c15a275d9"
+    "revision": "bf06376ccc36961fc8bb141209cca219"
   },
   {
     "url": "canvas/glitchImage.html",
-    "revision": "b2f7edb25628522e2a59b74a2ae5b253"
+    "revision": "ea501810a99998087fc587a0242e1c8b"
   },
   {
     "url": "canvas/index.html",
-    "revision": "cca258362044c8517e5704118f4bbdb7"
+    "revision": "9b06e5ef17360d3313fbf500fad01fd0"
   },
   {
     "url": "canvas/P5/index.html",
-    "revision": "a5f4b25fd7db94b8196f6e02ce8a633e"
+    "revision": "fb030ea954da51b5707d2b143cb2d2d1"
   },
   {
     "url": "canvas/shiftImage.html",
-    "revision": "39c859a51b617e63ed39efa9daf7160c"
+    "revision": "4a053695050a6bd1e13316a5a72801cb"
   },
   {
     "url": "canvas/three/index.html",
-    "revision": "fd8d20c53944b522d5ef3ec1da54b783"
+    "revision": "ec88d27881bfae980b070018f821cf5f"
   },
   {
     "url": "canvas/three/typo.html",
-    "revision": "368ca3e9f202e46bef474df939c2e078"
+    "revision": "85e048777783d45fabcf96c9ce9ec401"
   },
   {
     "url": "canvas/three/video.html",
-    "revision": "8ab33d70ffa93ef40e8def47479db321"
+    "revision": "6830cedfb5e86e19304905fb60969446"
   },
   {
     "url": "effects/index.html",
-    "revision": "79192bd5c85673a6d2ccf261520584d1"
+    "revision": "21b985845f71e11fee5ef67c0630fdcd"
   },
   {
     "url": "effects/mouse.html",
-    "revision": "de5983f15d8caf07e8fa6957b0e52f13"
+    "revision": "1a3c2aa5f81c83808aca3ed97c72e6a2"
   },
   {
     "url": "effects/reveal.html",
-    "revision": "905961e6e7da87f5ee58f7e668605d2e"
+    "revision": "793dd11da6ada09327a66164a7b3de94"
   },
   {
     "url": "favicon.png",
@@ -475,11 +475,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "21b53fdbc44bf5207d53efa608d452fa"
+    "revision": "f86b7f57dd5356cb20beba2c14e6d416"
   },
   {
     "url": "info/index.html",
-    "revision": "188693d09dba56d63a9946de90e920ae"
+    "revision": "a7280eb4023014a76ce9ea8f94da9179"
   },
   {
     "url": "logo.svg",
