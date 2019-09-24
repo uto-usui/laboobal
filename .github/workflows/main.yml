@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:    # Array of patterns that match refs/heads
+    - master     # Push events on master branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@master
+      with:
+        node-version: 10.x 
+    - run: git remote set-url origin https://${ACTIONS_TOKEN}@github.com/${GITHUB_REPOSITORY}
+      env:
+        TEST_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+    - run: A=$(cat ${GITHUB_EVENT_PATH} | jq -r '.commits[0].author.email') && git config --global user.email "${A}"
+    - run: A=$(cat ${GITHUB_EVENT_PATH} | jq -r '.commits[0].author.name')  && git config --global user.name "${A}"
+    - run: yarn install && yarn docs:build && npx gh-pages -d docs/.vuepress/dist -t
