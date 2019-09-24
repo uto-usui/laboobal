@@ -25,6 +25,6 @@ jobs:
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.3.2
       env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_TOKEN }}
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: master
         PUBLISH_DIR: ./docs/.vuepress/dist
