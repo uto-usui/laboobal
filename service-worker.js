@@ -27,11 +27,11 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "7ea76cbacfce31e964521ca6a63fbd79"
+    "revision": "e4e4d8ec56edbf0886406a848609a110"
   },
   {
-    "url": "assets/css/0.styles.f6084263.css",
-    "revision": "e06d82edffa5abe8216a7d6b70abb0c2"
+    "url": "assets/css/0.styles.b7593e03.css",
+    "revision": "7ae591f0733dbcc05c116119da09b730"
   },
   {
     "url": "assets/img/search.83621669.svg",
@@ -358,96 +358,96 @@ self.__precacheManifest = [
     "revision": "e7a5d4789e4334e5a2368d12a0f7b6e8"
   },
   {
-    "url": "assets/js/app.540d663b.js",
-    "revision": "bd2f837300d6020ce795844e0d19e91c"
+    "url": "assets/js/app.29726a84.js",
+    "revision": "e34a3d23beffaa4d64163c9d1c4c8bb9"
   },
   {
     "url": "basic/drag.html",
-    "revision": "65dae6f91242c8eda639cb9b043371b3"
+    "revision": "492230374b49dfc29e4ecb00b6630a3a"
   },
   {
     "url": "basic/easing.html",
-    "revision": "a9b895f4c3a0203542b5901038055f37"
+    "revision": "7d2ae573547d3772b8429a8cffb25fb5"
   },
   {
     "url": "basic/follow.html",
-    "revision": "61db38f6a150b7de58e4aef40fb897c1"
+    "revision": "5f9dde01c998e00ebdddd9f7b2ddd6c4"
   },
   {
     "url": "basic/hover.html",
-    "revision": "04c6d1f606a7ff181bb3fb486b751eec"
+    "revision": "5ad1e79851efabe9c4014d10a75d83d0"
   },
   {
     "url": "basic/index.html",
-    "revision": "1d223d25a2fd6a8d4ffb3b13e050d03f"
+    "revision": "7be53f7e8227a0ce52691fe9d9ff0cb2"
   },
   {
     "url": "basic/random.html",
-    "revision": "739875ceea1dbac51258787d30691338"
+    "revision": "f1264baa79dcdb822cc105c8e95818c7"
   },
   {
     "url": "basic/rotate3d.html",
-    "revision": "769d94fd22fb267090e3d8fc77b0e339"
+    "revision": "eda2f3df19ce9b5de9834d8daee914de"
   },
   {
     "url": "basic/scroll.html",
-    "revision": "9eb5bd462401ad11bc1234c118322e88"
+    "revision": "f6a8ade61f7a4cc6114089c6f5fadd74"
   },
   {
     "url": "basic/trigonometry.html",
-    "revision": "e9bc9de433f4a094b7283affe325e3ed"
+    "revision": "6a4675f8f9062fbb950ac1e03d3a583f"
   },
   {
     "url": "canvas/distortion.html",
-    "revision": "ba91104c733da583ffb88824f8c98780"
+    "revision": "80c9883be9e2ea75866c148d9bc205ac"
   },
   {
     "url": "canvas/distortion2.html",
-    "revision": "2420a958aee0ca1c7c2fbf42bbb62019"
+    "revision": "3187be873d9b20ee4a15489f2ebc4695"
   },
   {
     "url": "canvas/fillText.html",
-    "revision": "bf06376ccc36961fc8bb141209cca219"
+    "revision": "8b948f9900e4a617c50567ecfa7b11d4"
   },
   {
     "url": "canvas/glitchImage.html",
-    "revision": "ea501810a99998087fc587a0242e1c8b"
+    "revision": "37b48c4569722af29f2d540b52da8666"
   },
   {
     "url": "canvas/index.html",
-    "revision": "9b06e5ef17360d3313fbf500fad01fd0"
+    "revision": "5edd42ff87d11714b0c0c6c2489abb1c"
   },
   {
     "url": "canvas/P5/index.html",
-    "revision": "fb030ea954da51b5707d2b143cb2d2d1"
+    "revision": "2f0eef347b316222844c7a19ca6f55cb"
   },
   {
     "url": "canvas/shiftImage.html",
-    "revision": "4a053695050a6bd1e13316a5a72801cb"
+    "revision": "9633879cb41a20cd5c3df01b33ef4a37"
   },
   {
     "url": "canvas/three/index.html",
-    "revision": "ec88d27881bfae980b070018f821cf5f"
+    "revision": "7e24abdad017a2dd05a132bd716d4986"
   },
   {
     "url": "canvas/three/typo.html",
-    "revision": "85e048777783d45fabcf96c9ce9ec401"
+    "revision": "16b55007a81ba2ccf071179746e91e21"
   },
   {
     "url": "canvas/three/video.html",
-    "revision": "6830cedfb5e86e19304905fb60969446"
+    "revision": "8c554b2317713695d1288a56d071bdb5"
   },
   {
     "url": "effects/index.html",
-    "revision": "21b985845f71e11fee5ef67c0630fdcd"
+    "revision": "c26519424a3adee63d9b2cc66ef3d020"
   },
   {
     "url": "effects/mouse.html",
-    "revision": "1a3c2aa5f81c83808aca3ed97c72e6a2"
+    "revision": "f8358f727e76ee55cd4677374c4490d4"
   },
   {
     "url": "effects/reveal.html",
-    "revision": "793dd11da6ada09327a66164a7b3de94"
+    "revision": "93fb54818a9ee40d9d9daeb759c26a11"
   },
   {
     "url": "favicon.png",
@@ -475,11 +475,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "f86b7f57dd5356cb20beba2c14e6d416"
+    "revision": "b2119351e4b4dc6db731c60c68b49526"
   },
   {
     "url": "info/index.html",
-    "revision": "a7280eb4023014a76ce9ea8f94da9179"
+    "revision": "6bd93424fab3a1599dd9953f84406e7b"
   },
   {
     "url": "logo.svg",
