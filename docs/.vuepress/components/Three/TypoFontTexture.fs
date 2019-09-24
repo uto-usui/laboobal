@@ -13,7 +13,7 @@ float random(vec2 p) {
   #pragma glslify: snoise2 = require(glsl-noise/simplex/2d)
 
 float pattern(vec2 p) {
-  vec2 pp = vec2(snoise2(p + vec2(0.0, 0.0)), snoise2(p + vec2(5.4 + time * 0.1, 1.1)));
+  vec2 pp = vec2(snoise2(p + vec2(0.0, 0.0)), snoise2(p + vec2(5.4 + time * 0.1, 2.1)));
   return snoise2(pp);
 }
 
