@@ -20,7 +20,7 @@ jobs:
       run: yarn install
 
     - name: build
-      run: yarn docs:build
+      run: yarn docs:build:GitHub
 
     - name: deploy
       uses: peaceiris/actions-gh-pages@v2.3.2

@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/', // base URL
+  base: process.env.VUEPRESS_BASE || '/',
   title: 'laboobal',
   description: 'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
   head: [

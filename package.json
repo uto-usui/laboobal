@@ -38,6 +38,7 @@
   "private": true,
   "scripts": {
     "docs:build": "vuepress build docs",
+    "docs:build:GitHub": "vuepress build docs VUEPRESS_BASE=/laboobal/",
     "docs:dev": "vuepress dev docs",
     "lint:js": "eslint --fix --ext .js,.vue docs/.vuepress/components/"
   },
