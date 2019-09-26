@@ -2,7 +2,7 @@
 #sidebar: auto
 ---
 
-# glitch
+# glitch noise
 
 <Canvas-GlitchImage/>
   

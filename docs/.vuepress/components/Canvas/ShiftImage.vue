@@ -11,17 +11,17 @@ export default {
   name: 'ShiftImage',
   data() {
     return {
-      glitch: null,
+      shift: null,
     }
   },
   mounted() {
-    this.glitch = new ShiftImageScript({
+    this.shift = new ShiftImageScript({
       canvas: this.$refs.canvas,
       wrap: this.$refs.wrap,
     })
   },
   beforeDestroy() {
-    this.glitch.destroy()
+    this.shift.destroy()
   },
 }
 </script>

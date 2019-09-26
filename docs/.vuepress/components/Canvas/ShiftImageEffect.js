@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import vs from 'raw-loader!glslify-loader!./GlitchEffectMesh.vs'
-import fs from 'raw-loader!glslify-loader!./ShiftImageEffect.fs'
+import vs from './GlitchEffectMesh.vs'
+import fs from './ShiftImageEffect.fs'
 
 import _event from '../utility/EventListener'
 

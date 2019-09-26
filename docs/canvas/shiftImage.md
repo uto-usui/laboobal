@@ -2,7 +2,6 @@
 #sidebar: auto
 ---
 
-# Shift
+# shift image
 
 <Canvas-ShiftImage/>
-  

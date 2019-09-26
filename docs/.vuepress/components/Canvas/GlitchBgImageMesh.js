@@ -1,6 +1,6 @@
 import * as THREE from 'three'
-import vs from 'raw-loader!glslify-loader!./GlitchBgImageMesh.vs'
-import fs from 'raw-loader!glslify-loader!./GlitchBgImageMesh.fs'
+import vs from './GlitchBgImageMesh.vs'
+import fs from './GlitchBgImageMesh.fs'
 
 /**
  * 画像テクスチャのメッシュを作る
