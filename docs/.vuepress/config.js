@@ -84,6 +84,7 @@ module.exports = {
           '/canvas/distortion',
           '/canvas/distortion2',
           '/canvas/shiftImage',
+          '/canvas/glitchImage',
           '/canvas/P5/',
           {
             title: 'Three',
