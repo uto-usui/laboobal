@@ -183,6 +183,16 @@ class math {
     obj.x = x
     obj.y = y
   }
+
+  /**
+   * 任意の桁でまるめる関数
+   * @param value {number} 切り上げする数値
+   * @param base {number} どの桁で切り上げするか（10→10の位、0.1→小数第１位）
+   * @return {number} 切り上げした値
+   */
+  static orgTrunc(value, base) {
+    return Math.trunc(value * base) / base
+  }
 }
 
 export default math
