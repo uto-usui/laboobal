@@ -47,7 +47,7 @@ export class TypoInit extends TypoCreateRenderer {
     this.container.height = 1
   }
 
-  /**s
+  /** s
    * resize handler
    *
    * @param width

@@ -1,8 +1,7 @@
 import * as THREE from 'three'
+import _event from '../utility/EventListener'
 import vs from './GlitchEffectMesh.vs'
 import fs from './ShiftImageEffect.fs'
-
-import _event from '../utility/EventListener'
 
 export class ShiftImageEffect {
   constructor(texture, width, height, wrap = window) {

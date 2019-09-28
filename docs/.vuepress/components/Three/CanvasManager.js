@@ -142,19 +142,19 @@ export class CanvasManager {
 }
 
 function dispose(obj) {
-  if (!!obj.geometry) {
+  if (obj.geometry) {
     obj.geometry.dispose()
     obj.geometry = null
   }
   if (!!obj.material && obj.material instanceof Array) {
     obj.material.forEach(material => disposeMaterial(material))
-  } else if (!!obj.material) {
+  } else if (obj.material) {
     disposeMaterial(obj.material)
   }
 }
 
 function disposeMaterial(material) {
-  if (!!material.map) {
+  if (material.map) {
     material.map.dispose()
     material.map = null
   }
