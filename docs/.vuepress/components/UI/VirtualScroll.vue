@@ -17,16 +17,16 @@
         <div class="target__inner" v-html="item" />
       </div>
     </div>
-    <div class="vs__scroll" v-if="false">
-      wheel : {{ accelerate }}
-    </div>
+    <div v-if="false" class="vs__scroll">
+wheel : {{ accelerate }}
+</div>
   </section>
 </template>
 
 <script>
 import { TweenMax } from 'gsap'
-import jsonData from './name'
 import math from '../math'
+import jsonData from './name'
 
 const dataLastIndex = jsonData.length - 1
 
@@ -63,12 +63,31 @@ export default {
       // easing value
       ease: 0.1,
 
+      // target elements
+      targets: [
+        {
+          dom: null,
+          pos: 0,
+          index: 0,
+        },
+      ],
+
       // transform positions
       positions: [],
 
       // visible jsonData index - この値の数がDOMの数になる
-      listIndex: [0,1,2,3,4,5,6,7,8],
+      listIndex: [0, 1, 2, 3, 4, 5, 6, 7, 8],
     }
+  },
+
+  computed: {
+    displayList() {
+      return this.listIndex.map(val => this.jsonData[val]);
+    },
+  },
+
+  watch: {
+    //
   },
 
   mounted() {
@@ -77,28 +96,40 @@ export default {
     })
   },
 
+  created() {
+    //
+  },
+
   beforeDestroy() {
     //
-  },
-
-  watch: {
-    //
-  },
-
-  computed: {
-    displayList() {
-      const array = []
-      this.listIndex.forEach(index => {
-        array.push(this.jsonData[index])
-      })
-      return array
-    },
   },
 
   methods: {
     init() {
       this.initItemsStyle()
       this.update()
+    },
+
+    /**
+     * set target style
+     */
+    initItemsStyle() {
+      // set target height
+      this.targetHeight = this.$refs.targets[0].offsetHeight
+      this.targetsHeight = this.targetHeight * this.listIndex.length
+
+      this.$refs.targets.forEach((el, i) => {
+        // set position to array
+        this.positions.push(this.targetHeight * i)
+
+        //        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
+
+        // set style
+        TweenMax.set(el, {
+          y: this.positions[i],
+          //          rotationX,
+        })
+      })
     },
 
     /**
@@ -129,39 +160,17 @@ export default {
     /**
      * set target style
      */
-    initItemsStyle() {
-      // set target height
-      this.targetHeight = this.$refs.targets[0].offsetHeight
-      this.targetsHeight = this.targetHeight * this.listIndex.length
-
-      this.$refs.targets.forEach((el, i) => {
-        // set position to array
-        this.positions.push(this.targetHeight * i)
-
-        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
-
-        // set style
-        TweenMax.set(el, {
-          y: this.positions[i],
-          rotationX,
-        })
-      })
-    },
-
-    /**
-     * set target style
-     */
     moveItems() {
       // console.log(this.scroll)
       this.$refs.targets.forEach((el, i) => {
         // position checker
         this.checkPosition(i)
 
-        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
+        //        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
         // set style
         TweenMax.set(el, {
           y: this.positions[i],
-          rotationX,
+          //          rotationX,
         })
       })
     },
@@ -173,7 +182,9 @@ export default {
       if (this.positions[i] < -this.targetHeight) {
         console.log('💫 up')
         // current visible last index
-        const lastItemIndex = this.positions.indexOf(Math.max.apply(null, this.positions))
+        const lastItemIndex = this.positions.indexOf(
+          Math.max.apply(null, this.positions),
+        )
 
         // move under the last item position - 一番下部の要素のindex
         const lastItemPos = Math.max(...this.positions)
@@ -192,7 +203,9 @@ export default {
       ) {
         console.log('💫 down')
         // current visible first index - 一番上部の要素のindex
-        const firstItemIndex = this.positions.indexOf(Math.min.apply(null, this.positions))
+        const firstItemIndex = this.positions.indexOf(
+          Math.min.apply(null, this.positions),
+        )
 
         // move on the first item position
         const firstItemPos = Math.min(...this.positions)
