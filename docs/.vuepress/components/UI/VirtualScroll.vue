@@ -5,6 +5,7 @@
     class="virtual-scroll"
     @wheel="wheelHandle"
     @touchstart="touchStartHandle"
+    @touchmove="touchMoveHandle"
     @touchend="touchEndHandle"
   >
     <div class="vs__inner">
@@ -27,6 +28,7 @@ wheel : {{ accelerate }}
 import { TweenMax } from 'gsap'
 import math from '../math'
 import jsonData from './name'
+import isMobile from 'ismobilejs'
 
 const dataLastIndex = jsonData.length - 1
 
@@ -55,6 +57,7 @@ export default {
       // touch
       touchPos: {
         startY: 0,
+        diff: 0,
         endY: 0,
       },
 
@@ -138,7 +141,11 @@ export default {
     update() {
       requestAnimationFrame(this.update)
 
-      this.updateAccelerate()
+      if (isMobile.any) {
+        this.touchPosToAccelerate()
+      } else {
+        this.updateAccelerate()
+      }
     },
 
     /**
@@ -147,6 +154,18 @@ export default {
     updateAccelerate() {
       this.accelerate.target +=
         (this.accelerate.current - this.accelerate.target) * this.ease
+
+      this.accelerate.target = Math.trunc(this.accelerate.target * 100) / 100
+      //
+      if (Math.trunc(this.accelerate.target) !== this.accelerate.current) {
+        this.scroll += this.accelerate.target - this.scroll
+        //
+        this.moveItems()
+      }
+    },
+
+    touchPosToAccelerate() {
+      this.accelerate.target += (this.touchPos.diff - this.accelerate.target) * this.ease
 
       this.accelerate.target = Math.trunc(this.accelerate.target * 100) / 100
       //
@@ -245,16 +264,28 @@ export default {
       }
     },
     /**
-     * touchStart handler
+     * touchstart handler
      */
     touchStartHandle(e) {
+      console.log('touchStartHandle')
       this.touchPos.startY = e.changedTouches[0].screenY
     },
     /**
-     * touchEnd handler
+     * touchmove handler
+     */
+    touchMoveHandle(e) {
+      this.touchPos.endY = e.changedTouches[0].screenY
+      this.touchPos.diff = this.touchPos.endY - this.touchPos.startY
+    },
+    /**
+     * touchend handler
      */
     touchEndHandle(e) {
+      console.log('touchEndHandle')
       this.touchPos.endY = e.changedTouches[0].screenY
+      this.touchPos.startY = 0
+      this.touchPos.diff = 0
+
       if (this.touchPos.endY < this.touchPos.startY) {
         // next
       }
