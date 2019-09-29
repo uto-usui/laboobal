@@ -1,13 +1,15 @@
+const path =  require('path')
+
 module.exports = {
   base: process.env.VUEPRESS_BASE || '/',
   title: 'laboobal',
   description: 'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
   head: [
     ['link',
-      {rel: 'manifest', href: '/manifest.json'},
+      { rel: 'manifest', href: '/manifest.json' },
     ],
     ['meta',
-      {name: 'theme-color', content: '#FF6473'},
+      { name: 'theme-color', content: '#FF6473' },
     ],
   ],
   plugins: [
@@ -51,6 +53,10 @@ module.exports = {
         text: 'canvas',
         link: '/canvas/',
       },
+      {
+        text: 'UI',
+        link: '/UI/',
+      },
     ],
     sidebar: [
       '/',
@@ -93,8 +99,15 @@ module.exports = {
             children: [
               '/canvas/three/video',
               '/canvas/three/typo',
-            ]
+            ],
           },
+        ],
+      },
+      {
+        title: 'UI',
+        children: [
+          '/UI/',
+          '/UI/virtualScroll',
         ],
       },
     ],
@@ -136,5 +149,11 @@ module.exports = {
       use: ['raw-loader', 'glslify-loader'],
       exclude: /(node_modules)/,
     })
+    //
+  },
+
+  chainWebpack (config) {
+    config.resolve
+      .alias.set('@assets', path.resolve(__dirname, "../assets"))
   }
 }
