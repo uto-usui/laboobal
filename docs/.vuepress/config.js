@@ -99,6 +99,7 @@ module.exports = {
             children: [
               '/canvas/three/video',
               '/canvas/three/typo',
+              '/canvas/three/scale',
             ],
           },
         ],
