@@ -33,12 +33,11 @@ export default {
       this.canvas = new TypoInit({ wrap: this.$refs.canvas })
       this.canvas.start()
       //
-      this.updateFunction = this.update.bind(this)
       await pause(1)
       this.update()
     },
     update() {
-      this.frameID = requestAnimationFrame(this.updateFunction)
+      this.frameID = requestAnimationFrame(this.update)
       this.canvas.update()
     },
   },
