@@ -121,6 +121,10 @@ export class CanvasManager {
     return this.getInstance().sceneHeight
   }
 
+  static aspectRatio() {
+    return this.getInstance().aspectRatio
+  }
+
   static dpr() {
     return this.getInstance().dpr
   }
