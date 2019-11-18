@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import { TweenMax } from 'gsap'
+import { TweenMax, TimelineMax } from 'gsap'
 import _event from '../utility/EventListener'
 
 /**
@@ -7,9 +7,9 @@ import _event from '../utility/EventListener'
  * @type {string}
  */
 const vertex = `
-  
+
   // 頂点は一括で指定する
-  
+
   varying vec2 vUv;
   void main() {
     vUv = uv;
@@ -248,7 +248,7 @@ class DistortionSlider {
   transitionNext() {
     TweenMax.to(this.material.uniforms.dispPower, this.effect.speed, {
       value: 1,
-      ease: Expo.easeInOut,
+      ease: 'Expo.easeInOut',
       onUpdate: this.render,
       onComplete: () => {
         // init
@@ -285,7 +285,7 @@ class DistortionSlider {
       1,
       {
         alpha: 0.25,
-        ease: Linear.easeNone,
+        ease: 'Linear.easeNone',
       },
       0,
     )
@@ -301,7 +301,7 @@ class DistortionSlider {
         1,
         {
           scaleX: 0,
-          ease: Expo.easeInOut,
+          ease: 'Expo.easeInOut',
         },
         0,
       )
@@ -311,7 +311,7 @@ class DistortionSlider {
       1,
       {
         alpha: 1,
-        ease: Linear.easeNone,
+        ease: 'Linear.easeNone',
       },
       1,
     )
@@ -327,7 +327,7 @@ class DistortionSlider {
         1,
         {
           scaleX: 1,
-          ease: Expo.easeInOut,
+          ease: 'Expo.easeInOut',
         },
         1,
       )
