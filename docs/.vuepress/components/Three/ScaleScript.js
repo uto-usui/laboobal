@@ -21,35 +21,36 @@ const createVertex = activation => `
   uniform vec2 uMeshScale;
   uniform vec2 uMeshPosition;
   uniform vec2 uViewSize;
-  varying vec2 vUv;
+
 
   void main(){
     vec3 pos = position.xyz;
-    
+
     ${activation}
-    
+
     float latestStart = 0.5;
     float startAt = activation * latestStart;
     float vertexProgress = smoothstep(startAt,1.,uProgress);
-       
+
     // Scale to page view size/page size
     vec2 scaleToViewSize = uViewSize / uMeshScale - 1.;
     vec2 scale = vec2(
       1. + scaleToViewSize * vertexProgress
     );
     pos.xy *= scale;
-    
-    // Move towards center 
+
+    // Move towards center
     pos.y += -uMeshPosition.y * vertexProgress;
     pos.x += -uMeshPosition.x * vertexProgress;
-    
+
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.);
-    vUv = uv;
+
   }
 `
 
 const fragmentShader = `
   uniform vec3 uColor;
+
   void main(){
     vec3 color = uColor /255.;
     gl_FragColor = vec4(color,1.);
