@@ -40,7 +40,7 @@ export class eventManager {
         eventRemover.remove()
       })
 
-      //      console.log('destroy', this.target, this.eventType);
+      console.log('destroy', this.target, this.eventType);
     }
   }
 }
