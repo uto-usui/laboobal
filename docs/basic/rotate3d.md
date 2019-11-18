@@ -6,15 +6,15 @@
 
 ## rotateX
 
-<Rotate3dX />
+<basic-Rotate3dX />
 
 ## rotateY
 
-<Rotate3dY />
+<basic-Rotate3dY />
 
 ## rotateXYZ
 
-<Rotate3dXYZ />
+<basic-Rotate3dXYZ />
 
 ```javascript
 import {TweenMax} from 'gsap';

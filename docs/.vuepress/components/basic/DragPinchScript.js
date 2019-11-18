@@ -1,5 +1,5 @@
 import isMobile from 'ismobilejs'
-import _event from './utility/EventListener'
+import _event from '../utility/EventListener'
 
 class DragPinch {
   /**

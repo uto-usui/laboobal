@@ -12,7 +12,7 @@
 import chroma from 'chroma-js'
 import { TweenMax } from 'gsap'
 import ScrollRevealScript from './ScrollRevealScript'
-import math from './math'
+import math from '../math'
 
 export default {
   name: 'ScrollRevealColor',

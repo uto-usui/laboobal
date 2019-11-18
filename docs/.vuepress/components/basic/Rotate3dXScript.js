@@ -1,7 +1,7 @@
 import { TweenMax } from 'gsap'
-import math from './math'
+import math from '../math'
 
-class Rotate3dY {
+class Rotate3dX {
   /**
    * constructor
    * @param targets {Object}
@@ -106,7 +106,9 @@ class Rotate3dY {
   play() {
     this.targets.forEach((el, i) => {
       // オブジェクトの座標を更新
-      math.rotateY(el, math.angleToRadian(el.speedY))
+      math.rotateX(el, math.angleToRadian(el.speedX))
+      //      math.rotateY(el, math.angleToRadian(el.speedY));
+      //      math.rotateZ(el, math.angleToRadian(el.speedZ));
 
       TweenMax.set(el.el, {
         scale: el.scale,
@@ -120,4 +122,4 @@ class Rotate3dY {
   }
 }
 
-export default Rotate3dY
+export default Rotate3dX

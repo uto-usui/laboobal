@@ -8,7 +8,7 @@
 
 <script>
 import Tilt from './EffectsTiltScript'
-import DummyImage from './DummyImage'
+import DummyImage from '../DummyImage'
 
 export default {
   name: 'EffectsTilt',

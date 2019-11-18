@@ -7,7 +7,7 @@
 
 <script>
 import FollowMouseSpringScript from './FollowMouseSpringScript'
-import math from './math'
+import math from '../math'
 
 export default {
   name: 'FollowMouseSpring',

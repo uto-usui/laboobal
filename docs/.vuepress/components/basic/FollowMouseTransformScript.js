@@ -1,6 +1,6 @@
 import { TweenLite } from 'gsap'
 
-import math from './math'
+import math from '../math'
 
 /**
  *  FollowMouse

@@ -6,7 +6,7 @@
 
 ## tilt
 
-<EffectsTilt />
+<effects-EffectsTilt />
 
 ```javascript
 import TweenLite from 'gsap/TweenLite';
@@ -106,7 +106,7 @@ export default tilt;
 
 ## skew
 
-<EffectsSkew />
+<effects-EffectsSkew />
 
 ```javascript
 import TweenLite from 'gsap/TweenLite';

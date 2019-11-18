@@ -1,6 +1,6 @@
 import { TweenLite } from 'gsap'
 
-import _event from './utility/EventListener'
+import _event from '../utility/EventListener'
 
 /**
  * Effect tilting the element to make it look like 3D

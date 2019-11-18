@@ -6,7 +6,7 @@
 
 ## circle
 
-<TrigonometryCircle />
+<basic-TrigonometryCircle />
 
 ```javascript
 import {TweenMax} from 'gsap';
@@ -84,7 +84,7 @@ export default TrigonometryCircle;
 
 ## sine
 
-<TrigonometrySine />
+<basic-TrigonometrySine />
 
 ```javascript
 import {TweenMax} from 'gsap';
@@ -174,7 +174,7 @@ export default TrigonometrySine;
 
 ## random floating
 
-<TrigonometryRandomFloating />
+<basic-TrigonometryRandomFloating />
 
 ```javascript
 import {TweenMax} from 'gsap';

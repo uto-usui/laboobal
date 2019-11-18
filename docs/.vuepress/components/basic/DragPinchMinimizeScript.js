@@ -1,9 +1,9 @@
 import { TweenMax } from 'gsap'
 import chroma from 'chroma-js'
-import math from './math'
+import math from '../math'
 import DragPinchScript from './DragPinchScript'
 
-class DragPinchFriction {
+class DragPinchMinimize {
   /**
    *
    * @param target {HTMLElement}
@@ -23,6 +23,20 @@ class DragPinchFriction {
      * @type {HTMLElement}
      */
     this.wrapper = wrapper
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapHeight =
+      this.wrapper === window ? window.innerHeight : this.wrapper.offsetHeight
+
+    /**
+     *
+     * @type {number}
+     */
+    this.wrapWidth =
+      this.wrapper === window ? window.innerWidth : this.wrapper.offsetWidth
 
     /**
      * 摩擦
@@ -67,7 +81,6 @@ class DragPinchFriction {
       this.wrap,
       ({ target, param }) => {
         const _param = param
-
         _param.x *= this.friction
         _param.y *= this.friction
 
@@ -77,20 +90,36 @@ class DragPinchFriction {
 
         // 中心からの距離
         const distFromCenter = Math.hypot(this.targetX, this.targetY)
+
+        // 距離が大きいと小さくなる
+        const scale =
+          1 -
+          math.map(
+            distFromCenter,
+            0,
+            ((this.wrapHeight + this.wrapWidth) / 4) * this.friction,
+            0,
+            1,
+          )
+
         // カラースケールを定義して、距離から色情報を取り出す
         const color = chroma
           .scale([0x25ecb7, 0xff6473])(
-            math.map(distFromCenter, 0, 500 / 2, 0, 1),
+            math.map(
+              distFromCenter,
+              0,
+              ((this.wrapHeight + this.wrapWidth) / 4) * this.friction,
+              0,
+              1,
+            ),
           )
           .css()
 
         TweenMax.set(target, {
-          rotationZ: math.angleToRadian(this.targetX * this.targetY) * 0.1,
-          scaleX: 1 + Math.abs(this.targetX) * 0.002,
-          scaleY: 1 + Math.abs(this.targetY) * 0.002,
-          x: this.targetX,
-          y: this.targetY,
+          scale: scale,
           backgroundColor: color,
+          x: this.targetX * 2,
+          y: this.targetY * 2,
         })
       },
     )
@@ -106,8 +135,9 @@ class DragPinchFriction {
     this.ease = 0
     this.targetX = 0
     this.targetY = 0
+    this.friction = 0
     this.dragInstance = null
   }
 }
 
-export default DragPinchFriction
+export default DragPinchMinimize

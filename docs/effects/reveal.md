@@ -5,7 +5,7 @@
 
 ## curtain
 
-<RevealCurtain/>
+<effects-RevealCurtain/>
 
 ```javascript
 /**
@@ -231,7 +231,7 @@ function createDOMElement(type, className, content) {
  
 ## clip
 
-<RevealClip/>
+<effects-RevealClip/>
 
 ```javascript
 class RevealClip {

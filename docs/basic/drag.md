@@ -6,7 +6,7 @@
 
 ## simple pinch and release
 
-<DragPinchSimple />
+<basic-DragPinchSimple />
 
 ```javascript
 import isMobile from 'ismobilejs';
@@ -286,7 +286,7 @@ export default DragPinchSimple;
 
 ## friction
 
-<DragPinchFriction />
+<basic-DragPinchFriction />
 
 ```javascript
 import {TweenMax} from 'gsap';
@@ -407,7 +407,7 @@ export default DragPinchFriction;
 
 ## lines
 
-<DragPinchLines />
+<basic-DragPinchLines />
 
 ```javascript
 import DragPinchScript from './DragPinchScript';
@@ -680,7 +680,7 @@ export default DragPinchMinimize;
 
 ## word
 
-<DragPinchWord />
+<basic-DragPinchWord />
 
 ```javascript
 import {TweenMax} from 'gsap';

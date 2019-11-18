@@ -8,7 +8,7 @@
 
 <script>
 import skew from './EffectsSkewScript'
-import DummyImage from './DummyImage'
+import DummyImage from '../DummyImage'
 
 export default {
   name: 'EffectsTilt',

@@ -1,4 +1,4 @@
-import _event from './utility/EventListener'
+import _event from '../utility/EventListener'
 
 class HoverControl {
   /**

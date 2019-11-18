@@ -19,7 +19,7 @@ const random = (min, max) => Math.random() * (max - min) + min;
 
 with css gradient 
 
-<RandomColor />
+<basic-RandomColor />
 
 ```javascript
 import {TweenMax} from 'gsap';
@@ -144,11 +144,11 @@ export default RandomColor;
 
 ### rotation
 
-<RandomColorRotation />
+<basic-RandomColorRotation />
 
 ## transform
 
-<RandomTransform />
+<basic-RandomTransform />
 
 ```javascript
 import {TweenMax} from 'gsap';

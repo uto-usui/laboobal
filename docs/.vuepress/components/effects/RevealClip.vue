@@ -11,7 +11,7 @@
 
 <script>
 import clip from './RevealClipScript'
-import DummyImage from './DummyImage'
+import DummyImage from '../DummyImage'
 
 export default {
   name: 'RevealClip',

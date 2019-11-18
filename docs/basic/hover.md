@@ -6,21 +6,17 @@
 
 ## timing control
 
-
-
 ### css
 
 CSS `:hover` Select mouse over interaction with selector. The CSS transition cancels the animation immediately when the mouse is out. 
 
-
-<HoverControlCss />
+<basic-HoverControlCss />
 
 ### js
 
 If you want to complete the animation up to the mouse over style, use JS to control the state. The execution of the animation is managed by looking at the animation end flag and mouse hover state flag in the `Promise` callback.
 
-<HoverControl />
-
+<basic-HoverControl />
 
 ```javascript
 import _event from './utility/EventListener'
@@ -204,7 +200,7 @@ new HoverControlScript(el, () => {
 
 ## rect
 
-<HoverRect />
+<basic-HoverRect />
 
 ```javascript
 import {TweenMax} from 'gsap';

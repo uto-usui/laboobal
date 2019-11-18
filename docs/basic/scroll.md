@@ -8,7 +8,7 @@
 
 If the element is in the visible range, process according to the progress rate.
 
-<ScrollReveal />
+<basic-ScrollReveal />
 
 ```javascript
 class ScrollRevealProgress {
@@ -217,7 +217,7 @@ export default ScrollRevealProgress;
 
 ## color
 
-<ScrollRevealColor />
+<basic-ScrollRevealColor />
 
 ```javascript
 import ScrollRevealScript from './ScrollRevealScript';
@@ -240,7 +240,7 @@ new ScrollRevealScript(this.$refs.target, progress => {
 Transform elements according to scroll.  
 Apply easing to transforming changes
 
-<ScrollRevealTransform />
+<basic-ScrollRevealTransform />
 
 ```javascript
 const easing = .1;

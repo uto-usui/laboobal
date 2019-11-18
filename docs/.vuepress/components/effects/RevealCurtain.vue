@@ -11,7 +11,7 @@
 
 <script>
 import Curtain from './RevealCurtainScript'
-import DummyImage from './DummyImage'
+import DummyImage from '../DummyImage'
 
 export default {
   name: 'RevealCurtain',

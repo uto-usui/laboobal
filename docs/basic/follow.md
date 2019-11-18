@@ -6,7 +6,7 @@
 
 ## mouse - easing
 
-<FollowMouse/>
+<basic-FollowMouse />
 
 ```javascript
 import { TweenLite } from 'gsap/TweenLite';
@@ -80,7 +80,7 @@ export default FollowMouse;
 
 ## mouse - spring
 
-<FollowMouseSpring/>
+<basic-FollowMouseSpring />
 
 ```javascript
 import { TweenLite } from 'gsap/TweenLite';
@@ -170,7 +170,7 @@ export default FollowMouseSpring;
 
 ## mouse - transform
 
-<FollowMouseTransform/>
+<basic-FollowMouseTransform />
 
 ```javascript
 import { TweenLite } from 'gsap'
@@ -265,4 +265,4 @@ export default FollowMouseTransform
 
 ## mouse spot light
 
-<FollowMouseSpotLight/>
+<basic-FollowMouseSpotLight />

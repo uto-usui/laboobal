@@ -1,6 +1,6 @@
 import { TweenMax } from 'gsap'
 import chroma from 'chroma-js'
-import math from './math'
+import math from '../math'
 
 class RandomColor {
   /**
