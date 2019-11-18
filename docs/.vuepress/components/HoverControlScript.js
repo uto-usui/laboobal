@@ -1,3 +1,5 @@
+import _event from './utility/EventListener'
+
 class HoverControl {
   /**
    * マウスオーバーした時のインタラクションのコントロール
@@ -38,6 +40,8 @@ class HoverControl {
      */
     this.isPlaying = false
 
+    this.eventList = []
+
     this.init()
 
     return this
@@ -47,8 +51,8 @@ class HoverControl {
    * initialize
    */
   init() {
-    this.target.addEventListener('mouseover', this.rollOverHandle.bind(this))
-    this.target.addEventListener('mouseout', this.rollOutHandle.bind(this))
+    this.eventList.push(new _event(this.target, 'mouseover', this.rollOverHandle.bind(this)))
+    this.eventList.push(new _event(this.target, 'mouseout', this.rollOutHandle.bind(this)))
   }
 
   /**
@@ -56,6 +60,7 @@ class HoverControl {
    * @param e {object} mouse event
    */
   rollOverHandle(e) {
+//    console.log('rollOverHandle')
     this.isOver = true
     if (!this.isPlaying) {
       this.startRollOver(e)
@@ -66,6 +71,7 @@ class HoverControl {
    * out handle
    */
   rollOutHandle() {
+//    console.log('rollOutHandle')
     this.isOver = false
     if (!this.isPlaying) {
       this.startRollOut()
@@ -78,6 +84,7 @@ class HoverControl {
    * @returns {Promise<void>}
    */
   async startRollOver(e) {
+//    console.log('startRollOver')
     this.isPlaying = true
 
     await this.overFunc.call(this, this.target, e)
@@ -89,6 +96,7 @@ class HoverControl {
    * @returns {Promise<void>}
    */
   async startRollOut() {
+//    console.log('startRollOut')
     this.isPlaying = true
 
     await this.outFunc.call(this, this.target)
@@ -99,6 +107,7 @@ class HoverControl {
    * finished roll over animation
    */
   completeRollOver() {
+//    console.log('completeRollOver')
     this.isPlaying = false
     if (!this.isOver) {
       this.startRollOut()
@@ -116,8 +125,7 @@ class HoverControl {
   }
 
   destroy() {
-    this.target.removeEventListener('mouseover', this.rollOverHandle.bind(this))
-    this.target.removeEventListener('mouseout', this.rollOutHandle.bind(this))
+    this.eventList.forEach(event => event.destroy())
   }
 }
 

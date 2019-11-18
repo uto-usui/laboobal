@@ -20,27 +20,31 @@ export default {
   },
   mounted: function() {
     this.$nextTick(() => {
-      const over = (el, ev) =>
-        new Promise((resolve) => {
+      const over = el =>
+        new Promise(resolve => {
           TweenMax.to(el, 0.6, {
             scale: 1,
             backgroundColor: '#FF6473',
             fontSize: '32px',
             borderWidth: '20px',
-            ease: Expo.easeOut,
-            onComplete: resolve,
+            ease: 'Expo.easeOut',
+            onComplete: () => {
+              resolve()
+            },
           })
         })
 
       const out = el =>
-        new Promise((resolve) => {
+        new Promise(resolve => {
           TweenMax.to(el, 0.5, {
             scale: 1,
             backgroundColor: '#25ECB7',
             fontSize: '16px',
             borderWidth: '0px',
-            ease: Expo.easeInOut,
-            onComplete: resolve,
+            ease: 'Expo.easeInOut',
+            onComplete: () => {
+              resolve()
+            },
           })
         })
 

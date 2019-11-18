@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap'
 import HoverControlScript from './HoverControlScript'
 
 export default {
@@ -19,34 +19,9 @@ export default {
       hoverControl: [],
     }
   },
-  mounted: function() {
+  mounted() {
     this.$nextTick(() => {
-      ;[...this.$refs.target].forEach((el) => {
-        const animationTarget = el.querySelector('.target__inner')
-
-        new HoverControlScript(
-          el,
-          (el, ev) => {
-            return new Promise((resolve) => {
-              TweenMax.to(animationTarget, 0.6, {
-                scaleX: 1,
-                backgroundColor: '#FF6473',
-                ease: Expo.easeOut,
-                onComplete: resolve,
-              })
-            })
-          },
-          el => {
-            return new Promise((resolve) => {
-              TweenMax.to(animationTarget, 0.5, {
-                scaleX: 0,
-                ease: Expo.easeInOut,
-                onComplete: resolve,
-              })
-            })
-          },
-        )
-      })
+      this.init()
     })
   },
   destroyed() {
@@ -54,7 +29,45 @@ export default {
       el.destroy()
     })
   },
-  methods: {},
+  methods: {
+    init() {
+      ;[...this.$refs.target].forEach((el, i) => {
+        const animationTarget = el.querySelector('.target__inner')
+
+        this.hoverControl[i] = new HoverControlScript(
+          el,
+          () => {
+            return new Promise(resolve => {
+              gsap.to(animationTarget, {
+                duration: 0.6,
+                scaleX: 1,
+                backgroundColor: '#FF6473',
+                ease: 'Expo.easeOut',
+                onComplete: () => {
+                  resolve()
+                },
+              })
+            })
+          },
+          () => {
+            return new Promise(resolve => {
+              gsap.to(animationTarget, {
+                duration: 0.5,
+                scaleX: 0,
+                ease: 'Expo.easeInOut',
+                onComplete: () => {
+                  resolve()
+                },
+              })
+            })
+          },
+        )
+      })
+    },
+    mouseOver() {
+
+    }
+  },
 }
 </script>
 

@@ -6,18 +6,26 @@
 
 ## timing control
 
+
+
 ### css
+
+CSS `:hover` Select mouse over interaction with selector. The CSS transition cancels the animation immediately when the mouse is out. 
+
 
 <HoverControlCss />
 
 ### js
 
+If you want to complete the animation up to the mouse over style, use JS to control the state. The execution of the animation is managed by looking at the animation end flag and mouse hover state flag in the `Promise` callback.
+
 <HoverControl />
 
 
 ```javascript
-class HoverControl {
+import _event from './utility/EventListener'
 
+class HoverControl {
   /**
    * マウスオーバーした時のインタラクションのコントロール
    * アニメーションを必ず100%の進捗率まで進める
@@ -27,49 +35,49 @@ class HoverControl {
    * @param outFunc {function} Promise を返す関数を受け取る
    */
   constructor(target, overFunc, outFunc) {
-
     /**
      * ターゲット要素
      * @type {HTMLElement}
      */
-    this.target = target;
+    this.target = target
 
     /**
      * マウスオーバーした時に実行する関数
      * @type {function}
      */
-    this.overFunc = overFunc;
+    this.overFunc = overFunc
 
     /**
      * マウスアウトした時に実行する関数
      * @type {function}
      */
-    this.outFunc = outFunc;
+    this.outFunc = outFunc
 
     /**
      * マウスが乗っているかどうか
      * @type {boolean}
      */
-    this.isOver = false;
+    this.isOver = false
 
     /**
      * アニメーションが進行中かどうか
      * @type {boolean}
      */
-    this.isPlaying = false;
+    this.isPlaying = false
 
-    this.init();
+    this.eventList = []
 
-    return this;
+    this.init()
 
+    return this
   }
 
   /**
    * initialize
    */
   init() {
-    this.target.addEventListener('mouseover', this.rollOverHandle.bind(this));
-    this.target.addEventListener('mouseout', this.rollOutHandle.bind(this));
+    this.eventList.push(new _event(this.target, 'mouseover', this.rollOverHandle.bind(this)))
+    this.eventList.push(new _event(this.target, 'mouseout', this.rollOutHandle.bind(this)))
   }
 
   /**
@@ -77,9 +85,10 @@ class HoverControl {
    * @param e {object} mouse event
    */
   rollOverHandle(e) {
-    this.isOver = true;
+//    console.log('rollOverHandle')
+    this.isOver = true
     if (!this.isPlaying) {
-      this.startRollOver(e);
+      this.startRollOver(e)
     }
   }
 
@@ -87,11 +96,12 @@ class HoverControl {
    * out handle
    */
   rollOutHandle() {
-    this.isOver = false;
+//    console.log('rollOutHandle')
+    this.isOver = false
     if (!this.isPlaying) {
-      this.startRollOut();
+      this.startRollOut()
     }
-  };
+  }
 
   /**
    * roll over animation
@@ -99,52 +109,52 @@ class HoverControl {
    * @returns {Promise<void>}
    */
   async startRollOver(e) {
-    this.isPlaying = true;
+//    console.log('startRollOver')
+    this.isPlaying = true
 
-    await this.overFunc.call(this, e);
-    this.completeRollOver();
-  };
+    await this.overFunc.call(this, this.target, e)
+    this.completeRollOver()
+  }
 
   /**
    * roll out animation
    * @returns {Promise<void>}
    */
   async startRollOut() {
-    this.isPlaying = true;
+//    console.log('startRollOut')
+    this.isPlaying = true
 
-    await this.outFunc.call(this);
-    this.completeRollOut();
-  };
+    await this.outFunc.call(this, this.target)
+    this.completeRollOut()
+  }
 
   /**
    * finished roll over animation
    */
   completeRollOver() {
-    this.isPlaying = false;
+//    console.log('completeRollOver')
+    this.isPlaying = false
     if (!this.isOver) {
-      this.startRollOut();
+      this.startRollOut()
     }
-  };
+  }
 
   /**
    * finished roll out animation
    */
   completeRollOut() {
-    this.isPlaying = false;
+    this.isPlaying = false
     if (this.isOver) {
-      this.startRollOver();
+      this.startRollOver()
     }
-  };
-
-  destroy() {
-    this.target.removeEventListener('mouseover', this.rollOverHandle.bind(this));
-    this.target.removeEventListener('mouseout', this.rollOutHandle.bind(this));
   }
 
+  destroy() {
+    this.eventList.forEach(event => event.destroy())
+  }
 }
 
-export default HoverControl;
-
+export default HoverControl
 ```
 
 ```javascript
@@ -154,7 +164,7 @@ import HoverControlScript from './HoverControlScript';
 const el = document.getElementById('el');
 const animationTarget = el.querySelector('.target__inner');
 
-new HoverControlScript(el, (e) => {
+new HoverControlScript(el, () => {
   return new Promise(resolve => {
 
     TweenMax.set(animationTarget, {
@@ -164,8 +174,10 @@ new HoverControlScript(el, (e) => {
     TweenMax.to(animationTarget, 0.6, {
       scaleX: 1,
       backgroundColor: '#FF6473',
-      ease: Expo.easeOut,
-      onComplete: resolve,
+      ease: 'Expo.easeOut',
+      onComplete: () => {
+        resolve()
+      },
     });
 
   });
@@ -179,8 +191,10 @@ new HoverControlScript(el, (e) => {
 
     TweenMax.to(animationTarget, 0.5, {
       scaleX: 0,
-      ease: Expo.easeInOut,
-      onComplete: resolve,
+      ease: 'Expo.easeOut',
+      onComplete: () => {
+        resolve()
+      },
     });
 
   });
@@ -196,29 +210,35 @@ new HoverControlScript(el, (e) => {
 import {TweenMax} from 'gsap';
 import HoverControlScript from './HoverControlScript';
 
-const over = (el, ev) => new Promise(resolve => {
-  TweenMax.to(el, 0.6, {
-    scale: 1,
-    backgroundColor: '#FF6473',
-    fontSize: '32px',
-    borderWidth: '20px',
-    ease: Expo.easeOut,
-    onComplete: resolve,
-  });
-});
+const over = el =>
+  new Promise(resolve => {
+    TweenMax.to(el, 0.6, {
+      scale: 1,
+      backgroundColor: '#FF6473',
+      fontSize: '32px',
+      borderWidth: '20px',
+      ease: 'Expo.easeOut',
+      onComplete: () => {
+        resolve()
+      },
+    })
+  })
 
-const out = (el) => new Promise(resolve => {
-  TweenMax.to(el, 0.5, {
-    scale: 1,
-    backgroundColor: '#25ECB7',
-    fontSize: '16px',
-    borderWidth: '0px',
-    ease: Expo.easeInOut,
-    onComplete: resolve,
-  });
-});
+const out = el =>
+  new Promise(resolve => {
+    TweenMax.to(el, 0.5, {
+      scale: 1,
+      backgroundColor: '#25ECB7',
+      fontSize: '16px',
+      borderWidth: '0px',
+      ease: 'Expo.easeInOut',
+      onComplete: () => {
+        resolve()
+      },
+    })
+  })
 
-[...this.$refs.target].forEach((el, i) => {
+;[...this.$refs.target].forEach(el => {
   new HoverControlScript(el, over, out);
 });
 
