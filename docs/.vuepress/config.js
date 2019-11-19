@@ -72,6 +72,7 @@ module.exports = {
           '/basic/hover',
           '/basic/drag',
           '/basic/random',
+          '/basic/gsap',
         ],
       },
       {
