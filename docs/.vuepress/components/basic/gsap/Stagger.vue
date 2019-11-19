@@ -32,12 +32,11 @@ export default {
       gsap.to(target, {
         duration: 1.25,
         scale: 0.75,
-        // rotationY: 360,
         z: 100,
         repeat: -1,
         repeatDelay: 0.2,
         yoyo: true,
-        ease: 'Sine.inOut',
+        ease: 'back.inOut(4)',
         stagger: {
           amount: 1,
           grid: [10, 10],
