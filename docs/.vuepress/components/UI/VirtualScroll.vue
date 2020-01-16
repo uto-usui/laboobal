@@ -25,7 +25,7 @@ wheel : {{ accelerate }}
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import math from '../math'
 import jsonData from './name'
 import isMobile from 'ismobilejs'
@@ -128,7 +128,7 @@ export default {
         //        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
 
         // set style
-        TweenMax.set(el, {
+        gsap.set(el, {
           y: this.positions[i],
           //          rotationX,
         })
@@ -187,7 +187,7 @@ export default {
 
         //        const rotationX = math.map(this.positions[i], 0, this.targetsHeight, 120, -120)
         // set style
-        TweenMax.set(el, {
+        gsap.set(el, {
           y: this.positions[i],
           //          rotationX,
         })
