@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import math from '../math'
 
 class Rotate3d {
@@ -140,7 +140,7 @@ class Rotate3d {
       math.rotateY(el, math.angleToRadian(el.speedY * this.position.y.offset))
       math.rotateZ(el, math.angleToRadian(el.speedZ))
 
-      TweenMax.set(el.el, {
+      gsap.set(el.el, {
         scale: el.scale,
         x: el.x + this.center.x,
         y: el.y + this.center.y,
