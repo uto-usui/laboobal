@@ -9,9 +9,7 @@
 <effects-EffectsTilt />
 
 ```javascript
-import TweenLite from 'gsap/TweenLite';
-import {Power2} from 'gsap/EasePack';
-import 'gsap/CSSPlugin';
+import { gsap } from 'gsap/all'
 
 /**
  *
@@ -55,14 +53,14 @@ class tilt {
       const radius = Math.sqrt(tiltx ** 2 + tilty ** 2);
       const degree = radius * 15;
 
-      TweenLite.set(target, {transformPerspective: this.perspective});
+      gsap.set(target, {transformPerspective: this.perspective});
 
-      TweenLite.to(target, this.dutation, {
+      gsap.to(target, this.dutation, {
         x: (target.offsetLeft + pageX * speedX) * this.fixer,
         y: (target.offsetTop + pageY * speedY) * this.fixer,
         rotationX: tiltx * degree * this.reverse,
         rotationY: tilty * degree * this.reverse,
-        ease: Power2.easeOut,
+        ease: 'Power2.out',
       });
 
     });
@@ -73,12 +71,12 @@ class tilt {
 
     this.targets.forEach(el => {
 
-      TweenLite.to(el, .85, {
+      gsap.to(el, .85, {
         x: 0,
         y: 0,
         rotationX: 0,
         rotationY: 0,
-        ease: Power2.easeOut,
+        ease: 'Power2.out',
       });
 
     });
@@ -109,8 +107,7 @@ export default tilt;
 <effects-EffectsSkew />
 
 ```javascript
-import TweenLite from 'gsap/TweenLite';
-import 'gsap/CSSPlugin';
+import { gsap } from 'gsap/all'
 
 import _event from './utility/EventListener'
 
@@ -163,7 +160,7 @@ class skewElement {
           xFinal = xMouse * factor,
           yFinal = yMouse * factor;
 
-      TweenLite.to(el, 1.2, {
+      gsap.to(el, 1.2, {
         x: xFinal,
         y: yFinal,
         skewX: xFinal * 0.05,
@@ -180,7 +177,7 @@ class skewElement {
 
     mouseElements.forEach(el => {
 
-      TweenLite.to(el, 1.2, {
+      gsap.to(el, 1.2, {
         x: 0,
         y: 0,
         skewX: 0,

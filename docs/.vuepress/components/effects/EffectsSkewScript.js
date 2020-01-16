@@ -1,4 +1,4 @@
-import { TweenLite } from 'gsap'
+import { gsap } from 'gsap/all'
 
 import _event from '../utility/EventListener'
 
@@ -49,7 +49,7 @@ class skewElement {
       const xFinal = xMouse * factor
       const yFinal = yMouse * factor
 
-      TweenLite.to(el, 1.2, {
+      gsap.to(el, 1.2, {
         x: xFinal,
         y: yFinal,
         skewX: xFinal * 0.05,
@@ -62,7 +62,7 @@ class skewElement {
     const mouseElements = [...e.currentTarget.querySelectorAll(this.target)]
 
     mouseElements.forEach(el => {
-      TweenLite.to(el, 1.2, {
+      gsap.to(el, 1.2, {
         x: 0,
         y: 0,
         skewX: 0,
