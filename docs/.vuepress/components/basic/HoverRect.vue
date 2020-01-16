@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import HoverControlScript from './HoverControlScript'
 
 export default {
@@ -22,7 +22,7 @@ export default {
     this.$nextTick(() => {
       const over = el =>
         new Promise(resolve => {
-          TweenMax.to(el, 0.6, {
+          gsap.to(el, 0.6, {
             scale: 1,
             backgroundColor: '#FF6473',
             fontSize: '32px',
@@ -36,7 +36,7 @@ export default {
 
       const out = el =>
         new Promise(resolve => {
-          TweenMax.to(el, 0.5, {
+          gsap.to(el, 0.5, {
             scale: 1,
             backgroundColor: '#25ECB7',
             fontSize: '16px',

@@ -154,7 +154,7 @@ export default HoverControl
 ```
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import HoverControlScript from './HoverControlScript';
 
 const el = document.getElementById('el');
@@ -163,11 +163,11 @@ const animationTarget = el.querySelector('.target__inner');
 new HoverControlScript(el, () => {
   return new Promise(resolve => {
 
-    TweenMax.set(animationTarget, {
+    gsap.set(animationTarget, {
       transformOrigin: '0% 50%',
     });
 
-    TweenMax.to(animationTarget, 0.6, {
+    gsap.to(animationTarget, 0.6, {
       scaleX: 1,
       backgroundColor: '#FF6473',
       ease: 'Expo.easeOut',
@@ -181,11 +181,11 @@ new HoverControlScript(el, () => {
 }, () => {
   return new Promise(resolve => {
 
-    TweenMax.set(animationTarget, {
+    gsap.set(animationTarget, {
       transformOrigin: '100% 50%',
     });
 
-    TweenMax.to(animationTarget, 0.5, {
+    gsap.to(animationTarget, 0.5, {
       scaleX: 0,
       ease: 'Expo.easeOut',
       onComplete: () => {
@@ -203,12 +203,12 @@ new HoverControlScript(el, () => {
 <basic-HoverRect />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import HoverControlScript from './HoverControlScript';
 
 const over = el =>
   new Promise(resolve => {
-    TweenMax.to(el, 0.6, {
+    gsap.to(el, 0.6, {
       scale: 1,
       backgroundColor: '#FF6473',
       fontSize: '32px',
@@ -222,7 +222,7 @@ const over = el =>
 
 const out = el =>
   new Promise(resolve => {
-    TweenMax.to(el, 0.5, {
+    gsap.to(el, 0.5, {
       scale: 1,
       backgroundColor: '#25ECB7',
       fontSize: '16px',

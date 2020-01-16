@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
+import { gsap } from 'gsap/all'
 import HoverControlScript from './HoverControlScript'
 
 export default {
