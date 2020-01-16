@@ -22,7 +22,7 @@ with css gradient
 <basic-RandomColor />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import math from './math';
 import chroma from 'chroma-js';
 
@@ -92,7 +92,7 @@ class RandomColor {
 
   play() {
 
-    TweenMax.set(this.target, {
+    gsap.set(this.target, {
       background: `linear-gradient(${this.deg}deg, ${this.getColor()})`,
     });
 
@@ -151,7 +151,7 @@ export default RandomColor;
 <basic-RandomTransform />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import math from './math';
 
 class RandomColor {
@@ -190,7 +190,7 @@ class RandomColor {
 
   play() {
     
-    TweenMax.set(this.target, {
+    gsap.set(this.target, {
       scaleX: math.random(.5, 2),
       scaleY: math.random(.5, 2),
       skewX: math.random(0, 360),

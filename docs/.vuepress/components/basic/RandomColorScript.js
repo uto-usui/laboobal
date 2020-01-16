@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import chroma from 'chroma-js'
 import math from '../math'
 
@@ -64,7 +64,7 @@ class RandomColor {
   }
 
   play() {
-    TweenMax.set(this.target, {
+    gsap.set(this.target, {
       background: `linear-gradient(${this.deg}deg, ${this.getColor()})`,
     })
 
