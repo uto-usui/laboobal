@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import math from '../math'
 
 class TrigonometryCircle {
@@ -43,7 +43,7 @@ class TrigonometryCircle {
        */
       const _angle = this.angle + (360 / this.targets.length) * i
 
-      TweenMax.set(el, {
+      gsap.set(el, {
         // 円周上にオブジェクトを配置
         x: this.center.x + Math.sin(math.angleToRadian(_angle)) * this.radius,
         y: this.center.y + Math.cos(math.angleToRadian(_angle)) * this.radius,

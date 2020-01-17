@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import math from '../math'
 
 class TrigonometryRandomFloating {
@@ -59,7 +59,7 @@ class TrigonometryRandomFloating {
    */
   play() {
     this.targets.forEach((el, i) => {
-      TweenMax.set(el, {
+      gsap.set(el, {
         // sine 波上にオブジェクトを配置
         x:
           Math.sin(math.angleToRadian(this.params[0].angle)) *
@@ -90,7 +90,7 @@ class TrigonometryRandomFloating {
       })
     })
 
-    TweenMax.set(this.wrap, {
+    gsap.set(this.wrap, {
       perspective: math.map(
         Math.sin(math.angleToRadian(this.params[4].angle)),
         -1,

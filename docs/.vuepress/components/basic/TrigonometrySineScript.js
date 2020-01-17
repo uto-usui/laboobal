@@ -1,4 +1,4 @@
-import { TweenMax } from 'gsap'
+import { gsap } from 'gsap/all'
 import math from '../math'
 
 class TrigonometrySine {
@@ -49,7 +49,7 @@ class TrigonometrySine {
        */
       const _angle = this.angle + (360 / this.targets.length) * i
 
-      TweenMax.set(el, {
+      gsap.set(el, {
         // sine 波上にオブジェクトを配置
         x:
           (this.wrapWidth / this.targets.length) * i +
@@ -79,7 +79,7 @@ class TrigonometrySine {
       })
     })
 
-    TweenMax.set(this.wrap, {
+    gsap.set(this.wrap, {
       perspective: math.map(
         Math.sin(math.angleToRadian(this.angle)),
         -1,

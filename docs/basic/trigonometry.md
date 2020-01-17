@@ -9,7 +9,7 @@
 <basic-TrigonometryCircle />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import math from './math'
 
 class TrigonometryCircle {
@@ -54,7 +54,7 @@ class TrigonometryCircle {
        */
       const _angle = this.angle + (360 / this.targets.length) * i;
 
-      TweenMax.set(el, {
+      gsap.set(el, {
 
         // 円周上にオブジェクトを配置
         x: this.center.x + Math.sin(math.angleToRadian(_angle)) * this.radius,
@@ -87,7 +87,7 @@ export default TrigonometryCircle;
 <basic-TrigonometrySine />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import math from './math';
 
 class TrigonometrySine {
@@ -136,7 +136,7 @@ class TrigonometrySine {
        */
       const _angle = this.angle + (360 / this.targets.length) * i;
 
-      TweenMax.set(el, {
+      gsap.set(el, {
 
         // sine 波上にオブジェクトを配置
         x: (this.wrapWidth / this.targets.length) * i + (this.wrapWidth / this.targets.length) / 3,
@@ -153,7 +153,7 @@ class TrigonometrySine {
 
     });
 
-    TweenMax.set(this.wrap, {
+    gsap.set(this.wrap, {
 
       perspective: math.map(Math.sin(math.angleToRadian(this.angle)), -1, 1, 100, 800),
 
@@ -177,7 +177,7 @@ export default TrigonometrySine;
 <basic-TrigonometryRandomFloating />
 
 ```javascript
-import {TweenMax} from 'gsap';
+import { gsap } from 'gsap/all'
 import math from './math';
 
 class TrigonometryRandomFloating {
@@ -237,7 +237,7 @@ class TrigonometryRandomFloating {
 
     this.targets.forEach((el, i) => {
 
-      TweenMax.set(el, {
+      gsap.set(el, {
 
         // sine 波上にオブジェクトを配置
         x: Math.sin(math.angleToRadian(this.params[0].angle)) * this.radius * 1.25 + this.center.x,
@@ -255,7 +255,7 @@ class TrigonometryRandomFloating {
 
     });
 
-    TweenMax.set(this.wrap, {
+    gsap.set(this.wrap, {
 
       perspective: math.map(Math.sin(math.angleToRadian(this.params[4].angle)), -1, 1, 100, 1000),
 
