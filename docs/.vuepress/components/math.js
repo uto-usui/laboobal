@@ -12,11 +12,24 @@ class math {
     return value <= fromMin
       ? toMin
       : value >= fromMax
-      ? toMax
-      : (() => {
+        ? toMax
+        : (() => {
           const ratio = (toMax - toMin) / (fromMax - fromMin)
           return (value - fromMin) * ratio + toMin
         })()
+  }
+  /**
+   * ３次関数(1 ~ 0 ~ 1) に変換
+   * ex) map3(100, 0, 100) * -1 + 1  --- (1 ~ 0 ~ 1)
+   *
+   * @param value
+   * @param fromMin 変換前の最小
+   * @param fromMax 変換前の最大
+   * @param toMax 変換後の最大
+   * @param shift
+   */
+  static map3 = (value, fromMin, fromMax, toMax = 1, shift = 0) => {
+    return map(value, fromMin, fromMax, -1, 1) ** 2 * toMax + shift
   }
 
   /**
