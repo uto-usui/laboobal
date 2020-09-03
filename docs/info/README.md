@@ -33,3 +33,29 @@ This site consists of VuePress x Gihub x Netlify and is published.
 * sub #990027 / #458083
 * text #2a2828
 
+## Tips
+
+### Container
+
+::: tip
+This is a tip
+:::
+
+::: warning
+This is a warning
+:::
+
+::: danger
+This is a dangerous warning
+:::
+
+::: details
+This is a details block, which does not work in IE / Edge
+:::
+
+::: details Click me to view the code
+```js{2}
+console.log('Hello world')
+console.log('This is custom container')
+```
+:::
