@@ -1,6 +1,6 @@
 // precision mediump float;
 
-uniform sampler2D texture;
+uniform sampler2D u_texture;
 uniform float time;
 uniform float seed;
 
@@ -24,7 +24,7 @@ void main() {
   n = pow(n * 0.8, 8.0);
   uv += 0.2 * n;
 
-  vec4 color = texture2D(texture, uv);
+  vec4 color = texture2D(u_texture, uv);
   float mask = 1.0 - color.a;
   color.rgb -= 0.2 * random(uv * 5.0) * mask;
 

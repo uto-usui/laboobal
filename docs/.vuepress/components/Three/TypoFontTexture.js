@@ -15,7 +15,7 @@ export class TypoFontTexture {
 
     this.material = new ShaderMaterial({
       uniforms: {
-        texture: {
+        u_texture: {
           type: 't',
           value: this.texture,
         },

@@ -1,7 +1,5 @@
 import * as THREE from 'three'
-import { OrthographicCamera } from 'three'
-import { Color } from 'three'
-import { WebGLRenderer } from 'three'
+import { Color, OrthographicCamera, WebGLRenderer } from 'three'
 
 import { CanvasManager } from './CanvasManager'
 
