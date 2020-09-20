@@ -27,5 +27,6 @@
   "include": [],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "types": ["vuepress-types"]
 }

@@ -33,7 +33,8 @@
     "typescript": "^4.0.3",
     "vuepress": "^1.5.4",
     "vuepress-plugin-smooth-scroll": "^0.0.10",
-    "vuepress-plugin-typescript": "^0.3.1"
+    "vuepress-plugin-typescript": "^0.3.1",
+    "vuepress-types": "^0.9.4"
   },
   "license": "MIT",
   "private": true,

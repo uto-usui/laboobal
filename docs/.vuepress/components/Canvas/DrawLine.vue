@@ -2,13 +2,13 @@
   <div ref="box" />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
 import { DrawLineScript } from './DrawLineScript'
 
 export default Vue.extend({
-  name: '',
+  name: 'DrawLine',
 
   mounted() {
     const _ = new DrawLineScript(this.$refs.box)
