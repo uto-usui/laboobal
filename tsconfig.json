@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es2018",
     "module": "esnext",
     "strict": true,
     "resolveJsonModule": true,
@@ -15,7 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [],
+    "types": [ "vuepress-types" ],
     "paths": {},
     "lib": [
       "esnext",
@@ -23,10 +23,5 @@
       "dom.iterable",
       "scripthost"
     ]
-  },
-  "include": [],
-  "exclude": [
-    "node_modules"
-  ],
-  "types": ["vuepress-types"]
+  }
 }
