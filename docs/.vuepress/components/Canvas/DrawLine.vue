@@ -3,15 +3,18 @@
 </template>
 
 <script>
-import { DrawSvgScript } from './DrawSvgScript'
+import Vue from 'vue'
 
-export default {
+import { DrawLineScript } from './DrawLineScript'
+
+export default Vue.extend({
   name: '',
+
   mounted() {
-    const drawSvg = new DrawSvgScript(this.$refs.box, '/images/logo/vogue.svg')
-    drawSvg.init()
+    const _ = new DrawLineScript(this.$refs.box)
+    console.log(_)
   },
-}
+})
 </script>
 
 <style scoped lang="scss">

@@ -31,12 +31,12 @@ export const findClosest = (array, findValue) => {
     index = diff[index] < diff[i] ? index : i
   })
   const value = array[index]
-  return {index, value}
+  return { index, value }
 }
 
 // example
 //
-//const findValue = 100
-//const array = [1, 109, 13, 70, 251]
+// const findValue = 100
+// const array = [1, 109, 13, 70, 251]
 //
-//console.log(findClosestIndex(array, findValue))
+// console.log(findClosestIndex(array, findValue))

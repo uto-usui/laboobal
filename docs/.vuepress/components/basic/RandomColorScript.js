@@ -85,13 +85,13 @@ class RandomColor {
       gradient += color
 
       if (this.tile && i !== this.length - 1) {
-        gradient += ` ${(100 / this.length) * i}%, ${color} ${(100 /
-          this.length) *
-          (i + 1)}%,`
+        gradient += ` ${(100 / this.length) * i}%, ${color} ${
+          (100 / this.length) * (i + 1)
+        }%,`
       } else if (i === this.length - 1) {
-        gradient += ` ${(100 / this.length) * i}%, ${color} ${(100 /
-          this.length) *
-          (i + 1)}%`
+        gradient += ` ${(100 / this.length) * i}%, ${color} ${
+          (100 / this.length) * (i + 1)
+        }%`
       } else if (!this.tile && i !== this.length - 1) {
         gradient += ','
       }

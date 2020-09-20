@@ -4,7 +4,7 @@
       :width="width"
       :src="`https://source.unsplash.com/random/${width}x900`"
       alt="dummy image"
-    >
+    />
   </figure>
 </template>
 <script>

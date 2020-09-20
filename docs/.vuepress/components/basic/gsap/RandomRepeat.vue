@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.animation();
+      this.animation()
     })
   },
   destroyed() {

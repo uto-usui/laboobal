@@ -8,7 +8,11 @@ import LoadImage from './CanvasCrossOriginScript'
 export default {
   name: '',
   mounted() {
-    new LoadImage(this.$refs.box, 'https://source.unsplash.com/random/1600x900')
+    const loadImage = new LoadImage(
+      this.$refs.box,
+      'https://source.unsplash.com/random/1600x900',
+    )
+    loadImage.init()
   },
 }
 </script>

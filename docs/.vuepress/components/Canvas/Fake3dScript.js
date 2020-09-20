@@ -3,7 +3,6 @@ import vertex from './Fake3d.vs'
 
 export class Fake3d {
   constructor() {
-
     this.container = document.getElementById('gl')
     this.canvas = document.createElement('canvas')
     this.container.appendChild(this.canvas)
@@ -22,12 +21,8 @@ export class Fake3d {
     this.vth = this.container.getAttribute('data-verticalThreshold')
     this.hth = this.container.getAttribute('data-horizontalThreshold')
 
-    this.imageURLs = [
-      this.imageOriginal,
-      this.imageDepth,
-    ]
+    this.imageURLs = [this.imageOriginal, this.imageDepth]
     this.textures = []
-
 
     this.startTime = new Date().getTime() // Get start time for animating
 
@@ -38,12 +33,17 @@ export class Fake3d {
   }
 
   addShader(source, type) {
-    let shader = this.gl.createShader(type)
+    const shader = this.gl.createShader(type)
     this.gl.shaderSource(shader, source)
     this.gl.compileShader(shader)
-    let isCompiled = this.gl.getShaderParameter(shader, this.gl.COMPILE_STATUS)
+    const isCompiled = this.gl.getShaderParameter(
+      shader,
+      this.gl.COMPILE_STATUS,
+    )
     if (!isCompiled) {
-      throw new Error('Shader compile error: ' + this.gl.getShaderInfoLog(shader))
+      throw new Error(
+        'Shader compile error: ' + this.gl.getShaderInfoLog(shader),
+      )
     }
     this.gl.attachShader(this.program, shader)
   }
@@ -61,7 +61,7 @@ export class Fake3d {
     let a1, a2
     if (this.height / this.width < this.imageAspect) {
       a1 = 1
-      a2 = (this.height / this.width) / this.imageAspect
+      a2 = this.height / this.width / this.imageAspect
     } else {
       a1 = (this.width / this.height) * this.imageAspect
       a2 = 1
@@ -78,7 +78,6 @@ export class Fake3d {
   }
 
   createScene() {
-
     this.program = this.gl.createProgram()
 
     this.addShader(vertex, this.gl.VERTEX_SHADER)
@@ -87,7 +86,6 @@ export class Fake3d {
     this.gl.linkProgram(this.program)
     this.gl.useProgram(this.program)
 
-
     this.uResolution = new Uniform('resolution', '4f', this.program, this.gl)
     this.uMouse = new Uniform('mouse', '2f', this.program, this.gl)
     this.uTime = new Uniform('time', '1f', this.program, this.gl)
@@ -95,27 +93,34 @@ export class Fake3d {
     this.uThreshold = new Uniform('threshold', '2f', this.program, this.gl)
     // create position attrib
     this.billboard = new Rect(this.gl)
-    this.positionLocation = this.gl.getAttribLocation(this.program, 'a_position')
+    this.positionLocation = this.gl.getAttribLocation(
+      this.program,
+      'a_position',
+    )
     this.gl.enableVertexAttribArray(this.positionLocation)
-    this.gl.vertexAttribPointer(this.positionLocation, 2, this.gl.FLOAT, false, 0, 0)
+    this.gl.vertexAttribPointer(
+      this.positionLocation,
+      2,
+      this.gl.FLOAT,
+      false,
+      0,
+      0,
+    )
   }
 
   addTexture() {
-    let that = this
-    let gl = that.gl
+    const that = this
+    // const gl = that.gl
     loadImages(this.imageURLs, that.start.bind(this))
   }
 
   start(images) {
-    let that = this
-    let gl = that.gl
-
+    const that = this
+    const gl = that.gl
 
     this.imageAspect = images[0].naturalHeight / images[0].naturalWidth
     for (var i = 0; i < images.length; i++) {
-
-
-      let texture = gl.createTexture()
+      const texture = gl.createTexture()
       gl.bindTexture(gl.TEXTURE_2D, texture)
 
       // Set the parameters so we can render any size image.
@@ -125,77 +130,76 @@ export class Fake3d {
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
 
       // Upload the image into the texture.
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, images[i])
+      gl.texImage2D(
+        gl.TEXTURE_2D,
+        0,
+        gl.RGBA,
+        gl.RGBA,
+        gl.UNSIGNED_BYTE,
+        images[i],
+      )
       this.textures.push(texture)
     }
 
     // lookup the sampler locations.
-    let u_image0Location = this.gl.getUniformLocation(this.program, 'image0')
-    let u_image1Location = this.gl.getUniformLocation(this.program, 'image1')
+    const uImage0Location = this.gl.getUniformLocation(this.program, 'image0')
+    const uImage1Location = this.gl.getUniformLocation(this.program, 'image1')
 
     // set which texture units to render with.
-    this.gl.uniform1i(u_image0Location, 0) // texture unit 0
-    this.gl.uniform1i(u_image1Location, 1) // texture unit 1
+    this.gl.uniform1i(uImage0Location, 0) // texture unit 0
+    this.gl.uniform1i(uImage1Location, 1) // texture unit 1
 
     this.gl.activeTexture(this.gl.TEXTURE0)
     this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[0])
     this.gl.activeTexture(this.gl.TEXTURE1)
     this.gl.bindTexture(this.gl.TEXTURE_2D, this.textures[1])
 
-
     // start application
     this.resize()
     this.render()
   }
 
-
   gyro() {
-
-//    let that = this
-//
-//    this.maxTilt = 15
-//
-//
-//    const rotationCoef = 0.15
-
-//    this.gn.init({ gravityNormalized: true }).then(function() {
-//      this.gn.start(function(data) {
-//
-//        let y = data.do.gamma
-//        let x = data.do.beta
-//
-//        that.mouseTargetY = clamp(x, -that.maxTilt, that.maxTilt) / that.maxTilt
-//        that.mouseTargetX = -clamp(y, -that.maxTilt, that.maxTilt) / that.maxTilt
-//
-//      })
-//    }).catch(function(e) {
-//      console.log('not supported')
-//
-//    })
-
+    //    let that = this
+    //
+    //    this.maxTilt = 15
+    //
+    //
+    //    const rotationCoef = 0.15
+    //    this.gn.init({ gravityNormalized: true }).then(function() {
+    //      this.gn.start(function(data) {
+    //
+    //        let y = data.do.gamma
+    //        let x = data.do.beta
+    //
+    //        that.mouseTargetY = clamp(x, -that.maxTilt, that.maxTilt) / that.maxTilt
+    //        that.mouseTargetX = -clamp(y, -that.maxTilt, that.maxTilt) / that.maxTilt
+    //
+    //      })
+    //    }).catch(function(e) {
+    //      console.log('not supported')
+    //
+    //    })
   }
 
   mouseMove() {
-    let that = this
-    document.addEventListener('mousemove', e => {
-      let halfX = that.windowWidth / 2
-      let halfY = that.windowHeight / 2
+    const that = this
+    document.addEventListener('mousemove', (e) => {
+      const halfX = that.windowWidth / 2
+      const halfY = that.windowHeight / 2
 
-      that.mouseTargetX = (halfX - e.clientX) / halfX * 0.1
-      that.mouseTargetY = (halfY - e.clientY) / halfY * 0.1
-
+      that.mouseTargetX = ((halfX - e.clientX) / halfX) * 0.1
+      that.mouseTargetY = ((halfY - e.clientY) / halfY) * 0.1
     })
   }
 
-
   render() {
-    let now = new Date().getTime()
-    let currentTime = (now - this.startTime) / 1000
+    const now = new Date().getTime()
+    const currentTime = (now - this.startTime) / 1000
     this.uTime.set(currentTime)
     // inertia
     this.mouseX += (this.mouseTargetX - this.mouseX) * 0.05
     this.mouseY += (this.mouseTargetY - this.mouseY) * 0.05
-
 
     this.uMouse.set(this.mouseX, this.mouseY)
 
@@ -217,7 +221,7 @@ function loadImages(urls, callback) {
   var imagesToLoad = urls.length
 
   // Called each time an image finished loading.
-  var onImageLoad = function() {
+  var onImageLoad = function () {
     --imagesToLoad
     // If all the images are loaded call the callback.
     if (imagesToLoad === 0) {
@@ -239,9 +243,9 @@ function Uniform(name, suffix, program, gl) {
   this.location = gl.getUniformLocation(program, name)
 }
 
-Uniform.prototype.set = function(...values) {
-  let method = 'uniform' + this.suffix
-  let args = [this.location].concat(values)
+Uniform.prototype.set = function (...values) {
+  const method = 'uniform' + this.suffix
+  const args = [this.location].concat(values)
   this.gl[method].apply(this.gl, args)
 }
 
@@ -251,25 +255,20 @@ function Rect(gl) {
   gl.bufferData(gl.ARRAY_BUFFER, Rect.verts, gl.STATIC_DRAW)
 }
 
-Rect.verts = new Float32Array([
-  -1, -1,
-  1, -1,
-  -1, 1,
-  1, 1,
-])
+Rect.verts = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1])
 
-Rect.prototype.render = function(gl) {
+Rect.prototype.render = function (gl) {
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 }
 
-function clamp(number, lower, upper) {
-  if (number === number) {
-    if (upper !== undefined) {
-      number = number <= upper ? number : upper
-    }
-    if (lower !== undefined) {
-      number = number >= lower ? number : lower
-    }
-  }
-  return number
-}
+// function clamp(number, lower, upper) {
+//   if (number === number) {
+//     if (upper !== undefined) {
+//       number = number <= upper ? number : upper
+//     }
+//     if (lower !== undefined) {
+//       number = number >= lower ? number : lower
+//     }
+//   }
+//   return number
+// }

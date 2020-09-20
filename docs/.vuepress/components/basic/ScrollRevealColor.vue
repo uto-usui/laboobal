@@ -1,9 +1,7 @@
 <template>
   <section id="js-wrap" ref="wrap" class="wrap">
     <div class="inner">
-      <div ref="target" class="target">
-        background color
-      </div>
+      <div ref="target" class="target">background color</div>
     </div>
   </section>
 </template>
@@ -26,7 +24,7 @@ export default {
     this.$nextTick(() => {
       this.reveal = new ScrollRevealScript(
         this.$refs.target,
-        progress => {
+        (progress) => {
           TweenMax.set(this.$refs.target, {
             backgroundColor: chroma
               .mix(

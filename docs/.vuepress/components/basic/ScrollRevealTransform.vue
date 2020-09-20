@@ -1,9 +1,7 @@
 <template>
   <section id="js-wrap" ref="wrap" class="wrap">
     <div class="inner">
-      <div ref="target" class="target">
-        transform
-      </div>
+      <div ref="target" class="target">transform</div>
     </div>
   </section>
 </template>
@@ -32,7 +30,7 @@ export default {
 
       this.reveal = new ScrollRevealScript(
         this.$refs.target,
-        progress => {
+        (progress) => {
           updateValue.scaleY +=
             (math.map(Math.abs(progress - 0.5), 0, 0.5, 1, 1.1) -
               updateValue.scaleY) *

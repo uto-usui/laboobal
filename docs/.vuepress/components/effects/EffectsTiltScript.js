@@ -23,6 +23,7 @@ class tilt {
     this.perspective = perspective
     this.dutation = duration
     this.reverse = reverse ? 1 : -1
+    this.fixer = fixer
 
     this.addEvent()
     this.leaveEvent()
@@ -32,7 +33,7 @@ class tilt {
     const pageX = event.layerX - this.container.offsetWidth * 0.5
     const pageY = event.layerY - this.container.offsetHeight * 0.5
 
-    this.targets.forEach(el => {
+    this.targets.forEach((el) => {
       const target = el
       const speedX = target.dataset.speedX
       const speedY = target.dataset.speedY
@@ -54,7 +55,7 @@ class tilt {
   }
 
   mouseLeave() {
-    this.targets.forEach(el => {
+    this.targets.forEach((el) => {
       gsap.to(el, 0.85, {
         x: 0,
         y: 0,
@@ -66,12 +67,12 @@ class tilt {
   }
 
   addEvent() {
-    const event = e => this.mouseMove(e)
+    const event = (e) => this.mouseMove(e)
     this.container.addEventListener('mousemove', event)
   }
 
   leaveEvent() {
-    const event = e => this.mouseLeave(e)
+    const event = (e) => this.mouseLeave(e)
     this.container.addEventListener('mouseleave', event)
   }
 }

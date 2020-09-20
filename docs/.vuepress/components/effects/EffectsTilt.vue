@@ -8,14 +8,15 @@
 
 <script>
 import Tilt from './EffectsTiltScript'
-import DummyImage from '../DummyImage'
+import DummyImage from '../DummyImage.vue'
 
 export default {
   name: 'EffectsTilt',
   components: { DummyImage },
   mounted() {
     this.$nextTick(() => {
-      new Tilt('wrap', '.item')
+      const tilt = new Tilt('wrap', '.item')
+      console.log(tilt)
     })
   },
   methods: {},

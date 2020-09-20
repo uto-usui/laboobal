@@ -4,19 +4,19 @@ import { TweenLite } from 'gsap'
 const leftActivation = `
   float activation = uv.x;
 `
-const topActivation = `
-  float activation = 1.- uv.y;
-`
-const topLeftActivation = `
-  float activation = (+uv.x-uv.y+1.)/2.;
-`
-const centerActivation = `
-  float maxDistance = distance(vec2(0.),vec2(0.5));
-  float dist = distance(vec2(0.), uv-0.5);
-  float activation = smoothstep(0.,maxDistance,dist);
-`
+// const topActivation = `
+//   float activation = 1.- uv.y;
+// `
+// const topLeftActivation = `
+//   float activation = (+uv.x-uv.y+1.)/2.;
+// `
+// const centerActivation = `
+//   float maxDistance = distance(vec2(0.),vec2(0.5));
+//   float dist = distance(vec2(0.), uv-0.5);
+//   float activation = smoothstep(0.,maxDistance,dist);
+// `
 
-const createVertex = activation => `
+const createVertex = (activation) => `
   uniform float uProgress;
   uniform vec2 uMeshScale;
   uniform vec2 uMeshPosition;
@@ -167,7 +167,7 @@ export class ScaleScript {
 
     for (let i = 0; i < this.items.length; i++) {
       const element = this.items[i]
-      element.addEventListener('click', ev => this.onGridImageClick(ev, i))
+      element.addEventListener('click', (ev) => this.onGridImageClick(ev, i))
     }
 
     this.vertexShader = this.setVertex(createVertex(leftActivation))
@@ -212,7 +212,7 @@ export class ScaleScript {
     let color = styles.getPropertyValue('background-color')
     color = color.substring(color.indexOf('(') + 1, color.indexOf(')'))
 
-    const rgbColors = color.split(',', 3).map(c => parseInt(c))
+    const rgbColors = color.split(',', 3).map((c) => parseInt(c))
     this.uniforms.uColor.value.x = rgbColors[0]
     this.uniforms.uColor.value.y = rgbColors[1]
     this.uniforms.uColor.value.z = rgbColors[2]

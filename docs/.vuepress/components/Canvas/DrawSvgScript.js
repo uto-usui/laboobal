@@ -10,7 +10,7 @@ export class DrawSvgScript {
     this.url = url
     this.img = new Image()
 
-    this.init()
+    return this
   }
 
   /**

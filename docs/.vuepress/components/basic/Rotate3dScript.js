@@ -73,7 +73,7 @@ class Rotate3d {
      * init element
      * 各オブジェクトの初期値などを設定
      */
-    targets.forEach((el, i) => {
+    targets.forEach((el) => {
       /**
        * @type {{
        *   el: HTMLElement,
@@ -110,7 +110,7 @@ class Rotate3d {
     })
 
     // event
-    this.wrap.addEventListener('mousemove', e => this.getMousePosition(e))
+    this.wrap.addEventListener('mousemove', (e) => this.getMousePosition(e))
   }
 
   /**
@@ -134,7 +134,7 @@ class Rotate3d {
     this.position.y.offset +=
       (offsetY - this.position.y.offset) * this.mouse.ease
 
-    this.targets.forEach((el, i) => {
+    this.targets.forEach((el) => {
       // オブジェクトの座標を更新
       math.rotateX(el, math.angleToRadian(el.speedX * this.position.x.offset))
       math.rotateY(el, math.angleToRadian(el.speedY * this.position.y.offset))

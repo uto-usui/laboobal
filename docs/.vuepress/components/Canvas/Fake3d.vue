@@ -6,13 +6,15 @@
       data-imageOriginal="/images/canvas/rose.jpg"
       data-imageDepth="/images/canvas/rose-map.jpg"
       data-horizontalThreshold="5"
-      data-verticalThreshold="10">
+      data-verticalThreshold="10"
+    >
+      >
     </div>
   </div>
 </template>
 
 <script>
-//import { Fake3d } from './Fake3dScript'
+// import { Fake3d } from './Fake3dScript'
 
 export default {
   name: 'Fake3d',
@@ -22,8 +24,9 @@ export default {
     }
   },
   async mounted() {
-    const {Fake3d} = await import(`./Fake3dScript`)
-    new Fake3d()
+    const { Fake3d } = await import(`./Fake3dScript`)
+    const _ = new Fake3d()
+    console.log(_)
   },
   beforeDestroy() {
     //

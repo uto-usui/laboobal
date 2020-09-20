@@ -3,15 +3,13 @@
     <div ref="target" class="item js-item">
       <DummyImage />
     </div>
-    <button @click="start">
-      Re:start
-    </button>
+    <button @click="start">Re:start</button>
   </section>
 </template>
 
 <script>
 import Curtain from './RevealCurtainScript'
-import DummyImage from '../DummyImage'
+import DummyImage from '../DummyImage.vue'
 
 export default {
   name: 'RevealCurtain',

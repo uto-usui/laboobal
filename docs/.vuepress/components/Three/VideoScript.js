@@ -154,7 +154,7 @@ export class VideoScript {
     this.renderer.render(this.scene, this.camera)
     this.mesh.rotation.x += 0.01
 
-    const anim = t => this.render(t)
+    const anim = (t) => this.render(t)
     requestAnimationFrame(anim)
   }
 

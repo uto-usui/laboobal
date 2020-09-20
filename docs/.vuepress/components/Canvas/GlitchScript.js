@@ -121,7 +121,7 @@ export class GlitchScript {
    * remove event
    */
   eventRemove() {
-    this._eventList.forEach(event => event.destroy())
+    this._eventList.forEach((event) => event.destroy())
   }
 
   /**

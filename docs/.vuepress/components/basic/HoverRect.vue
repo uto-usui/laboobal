@@ -18,10 +18,10 @@ export default {
       hoverControl: [],
     }
   },
-  mounted: function() {
+  mounted: function () {
     this.$nextTick(() => {
-      const over = el =>
-        new Promise(resolve => {
+      const over = (el) =>
+        new Promise((resolve) => {
           gsap.to(el, 0.6, {
             scale: 1,
             backgroundColor: '#FF6473',
@@ -34,8 +34,8 @@ export default {
           })
         })
 
-      const out = el =>
-        new Promise(resolve => {
+      const out = (el) =>
+        new Promise((resolve) => {
           gsap.to(el, 0.5, {
             scale: 1,
             backgroundColor: '#25ECB7',

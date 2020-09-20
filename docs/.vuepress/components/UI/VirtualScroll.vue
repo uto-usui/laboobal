@@ -18,16 +18,13 @@
         <div class="target__inner" v-html="item" />
       </div>
     </div>
-    <div v-if="false" class="vs__scroll">
-wheel : {{ accelerate }}
-</div>
+    <div v-if="false" class="vs__scroll">wheel : {{ accelerate }}</div>
   </section>
 </template>
 
 <script>
 import { gsap } from 'gsap/all'
-import math from '../math'
-import jsonData from './name'
+import jsonData from './name.json'
 import isMobile from 'ismobilejs'
 
 const dataLastIndex = jsonData.length - 1
@@ -85,7 +82,7 @@ export default {
 
   computed: {
     displayList() {
-      return this.listIndex.map(val => this.jsonData[val]);
+      return this.listIndex.map((val) => this.jsonData[val])
     },
   },
 
@@ -165,7 +162,8 @@ export default {
     },
 
     touchPosToAccelerate() {
-      this.accelerate.target += (this.touchPos.diff - this.accelerate.target) * this.ease
+      this.accelerate.target +=
+        (this.touchPos.diff - this.accelerate.target) * this.ease
 
       this.accelerate.target = Math.trunc(this.accelerate.target * 100) / 100
       //

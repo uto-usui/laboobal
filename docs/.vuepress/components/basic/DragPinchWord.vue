@@ -1,8 +1,6 @@
 <template>
   <section id="js-wrap" ref="wrap" class="wrap">
-    <div v-for="index in 5" ref="target" :key="index" class="target">
-      drag
-    </div>
+    <div v-for="index in 5" ref="target" :key="index" class="target">drag</div>
   </section>
 </template>
 

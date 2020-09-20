@@ -1,7 +1,12 @@
 <template>
   <section id="js-wrap" ref="wrap" class="wrap">
     <div class="inner">
-      <div v-for="index in 100" :key="`target${index}`" ref="target" class="target"></div>
+      <div
+        v-for="index in 100"
+        :key="`target${index}`"
+        ref="target"
+        class="target"
+      />
     </div>
   </section>
 </template>
@@ -19,7 +24,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.animation();
+      this.animation()
     })
   },
   destroyed() {

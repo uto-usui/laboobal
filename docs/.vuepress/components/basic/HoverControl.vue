@@ -37,7 +37,7 @@ export default {
         this.hoverControl[i] = new HoverControlScript(
           el,
           () => {
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
               gsap.to(animationTarget, {
                 duration: 0.6,
                 scaleX: 1,
@@ -50,7 +50,7 @@ export default {
             })
           },
           () => {
-            return new Promise(resolve => {
+            return new Promise((resolve) => {
               gsap.to(animationTarget, {
                 duration: 0.5,
                 scaleX: 0,
@@ -64,9 +64,7 @@ export default {
         )
       })
     },
-    mouseOver() {
-
-    }
+    mouseOver() {},
   },
 }
 </script>

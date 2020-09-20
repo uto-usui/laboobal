@@ -63,7 +63,7 @@ class Rotate3dY {
      * init element
      * 各オブジェクトの初期値などを設定
      */
-    targets.forEach((el, i) => {
+    targets.forEach((el) => {
       /**
        * @type {{
        *   el: HTMLElement,
@@ -104,7 +104,7 @@ class Rotate3dY {
    * animation start
    */
   play() {
-    this.targets.forEach((el, i) => {
+    this.targets.forEach((el) => {
       // オブジェクトの座標を更新
       math.rotateY(el, math.angleToRadian(el.speedY))
 

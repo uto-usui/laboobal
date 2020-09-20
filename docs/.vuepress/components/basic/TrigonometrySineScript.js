@@ -74,8 +74,9 @@ class TrigonometrySine {
           1,
           360,
         ),
-        backgroundColor: `hsla(${this.angle +
-          (360 / this.targets.length) * i}, 80%, 70%, 1)`,
+        backgroundColor: `hsla(${
+          this.angle + (360 / this.targets.length) * i
+        }, 80%, 70%, 1)`,
       })
     })
 

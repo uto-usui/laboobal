@@ -308,7 +308,7 @@ const gradP = new Array(512)
 
 // This isn't a very good seeding function, but it works ok. It supports 2^16
 // different seed values. Write something better if you need more seeds.
-const seed = seed => {
+const seed = (seed) => {
   if (seed > 0 && seed < 1) {
     // Scale the seed out
     seed *= 65536

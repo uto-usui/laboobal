@@ -61,9 +61,9 @@ class DragPinch {
    * initialize
    */
   init() {
-    const downHandle = e => this.downHandle(e)
-    const moveHandle = e => this.moveHandle(e)
-    const upHandle = e => this.upHandle(e)
+    const downHandle = (e) => this.downHandle(e)
+    const moveHandle = (e) => this.moveHandle(e)
+    const upHandle = (e) => this.upHandle(e)
 
     if (isMobile.any) {
       this.eventList.push(new _event(document, 'touchmove', moveHandle))
@@ -90,6 +90,8 @@ class DragPinch {
     }
 
     // マウスのドラッグ距離を与えて実行するコールバック
+    // TODO
+    // eslint-disable-next-line no-useless-call
     this.callBack.call(this, { target: this.target, param: this.mouse.dist })
 
     this.animationId = window.requestAnimationFrame(() => this.play())
@@ -153,7 +155,7 @@ class DragPinch {
     this.mouse = null
     this.animationId = 0
 
-    this.eventList.forEach(event => event.destroy())
+    this.eventList.forEach((event) => event.destroy())
   }
 }
 

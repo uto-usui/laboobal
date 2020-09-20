@@ -4,7 +4,7 @@ class crossOriginLoadImages {
     this.url = url
     this.img = new Image()
 
-    this.init()
+    return this
   }
 
   init() {

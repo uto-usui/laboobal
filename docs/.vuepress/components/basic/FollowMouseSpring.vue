@@ -7,15 +7,19 @@
 
 <script>
 import FollowMouseSpringScript from './FollowMouseSpringScript'
-import math from '../math'
 
 export default {
   name: 'FollowMouseSpring',
   components: {},
   mounted() {
     this.$nextTick(() => {
-      new FollowMouseSpringScript(this.$refs.target1, this.$refs.wrap)
-      new FollowMouseSpringScript(this.$refs.target2, this.$refs.wrap, 0.3)
+      const _ = new FollowMouseSpringScript(this.$refs.target1, this.$refs.wrap)
+      const __ = new FollowMouseSpringScript(
+        this.$refs.target2,
+        this.$refs.wrap,
+        0.3,
+      )
+      console.log(_, __)
     })
   },
   methods: {},

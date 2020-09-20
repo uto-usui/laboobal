@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ShiftImageScript from './ShiftImageScript'
+import { ShiftImageScript } from './ShiftImageScript'
 
 export default {
   name: 'ShiftImage',

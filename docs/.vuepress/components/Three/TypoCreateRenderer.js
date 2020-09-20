@@ -17,7 +17,7 @@ export class TypoCreateRenderer {
    */
   constructor({ wrap }) {
     this.container = wrap
-    new CanvasManager(this.container)
+    this.canvasMg = new CanvasManager(this.container)
 
     // set size
     this.setConfig(CanvasManager.width(), CanvasManager.height())

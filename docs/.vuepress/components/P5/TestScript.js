@@ -8,13 +8,13 @@ let wrapperH = 0
 let speed = 3
 let canvasId = ''
 let posX = circleWidth / 2
-let cb
+let cbFunc
 
 /**
  * Vue からリアクティブで変更される値を更新
  * @param width
  */
-export const setWidth = width => {
+export const setWidth = (width) => {
   circleWidth = width
 }
 
@@ -29,10 +29,10 @@ export const setInitData = (id, w, h) => {
 
 /**
  * 受けろった関数をローカルに格納
- * @param _cb
+ * @param _cbFunc
  */
-export const callBackOnP5 = _cb => {
-  cb = _cb
+export const callBackOnP5 = (_cbFunc) => {
+  cbFunc = _cbFunc
 }
 
 /**
@@ -40,14 +40,14 @@ export const callBackOnP5 = _cb => {
  * cd があれば実行する
  */
 const drawCall = () => {
-  cb && cb(posX - circleWidth / 2)
+  cbFunc && cbFunc(posX - circleWidth / 2)
 }
 
 /**
  * P% のインスタンスに渡す関数
  * @param P5
  */
-export const main = P5 => {
+export const main = (P5) => {
   // play
   // eslint-disable-next-line no-param-reassign
   P5.draw = () => {

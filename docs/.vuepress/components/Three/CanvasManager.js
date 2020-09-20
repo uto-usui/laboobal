@@ -1,4 +1,4 @@
-import { pause } from '../utility/animation'
+// import { pause } from '../utility/animation'
 
 let _this = null
 
@@ -65,7 +65,7 @@ export class CanvasManager {
    * @param e
    * @returns {*}
    */
-  onResize(e) {
+  onResize(_e) {
     //    await pause(1)
     //
     this.width =
@@ -134,8 +134,8 @@ export class CanvasManager {
   }
 
   static disposeThreeObjects(scene, renderer) {
-    scene.children.forEach(obj => {
-      obj.traverse(obj3D => dispose(obj3D))
+    scene.children.forEach((obj) => {
+      obj.traverse((obj3D) => dispose(obj3D))
       scene.remove(obj)
     })
 
@@ -151,7 +151,7 @@ function dispose(obj) {
     obj.geometry = null
   }
   if (!!obj.material && obj.material instanceof Array) {
-    obj.material.forEach(material => disposeMaterial(material))
+    obj.material.forEach((material) => disposeMaterial(material))
   } else if (obj.material) {
     disposeMaterial(obj.material)
   }

@@ -12,12 +12,13 @@ class math {
     return value <= fromMin
       ? toMin
       : value >= fromMax
-        ? toMax
-        : (() => {
+      ? toMax
+      : (() => {
           const ratio = (toMax - toMin) / (fromMax - fromMin)
           return (value - fromMin) * ratio + toMin
         })()
   }
+
   /**
    * ３次関数(1 ~ 0 ~ 1) に変換
    * ex) map3(100, 0, 100) * -1 + 1  --- (1 ~ 0 ~ 1)
@@ -29,7 +30,7 @@ class math {
    * @param shift
    */
   static map3 = (value, fromMin, fromMax, toMax = 1, shift = 0) => {
-    return map(value, fromMin, fromMax, -1, 1) ** 2 * toMax + shift
+    return this.map(value, fromMin, fromMax, -1, 1) ** 2 * toMax + shift
   }
 
   /**
@@ -65,14 +66,14 @@ class math {
    * @param angle {number}
    * @returns {number}
    */
-  static angleToRadian = angle => (angle * Math.PI) / 180
+  static angleToRadian = (angle) => (angle * Math.PI) / 180
 
   /**
    * ラジアンを角度に変換する
    * @param radian {number}
    * @returns {number}
    */
-  static radianToAngle = radian => (radian * 180) / Math.PI
+  static radianToAngle = (radian) => (radian * 180) / Math.PI
 
   /**
    * ２点間の角度を求める
@@ -106,14 +107,14 @@ class math {
    * @param arr {array}
    * @returns {*}
    */
-  static randomArr = arr => arr[this.randomInt(0, arr.length - 1)]
+  static randomArr = (arr) => arr[this.randomInt(0, arr.length - 1)]
 
   /**
    * range の確率で true を返す
    * @param range
    * @returns {boolean}
    */
-  static rangeBoolean = range => this.randomInt(0, range - 1) === 0
+  static rangeBoolean = (range) => this.randomInt(0, range - 1) === 0
 
   /**
    * min ~ max に value が当てはまるとき 0 ~ 1 を返す

@@ -1,4 +1,4 @@
-export class eventManager {
+export class EventManager {
   /**
    * add event listener
    * create remover list
@@ -36,13 +36,13 @@ export class eventManager {
   destroy() {
     if (this._eventRemovers) {
       // all items removeEventListener
-      this._eventRemovers.forEach(eventRemover => {
+      this._eventRemovers.forEach((eventRemover) => {
         eventRemover.remove()
       })
 
-      console.log('destroy', this.target, this.eventType);
+      console.log('destroy', this.target, this.eventType)
     }
   }
 }
 
-export default eventManager
+export default EventManager

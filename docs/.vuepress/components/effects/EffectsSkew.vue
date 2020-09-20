@@ -7,15 +7,16 @@
 </template>
 
 <script>
-import skew from './EffectsSkewScript'
-import DummyImage from '../DummyImage'
+import Skew from './EffectsSkewScript'
+import DummyImage from '../DummyImage.vue'
 
 export default {
   name: 'EffectsTilt',
   components: { DummyImage },
   mounted() {
     this.$nextTick(() => {
-      new skew('js-wrap-skew', '.js-item')
+      const skew = new Skew('js-wrap-skew', '.js-item')
+      console.log(skew)
     })
   },
   methods: {},

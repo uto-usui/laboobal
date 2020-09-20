@@ -1,4 +1,4 @@
-import eventManager from '../utility/EventListener'
+import { EventManager } from '../utility/EventListener'
 import math from '../math'
 
 export class Circle {
@@ -8,8 +8,9 @@ export class Circle {
     this.r = 1
     this.ctx = ctx
     this.isGrowing = true
-    this.color = `hsla(${170 + Math.trunc(math.random(-15, 15))}, ${70 +
-      Math.trunc(math.random(-50, 20))}%, 55%, 1)`
+    this.color = `hsla(${170 + Math.trunc(math.random(-15, 15))}, ${
+      70 + Math.trunc(math.random(-50, 20))
+    }%, 55%, 1)`
   }
 
   growing() {
@@ -66,7 +67,7 @@ export class FillTextScript {
 
     this.eventList = []
     this.eventList.push(
-      new eventManager(this.wrap, 'click', this.replay.bind(this)),
+      new EventManager(this.wrap, 'click', this.replay.bind(this)),
     )
     this.animationId = 0
 
@@ -166,7 +167,7 @@ export class FillTextScript {
 
   destroy() {
     window.cancelAnimationFrame(this.animationId)
-    this.eventList.forEach(event => event.destroy())
+    this.eventList.forEach((event) => event.destroy())
     this.canvas = null
     this._canvas = null
     this.ctx = null

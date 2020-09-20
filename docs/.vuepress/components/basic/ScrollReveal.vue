@@ -3,9 +3,7 @@
     <div class="inner">
       <div ref="target" class="target">progress:<br />{{ progress }}</div>
     </div>
-    <button @click="destroy()">
-      destroy
-    </button>
+    <button @click="destroy()">destroy</button>
   </section>
 </template>
 

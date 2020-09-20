@@ -159,8 +159,10 @@ class ScrollRevealProgress {
     this.progress = value / (this.wrapHeight - this.offset + this.targetHeight)
 
     if (this.show) {
+      // eslint-disable-next-line no-useless-call
       this.callbackIn.call(this, this.progress)
     } else {
+      // eslint-disable-next-line no-useless-call
       this.callbackOut.call(this, this.progress)
     }
   }
@@ -172,7 +174,7 @@ class ScrollRevealProgress {
   destroy() {
     cancelAnimationFrame(this.animationId)
 
-    this.eventList.forEach(event => event.destroy())
+    this.eventList.forEach((event) => event.destroy())
 
     this.target = null
     this.wrapper = null

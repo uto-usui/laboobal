@@ -34,7 +34,9 @@ export default {
     )
     callBackOnP5(this.writeSpeedValue)
 
-    new P5.default(main)
+    // eslint-disable-next-line new-cap
+    const p5 = new P5.default(main)
+    console.log(p5)
   },
   methods: {
     writeSpeedValue(posX) {

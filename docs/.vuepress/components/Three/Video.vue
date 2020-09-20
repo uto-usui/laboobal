@@ -4,7 +4,7 @@
       ref="video"
       class="video"
       src="/video/sky.mp4"
-      style="display: none; position: absolute; left: 15px; top: 75px;"
+      style="display: none; position: absolute; left: 15px; top: 75px"
       controls="false"
       autoplay
       loop

@@ -13,8 +13,9 @@ export default {
   components: {},
   mounted() {
     this.$nextTick(() => {
-      new FollowMouse(this.$refs.target1, this.$refs.wrap)
-      new FollowMouse(this.$refs.target2, this.$refs.wrap, 0.05)
+      const _ = new FollowMouse(this.$refs.target1, this.$refs.wrap)
+      const __ = new FollowMouse(this.$refs.target2, this.$refs.wrap, 0.05)
+      console.log(_, __)
     })
   },
   methods: {},

@@ -3,15 +3,13 @@
     <div ref="target" class="item">
       <DummyImage />
     </div>
-    <button @click="fromTo">
-      Re:start
-    </button>
+    <button @click="fromTo">Re:start</button>
   </section>
 </template>
 
 <script>
-import clip from './RevealClipScript'
-import DummyImage from '../DummyImage'
+import Clip from './RevealClipScript'
+import DummyImage from '../DummyImage.vue'
 
 export default {
   name: 'RevealClip',
@@ -24,7 +22,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       setTimeout(() => {
-        this.func = new clip(this.$refs.target, 'lr')
+        this.func = new Clip(this.$refs.target, 'lr')
         this.to()
       }, 2000)
     })

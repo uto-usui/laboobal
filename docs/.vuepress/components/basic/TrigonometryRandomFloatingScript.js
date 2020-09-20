@@ -43,6 +43,8 @@ class TrigonometryRandomFloating {
       },
     ]
 
+    this.speed = speed
+
     // 中心座標
     this.center = {
       x: wrapWidth / 2 - this.targets[0].offsetWidth / 2,
@@ -58,7 +60,7 @@ class TrigonometryRandomFloating {
    * animation start
    */
   play() {
-    this.targets.forEach((el, i) => {
+    this.targets.forEach((el) => {
       gsap.set(el, {
         // sine 波上にオブジェクトを配置
         x:
@@ -100,7 +102,7 @@ class TrigonometryRandomFloating {
       ),
     })
 
-    this.params.forEach((el, i) => {
+    this.params.forEach((el) => {
       // eslint-disable-next-line no-param-reassign
       el.angle += el.speed
     })

@@ -103,14 +103,14 @@ export class ShiftImageEffect {
   }
 
   eventAttach() {
-    const mouseMove = e => this.getMousePosition(e)
+    const mouseMove = (e) => this.getMousePosition(e)
     this._eventList.push(new _event(this.wrap, 'mousemove', mouseMove))
-    const mouseLeave = e => this.resetMousePosition()
+    const mouseLeave = (_e) => this.resetMousePosition()
     this._eventList.push(new _event(this.wrap, 'mouseleave', mouseLeave))
   }
 
   eventRemove() {
-    this._eventList.forEach(event => event.destroy())
+    this._eventList.forEach((event) => event.destroy())
   }
 
   resize() {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import GlitchScript from './GlitchScript'
+import { GlitchScript } from './GlitchScript'
 
 export default {
   name: 'GlitchImage',

@@ -1,4 +1,4 @@
-import { TweenMax, TimelineMax, Power1, Power2, Power3 } from 'gsap'
+import { Power1, Power3, TimelineMax, TweenMax } from 'gsap'
 
 /**
  *  RevealCurtain

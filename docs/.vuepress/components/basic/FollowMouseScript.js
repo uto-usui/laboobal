@@ -26,7 +26,7 @@ class FollowMouse {
       y: 0,
     }
 
-    const mouseEvent = e => this.getMousePosition(e)
+    const mouseEvent = (e) => this.getMousePosition(e)
     this.$wrapper.addEventListener('mousemove', mouseEvent)
 
     this.update()

@@ -1,17 +1,17 @@
-const path =  require('path')
+const path = require('path')
 
 module.exports = {
   base: process.env.VUEPRESS_BASE || '/',
+
   title: 'laboobal',
-  description: 'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
+  description:
+    'This is a laboratory, managed by uto-usui. A warehouse of interaction skills.',
+
   head: [
-    ['link',
-      { rel: 'manifest', href: '/manifest.json' },
-    ],
-    ['meta',
-      { name: 'theme-color', content: '#FF6473' },
-    ],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { name: 'theme-color', content: '#FF6473' }],
   ],
+
   plugins: [
     [
       '@vuepress/google-analytics',
@@ -32,7 +32,16 @@ module.exports = {
     '@vuepress/back-to-top',
     'vuepress-plugin-smooth-scroll',
     '@vuepress/last-updated',
+    [
+      'vuepress-plugin-typescript',
+      {
+        tsLoaderOptions: {
+          // All options of ts-loader
+        },
+      },
+    ],
   ],
+
   themeConfig: {
     // repo: '',
     docsDir: 'docs',
@@ -63,7 +72,7 @@ module.exports = {
       {
         title: 'basic',
         children: [
-//          '/basic/',
+          //          '/basic/',
           '/basic/easing',
           '/basic/follow',
           '/basic/trigonometry',
@@ -78,7 +87,7 @@ module.exports = {
       {
         title: 'effects',
         children: [
-//          '/effects/',
+          //          '/effects/',
           '/effects/mouse',
           '/effects/reveal',
         ],
@@ -107,10 +116,7 @@ module.exports = {
       },
       {
         title: 'UI',
-        children: [
-          '/UI/',
-          '/UI/virtualScroll',
-        ],
+        children: ['/UI/', '/UI/virtualScroll'],
       },
     ],
     sidebarDepth: 3,
@@ -120,6 +126,7 @@ module.exports = {
     editLinkText: '✍🏻 edit?',
     lastUpdated: 'Last Updated',
   },
+
   markdown: {
     lineNumbers: true,
     extendMarkdown(md) {
@@ -129,13 +136,7 @@ module.exports = {
       containerHeaderHtml: '<strong>Table of Contents</strong>',
     },
   },
-//  chainWebpack: config => {
-//    config.module
-//      .rule('glsl')
-//      .test(/\.(glsl|vs|fs|vert|frag)$/)
-//      .use(['raw-loader', 'glslify-loader'])
-//      .end()
-//  },
+
   configureWebpack: (config, isServer) => {
     if (!isServer) {
       config.module.rules.push({
@@ -151,11 +152,12 @@ module.exports = {
       use: ['raw-loader', 'glslify-loader'],
       exclude: /(node_modules)/,
     })
-    //
   },
 
-  chainWebpack (config) {
-    config.resolve
-      .alias.set('@assets', path.resolve(__dirname, "../assets"))
-  }
+  chainWebpack(config) {
+    config.resolve.alias.set(
+      '@assets',
+      path.resolve(__dirname, './docs/.vuepress/assets'),
+    )
+  },
 }

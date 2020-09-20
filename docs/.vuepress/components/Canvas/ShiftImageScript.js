@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import _event from '../utility/EventListener'
 import GlitchBgImageMesh from './GlitchBgImageMesh'
-import ShiftImageEffect from './ShiftImageEffect'
+import { ShiftImageEffect } from './ShiftImageEffect'
 
 export class ShiftImageScript {
   /**
@@ -120,7 +120,7 @@ export class ShiftImageScript {
    * remove event
    */
   eventRemove() {
-    this._eventList.forEach(event => event.destroy())
+    this._eventList.forEach((event) => event.destroy())
   }
 
   /**

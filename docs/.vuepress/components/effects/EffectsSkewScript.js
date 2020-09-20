@@ -20,15 +20,15 @@ class skewElement {
   }
 
   init() {
-    const handleMouseMove = e => this.mouseMoveFn(e)
-    const handleMouseLeave = e => this.mouseLeaveFn(e)
+    const handleMouseMove = (e) => this.mouseMoveFn(e)
+    const handleMouseLeave = (e) => this.mouseLeaveFn(e)
 
     this._eventList.push(new _event(this.app, 'mousemove', handleMouseMove))
     this._eventList.push(new _event(this.app, 'mouseleave', handleMouseLeave))
   }
 
   destroy() {
-    this._eventList.forEach(event => event.destroy())
+    this._eventList.forEach((event) => event.destroy())
   }
 
   mouseMoveFn(e) {
@@ -44,7 +44,7 @@ class skewElement {
 
     const mouseElements = [...e.currentTarget.querySelectorAll(this.target)]
 
-    mouseElements.forEach(el => {
+    mouseElements.forEach((el) => {
       const factor = el.dataset.mouseParallax
       const xFinal = xMouse * factor
       const yFinal = yMouse * factor
@@ -61,7 +61,7 @@ class skewElement {
   mouseLeaveFn(e) {
     const mouseElements = [...e.currentTarget.querySelectorAll(this.target)]
 
-    mouseElements.forEach(el => {
+    mouseElements.forEach((el) => {
       gsap.to(el, 1.2, {
         x: 0,
         y: 0,

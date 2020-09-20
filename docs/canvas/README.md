@@ -13,3 +13,7 @@ Read images of another domain and draw on the canvas.
 ## draw SVG
 
 <Canvas-DrawSvg/>
+
+## draw Line
+
+<Canvas-DrawLine />

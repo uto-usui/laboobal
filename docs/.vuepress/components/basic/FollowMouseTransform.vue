@@ -13,8 +13,13 @@ export default {
   components: {},
   mounted() {
     this.$nextTick(() => {
-      new FollowMouseTransform(this.$refs.target1, this.$refs.wrap)
-      new FollowMouseTransform(this.$refs.target2, this.$refs.wrap, 0.5)
+      const _ = new FollowMouseTransform(this.$refs.target1, this.$refs.wrap)
+      const __ = new FollowMouseTransform(
+        this.$refs.target2,
+        this.$refs.wrap,
+        0.5,
+      )
+      console.log(_, __)
     })
   },
   methods: {},

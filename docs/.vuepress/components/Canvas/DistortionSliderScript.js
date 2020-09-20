@@ -119,7 +119,7 @@ class DistortionSlider {
    * @param nameArr {Array}
    */
   bindAll(nameArr) {
-    nameArr.forEach(func => (this[func] = this[func].bind(this)))
+    nameArr.forEach((func) => (this[func] = this[func].bind(this)))
   }
 
   /**
@@ -191,7 +191,7 @@ class DistortionSlider {
 
     // background images
     this.bg = []
-    this.images.forEach(image => {
+    this.images.forEach((image) => {
       const img = loader.load(`${image}?v=${Date.now()}`, this.render)
       // リピートしないように
       img.wrapS = THREE.ClampToEdgeWrapping
@@ -411,7 +411,7 @@ class DistortionSlider {
 
   destroy() {
     clearInterval(this.timerId)
-    this.eventList.forEach(event => event.destroy())
+    this.eventList.forEach((event) => event.destroy())
 
     this.scene.remove(this.mesh)
     this.geometry.dispose()

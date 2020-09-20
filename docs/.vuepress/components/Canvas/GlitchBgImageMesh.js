@@ -52,7 +52,7 @@ export class BackgroundImage {
   init(src, callback) {
     const loader = new THREE.TextureLoader()
     loader.crossOrigin = 'Anonymous'
-    loader.load(src, texture => {
+    loader.load(src, (texture) => {
       // いい感じに拡大
       texture.magFilter = texture.minFilter = THREE.LinearFilter
       // 画像の比率

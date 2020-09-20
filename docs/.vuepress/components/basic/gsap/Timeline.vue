@@ -17,7 +17,7 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.animation();
+      this.animation()
     })
   },
   destroyed() {
@@ -32,25 +32,35 @@ export default {
         defaults: {
           ease: 'Power1.Out',
           duration: 1,
-        }
+        },
       })
 
       tl.to(target, {
         scale: 0.5,
-      }).to(target, {
-        rotation: 180,
-      }).to(target, {
-        rotation: 0,
-      }).to(target, {
-        scale: 1,
-      }, '-=1').to(target, {
-        x: 100
-      }).to(target, {
-        y: -100
-      }).to(target, {
-        x: 0,
-        y: 0,
       })
+        .to(target, {
+          rotation: 180,
+        })
+        .to(target, {
+          rotation: 0,
+        })
+        .to(
+          target,
+          {
+            scale: 1,
+          },
+          '-=1',
+        )
+        .to(target, {
+          x: 100,
+        })
+        .to(target, {
+          y: -100,
+        })
+        .to(target, {
+          x: 0,
+          y: 0,
+        })
     },
   },
 }

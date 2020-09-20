@@ -5,7 +5,7 @@
     <img
       src="https://images.unsplash.com/photo-1547962041-6d2d7c4bdf6e"
       alt=""
-    >
+    />
   </section>
 </template>
 
@@ -17,8 +17,9 @@ export default {
   components: {},
   mounted() {
     this.$nextTick(() => {
-      new FollowMouse(this.$refs.target1, this.$refs.wrap)
-      new FollowMouse(this.$refs.target2, this.$refs.wrap, 0.08)
+      const _ = new FollowMouse(this.$refs.target1, this.$refs.wrap)
+      const __ = new FollowMouse(this.$refs.target2, this.$refs.wrap, 0.08)
+      console.log(_, __)
     })
   },
   methods: {},
