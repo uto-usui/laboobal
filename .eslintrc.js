@@ -25,8 +25,8 @@ module.exports = {
   plugins: ['unicorn', 'vue', '@typescript-eslint', 'prettier'],
   // add your custom rules here
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': 'off',
+    'no-debugger': 'off',
     'no-unused-vars': [2, { argsIgnorePattern: '^_' }],
     'no-unused-expressions': 'off',
     'vue/no-v-html': ['off'],
