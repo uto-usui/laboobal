@@ -30,7 +30,7 @@ This site consists of VuePress x Gihub x Netlify and is published.
 ### color
 
 * primary #FF6473
-* sub #990027 / #458083
+* sub #990027 / #458083 / #25ecb7
 * text #2a2828
 
 ## Tips
