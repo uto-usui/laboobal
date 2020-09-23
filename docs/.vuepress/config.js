@@ -1,4 +1,6 @@
 const path = require('path')
+const projectRoot = process.cwd()
+const alias = path.resolve(projectRoot, './')
 
 module.exports = {
   base: process.env.VUEPRESS_BASE || '/',
@@ -36,7 +38,11 @@ module.exports = {
       'vuepress-plugin-typescript',
       {
         tsLoaderOptions: {
-          // All options of ts-loader
+          // Vuepress compilation is ridiculously slow without this, type checking belongs in development not documentation anyway
+          transpileOnly: true,
+          compilerOptions: {
+            target: 'ES2019',
+          },
         },
       },
     ],
@@ -152,12 +158,12 @@ module.exports = {
       use: ['raw-loader', 'glslify-loader'],
       exclude: /(node_modules)/,
     })
-  },
 
-  chainWebpack(config) {
-    config.resolve.alias.set(
-      '@assets',
-      path.resolve(__dirname, './docs/.vuepress/assets'),
-    )
+    // Solely to speed up Vuepress, if you need to debug your setup
+    config.devtool = false
+
+    // from .vuepress/config.js
+    config.resolve.alias['@'] = alias
+    config.resolve.alias['@assets'] = path.join(__dirname, 'assets')
   },
 }

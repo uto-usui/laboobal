@@ -18,10 +18,10 @@
     "types": [ "vuepress-types" ],
     "paths": {
       "@/*": [
-        "./docs/.vuepress/*"
+        "./*"
       ],
       "@assets/*": [
-        "./docs/.vuepress/assets/*"
+        "./assets/*"
       ]
     },
     "lib": [
