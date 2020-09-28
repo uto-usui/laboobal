@@ -14,6 +14,10 @@ Read images of another domain and draw on the canvas.
 
 <Canvas-DrawSvg/>
 
-## draw Line
+1## draw line
 
 <Canvas-DrawLine />
+
+## draw rects
+
+<Canvas-DrawRect />
