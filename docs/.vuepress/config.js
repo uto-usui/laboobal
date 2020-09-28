@@ -1,6 +1,4 @@
 const path = require('path')
-const projectRoot = process.cwd()
-const alias = path.resolve(projectRoot, './')
 
 module.exports = {
   base: process.env.VUEPRESS_BASE || '/',
@@ -163,7 +161,7 @@ module.exports = {
     config.devtool = false
 
     // from .vuepress/config.js
-    config.resolve.alias['@'] = alias
+    config.resolve.alias['@'] = path.join(__dirname)
     config.resolve.alias['@assets'] = path.join(__dirname, 'assets')
   },
 }
