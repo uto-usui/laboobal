@@ -50,31 +50,35 @@ export class DrawLine {
 
   /**
    * drawing line
-   * @param {number} x1 - 線分の始点の X 座標
-   * @param {number} y1 - 線分の始点の Y 座標
-   * @param {number} x2 - 線分の終点の X 座標
-   * @param {number} y2 - 線分の終点の Y 座標
-   * @param {string} [color] - 線を描画する際の色
-   * @param {number} [width=1] - 線幅
+   * @param x1 - start X
+   * @param y1 - start Y
+   * @param x2 - end X
+   * @param y2 - end Y
+   * @param [color] - stroke color
+   * @param [width=1] - stroke width
    */
-  drawLine(x1, y1, x2, y2, color, width = 1) {
+  drawLine(
+    x1: number,
+    y1: number,
+    x2: number,
+    y2: number,
+    color: string,
+    width = 1,
+  ) {
     if (!this.ctx) return
-
-    // 色が指定されている場合はスタイルを設定する
-    if (color) {
-      this.ctx.strokeStyle = color
-    }
-    // 線幅を設定する
+    // set color
+    if (color) this.ctx.strokeStyle = color
+    // set line width
     this.ctx.lineWidth = width
-    // パスの設定を開始することを明示する
+    // begin path
     this.ctx.beginPath()
-    // パスの始点を設定する
+    // start path pos
     this.ctx.moveTo(x1, y1)
-    // 直線のパスを終点座標に向けて設定する
+    // set points
     this.ctx.lineTo(x2, y2)
-    // パスを閉じることを明示する
+    // close path
     this.ctx.closePath()
-    // 設定したパスで線描画を行う
+    // drew stroke
     this.ctx.stroke()
   }
 }
