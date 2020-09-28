@@ -1,18 +1,24 @@
 <template>
-  <div ref="box" />
+  <div>
+    <canvas ref="canvas" />
+  </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
 
-import { DrawLineScript } from './DrawLineScript'
+import { DrawLine } from './DrawLineScript'
 
 export default Vue.extend({
-  name: 'DrawLine',
+  name: 'DrawLines',
 
   mounted() {
-    const _ = new DrawLineScript(this.$refs.box)
-    console.log(_)
+    this.$nextTick(() => {
+      const canvas = this.$refs.canvas as HTMLCanvasElement
+      const drawLine = new DrawLine(canvas)
+
+      drawLine.init()
+    })
   },
 })
 </script>
@@ -23,12 +29,14 @@ div {
   height: 400px;
   overflow: scroll;
   //
-  /deep/ canvas {
+  > canvas {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
+    width: 100%;
+    height: 100%;
   }
 }
 </style>
