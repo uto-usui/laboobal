@@ -57,14 +57,14 @@ export class DrawRect {
   /**
    * draw polygon
    * @param points {number[]} - points array
-   * @param color {string} - polygon color
+   * @param [color] {string} - polygon color
    */
-  drawPolygon(points: number[], color: string) {
+  drawPolygon(points: number[], color?: string) {
     if (!this.ctx) return
     // has points
     if (Array.isArray(points) !== true || points.length < 4) return
     // set color
-    if (color != null) this.ctx.fillStyle = color
+    if (color) this.ctx.fillStyle = color
     // begin path
     this.ctx.beginPath()
     // start path pos

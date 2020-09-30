@@ -63,7 +63,7 @@ export class DrawLine {
     y1: number,
     x2: number,
     y2: number,
-    color: string,
+    color?: string,
     width = 1,
   ) {
     if (!this.ctx) return
