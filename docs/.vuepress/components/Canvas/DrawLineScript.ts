@@ -1,4 +1,5 @@
 import { globalColor } from '@assets/js/core/color'
+import math from '@/components/math'
 
 export class DrawLine {
   private canvas: HTMLCanvasElement
@@ -35,15 +36,15 @@ export class DrawLine {
     this.drawLine(
       this.canvas.width / 2,
       this.canvas.height / 2,
-      this.canvas.width / 2 + 200,
-      this.canvas.height / 2 + 50,
+      this.canvas.width / 2 + math.randomInt(50, 200),
+      this.canvas.height / 2 + math.randomInt(50, 200),
       globalColor.sub[2],
     )
     this.drawLine(
       this.canvas.width / 2,
       this.canvas.height / 2,
-      this.canvas.width / 2 - 200,
-      this.canvas.height / 2 - 50,
+      this.canvas.width / 2 + math.randomInt(50, 200),
+      this.canvas.height / 2 + math.randomInt(50, 200),
       globalColor.primary,
     )
   }
