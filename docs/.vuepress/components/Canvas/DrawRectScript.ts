@@ -41,16 +41,15 @@ export class DrawRect {
    * rendering
    */
   render() {
-    // 多角形の頂点の数
+    // point count
     const count = math.randomInt(4, 8)
-    // 多角形の各頂点を格納するための配列
+    // point positions
     const points = [] as number[]
-    // ループで一気に頂点を追加する
+    // create points
     for (let i = 0; i < count; ++i) {
-      // 配列に要素を追加する
       points.push(math.random(0, this.size.w), math.random(0, this.size.h))
     }
-    // 多角形の描画処理を行う
+    // draw method
     this.drawPolygon(points, globalColor.sub[2])
   }
 
