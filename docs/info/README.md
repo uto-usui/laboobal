@@ -59,3 +59,7 @@ console.log('Hello world')
 console.log('This is custom container')
 ```
 :::
+
+::: v-pre
+`{{ This will be displayed as-is }}`
+:::
