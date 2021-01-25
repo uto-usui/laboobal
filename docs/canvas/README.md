@@ -31,7 +31,7 @@ Read images of another domain and draw on the canvas.q
 <<< @/docs/.vuepress/components/Canvas/DrawRectScript.ts
 
 ## Draw Circle
-い
+
 <Canvas-DrawCircle />
 
 `ctx.arc(x, y, radius, startRadian, endRadian)`
