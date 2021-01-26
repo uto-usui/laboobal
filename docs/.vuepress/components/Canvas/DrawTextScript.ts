@@ -65,5 +65,7 @@ export class DrawText {
     if (color) this.ctx.fillStyle = color
     // draw - center
     this.ctx.fillText(text, this.size.w / 2, (this.size.h - fontSize) / 2)
+    // only stroke
+    // this.ctx.strokeText(text, this.size.w / 2, (this.size.h - fontSize) / 2)
   }
 }
