@@ -10,11 +10,11 @@
 
 Read images of another domain and draw on the canvas.q
 
-<Canvas-CanvasCrossOrigin/>
+<Canvas-CanvasCrossOrigin />
 
 ## Draw SVG
 
-<Canvas-DrawSvg/>
+<Canvas-DrawSvg />
 
 <<< @/docs/.vuepress/components/Canvas/DrawSvgScript.js
 
@@ -41,3 +41,9 @@ Read images of another domain and draw on the canvas.q
 :::
 
 <<< @/docs/.vuepress/components/Canvas/DrawCircleScript.ts
+
+## Draw Text
+
+<Canvas-DrawText />
+
+<<< @/docs/.vuepress/components/Canvas/DrawTextScript.ts
