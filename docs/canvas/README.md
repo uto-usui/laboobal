@@ -47,3 +47,9 @@ Read images of another domain and draw on the canvas.q
 <Canvas-DrawText />
 
 <<< @/docs/.vuepress/components/Canvas/DrawTextScript.ts
+
+## Draw Shadow
+
+<Canvas-DrawShadow />
+
+<<< @/docs/.vuepress/components/Canvas/DrawShadowScript.ts
