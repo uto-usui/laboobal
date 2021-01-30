@@ -38,7 +38,7 @@ export class DrawGradient {
     const linearGradient = this.ctx.createLinearGradient(
       0,
       0,
-      0,
+      (this.canvas.width / 4) * 2,
       (this.canvas.width / 4) * 2,
     )
     // set color stops
@@ -67,11 +67,11 @@ export class DrawGradient {
     // create radial gradient area
     const radialGradient = this.ctx.createRadialGradient(
       (this.canvas.width / 4) * 3,
-      (this.canvas.width / 4) * 2,
+      this.canvas.width / 4,
       0,
-      (this.canvas.width / 4) * 4,
-      (this.canvas.width / 4) * 2,
-      (this.canvas.width / 4) * 2,
+      (this.canvas.width / 4) * 3,
+      this.canvas.width / 4,
+      this.canvas.width / 4,
     )
 
     // set color stops
