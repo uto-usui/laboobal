@@ -53,3 +53,12 @@ Read images of another domain and draw on the canvas.q
 <Canvas-DrawShadow />
 
 <<< @/docs/.vuepress/components/Canvas/DrawShadowScript.ts
+
+## Draw Gradient
+
+<Canvas-DrawGradient />
+
+1. create gradient -> `createLinearGradient(x1, y1, x2, y2)` or `createRadialGradient(x1, y1, r1, x2, y2, r2))`
+2. create color stops `addColorStop(offset, 'color name)` / offset 0~1
+
+<<< @/docs/.vuepress/components/Canvas/DrawGradientScript.ts
