@@ -32,10 +32,17 @@ export class AlphaBlending {
   /**
    * rendering
    */
-  render() {
+  render(blend = 'source-over') {
     if (!this.ctx) return
 
-    // グローバルアルファを設定する
+    // reset alpha
+    this.ctx.globalAlpha = 1.0
+    // reset canvas
+    this.drawRect(0, 0, this.canvas.width, this.canvas.height, '#ffffff')
+
+    // set CompositeOperation (blend mode)
+    this.ctx.globalCompositeOperation = blend
+    // set alpha
     this.ctx.globalAlpha = 0.5
 
     for (let i = 50; i > 0; i--) {
@@ -90,5 +97,27 @@ export class AlphaBlending {
     this.ctx.closePath()
     // draw stroke
     this.ctx.stroke()
+  }
+
+  /**
+   * 矩形を描画する
+   * @param  x {number}
+   * @param  y {number}
+   * @param  width {number}
+   * @param  height {number}
+   * @param  color {string}
+   */
+  drawRect(
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    color = '#ffffff',
+  ) {
+    if (!this.ctx) return
+
+    this.ctx.fillStyle = color
+
+    this.ctx.fillRect(x, y, width, height)
   }
 }

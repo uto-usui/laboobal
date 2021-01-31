@@ -56,7 +56,7 @@ export class DrawRect {
   /**
    * draw polygon
    * @param points {number[]} - points array
-   * @param [color] {string} - polygon color
+   * @param color {string} - polygon color
    */
   drawPolygon(points: number[], color?: string) {
     if (!this.ctx) return

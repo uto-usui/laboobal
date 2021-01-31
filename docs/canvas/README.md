@@ -64,7 +64,9 @@ Read images of another domain and draw on the canvas.q
 
 <<< @/docs/.vuepress/components/Canvas/DrawGradientScript.ts
 
-## Alpha Blending
+## Alpha Blending / CompositeOperation
+
+* [global composite operation samples](https://www.rgraph.net/canvas/reference/globalcompositeoperation.html)
 
 <Canvas-AlphaBlending />
 
