@@ -63,3 +63,9 @@ Read images of another domain and draw on the canvas.q
 3. draw rect -> `fillRect(x, y, width, height)`
 
 <<< @/docs/.vuepress/components/Canvas/DrawGradientScript.ts
+
+## Alpha Blending
+
+<Canvas-AlphaBlending />
+
+<<< @/docs/.vuepress/components/Canvas/AlphaBlendingScript.ts
