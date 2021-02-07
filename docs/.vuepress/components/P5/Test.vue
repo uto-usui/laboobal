@@ -8,10 +8,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import { setInitData, setWidth, main, callBackOnP5 } from './TestScript'
 
-export default {
+export default Vue.extend({
   name: 'Test',
   data() {
     return {
@@ -25,17 +26,13 @@ export default {
     },
   },
   async mounted() {
-    const P5 = await import('p5')
+    const { default: P5 } = await import('p5')
+    const wrap = this.$refs.wrap as HTMLDivElement
 
-    setInitData(
-      'canvas',
-      this.$refs.wrap.offsetWidth,
-      this.$refs.wrap.offsetHeight,
-    )
+    setInitData('canvas', wrap.offsetWidth, wrap.offsetHeight)
     callBackOnP5(this.writeSpeedValue)
 
-    // eslint-disable-next-line new-cap
-    const p5 = new P5.default(main)
+    const p5 = new P5(main)
     console.log(p5)
   },
   methods: {
@@ -43,7 +40,7 @@ export default {
       this.posX = posX
     },
   },
-}
+})
 </script>
 
 <style scoped lang="scss">
