@@ -1,4 +1,4 @@
-import * as p5 from 'p5'
+import type * as p5 from 'p5'
 
 /**
  * P5
@@ -51,7 +51,6 @@ const drawCall = () => {
  */
 export const main = (P5: p5) => {
   // play
-  // eslint-disable-next-line no-param-reassign
   P5.draw = () => {
     P5.background(2)
 
@@ -74,7 +73,6 @@ export const main = (P5: p5) => {
   }
 
   // init
-  // eslint-disable-next-line no-param-reassign
   P5.setup = () => {
     const p5canvas = P5.createCanvas(wrapperW, wrapperH)
     p5canvas.parent(canvasId)
