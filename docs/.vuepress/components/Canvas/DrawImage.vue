@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="show">show</button>
     <canvas ref="canvas" class="canvas" />
   </div>
 </template>
@@ -27,7 +28,16 @@ export default Vue.extend({
     this.drawImage.init()
   },
   beforeDestroy() {
+    if (!this.drawImage) return
+
     this.drawImage.destroy()
+  },
+  methods: {
+    show() {
+      if (!this.drawImage) return
+
+      this.drawImage.isShow = true
+    },
   },
 })
 </script>
@@ -46,6 +56,11 @@ div {
     right: 0;
     width: 100%;
     height: 100%;
+  }
+
+  > button {
+    position: relative;
+    z-index: 2;
   }
 }
 </style>

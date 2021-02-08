@@ -5,7 +5,17 @@ export class DrawImage {
   private animId: number
   private x: number
   private y: number
-  private isShow: boolean
+  private _isShow: boolean
+
+  get isShow(): boolean {
+    return this._isShow
+  }
+
+  set isShow(value: boolean) {
+    this._isShow = value
+    this.x = 1
+    this.y = -1
+  }
 
   constructor(canvas: HTMLCanvasElement, img: string) {
     this.canvas = canvas
@@ -13,7 +23,7 @@ export class DrawImage {
 
     this.animId = 0
 
-    this.isShow = true
+    this._isShow = false
 
     this.img = new Image()
     this.img.onload = () => this.render()
@@ -40,10 +50,10 @@ export class DrawImage {
     const h = this.canvas.height
     const scale = this.img.width / w
 
-    if (this.isShow) {
+    if (this._isShow) {
       this.show(scale, h, w)
     } else {
-      this.infinite(w, scale, h)
+      this.infinite(scale, w, h)
     }
 
     this.animId = requestAnimationFrame(() => this.render())
