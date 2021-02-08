@@ -18,6 +18,7 @@ export default Vue.extend({
     return {
       circleWidth: 100,
       posX: 0,
+      p5: null,
     }
   },
   watch: {
@@ -32,8 +33,13 @@ export default Vue.extend({
     setInitData('canvas', wrap.offsetWidth, wrap.offsetHeight)
     callBackOnP5(this.writeSpeedValue)
 
-    const p5 = new P5(main)
-    console.log(p5)
+    this.p5 = new P5(main)
+    console.log(this.p5)
+  },
+  beforeDestroy() {
+    if (!this.p5) return
+    this.p5.remove()
+    console.log('destroy', this.p5)
   },
   methods: {
     writeSpeedValue(posX) {

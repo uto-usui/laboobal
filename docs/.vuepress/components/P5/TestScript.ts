@@ -1,4 +1,4 @@
-import type * as p5 from 'p5'
+import * as p5 from 'p5'
 
 /**
  * P5
