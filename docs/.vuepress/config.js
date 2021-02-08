@@ -103,6 +103,8 @@ module.exports = {
           '/canvas/fillText',
           '/canvas/distortion',
           '/canvas/distortion2',
+          '/canvas/fake3d',
+          '/canvas/drawImage',
           '/canvas/shiftImage',
           '/canvas/glitchImage',
           '/canvas/P5/',
