@@ -55,7 +55,7 @@
     "ismobilejs": "^1.1.1",
     "p5": "^1.2.0",
     "pixi.js": "^4.8.5",
-    "three": "^0.120.1",
+    "three": "^0.125.0",
     "three-trackballcontrols": "^0.0.8",
     "throttle-debounce": "^2.3.0"
   }
