@@ -27,7 +27,7 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "662278dc72a9618ad882af9fa0f7c767"
+    "revision": "db113002a4c1ac0dd42f2ee25cbd2527"
   },
   {
     "url": "assets/css/0.styles.cfe6f6c4.css",
@@ -450,112 +450,112 @@ self.__precacheManifest = [
     "revision": "6baba2b13d26195575e1daca8f3c0699"
   },
   {
-    "url": "assets/js/app.b9c20227.js",
-    "revision": "205aa8b1520d31de7ff0772c45de399f"
+    "url": "assets/js/app.cb6b740c.js",
+    "revision": "acb1d6da7368bdd7ef5cf7e68fd1ece7"
   },
   {
     "url": "basic/drag.html",
-    "revision": "ed4f767e5957378c1ff97314849a050a"
+    "revision": "fa41696deaa9550a1c50171503c15380"
   },
   {
     "url": "basic/easing.html",
-    "revision": "66f8b5adb40d04cfe6bb8e13e14cc905"
+    "revision": "3c79e9fe839be247aac87e5ba44d5636"
   },
   {
     "url": "basic/follow.html",
-    "revision": "3e0afb7b3ba12b5d23279f0f3f2f5a40"
+    "revision": "4612cdb766189b94c211b2f5965e2353"
   },
   {
     "url": "basic/gsap.html",
-    "revision": "48f30367020ae2daeabeb16113965b29"
+    "revision": "d83b9d2a62e8ae4fc3814013b1a7539a"
   },
   {
     "url": "basic/hover.html",
-    "revision": "ab7c25e362d6ea45a9f1226c0e32665a"
+    "revision": "bc7b54759c0f6330c56160f019cfdb51"
   },
   {
     "url": "basic/index.html",
-    "revision": "064b2a8216cae249487270d45ae3cc51"
+    "revision": "dcc66f19edd48417e6c06283eb384d5e"
   },
   {
     "url": "basic/random.html",
-    "revision": "e664a8f2f84df66aae70330155c1af7e"
+    "revision": "015a3258368795928fb541cb394c4fd8"
   },
   {
     "url": "basic/rotate3d.html",
-    "revision": "55b3c1dc364876fbfeced1e220b5df47"
+    "revision": "b780e0289e99690bb5c4740533b85b5b"
   },
   {
     "url": "basic/scroll.html",
-    "revision": "b3d053f15b754300077f3d6c0b363dce"
+    "revision": "ad9e74af3c2c920cfc1c7bb448a66c0e"
   },
   {
     "url": "basic/trigonometry.html",
-    "revision": "577fe87e595b1be101cc94b86eb29903"
+    "revision": "7a12d530306af0a9a62cd71fbe3294e9"
   },
   {
     "url": "canvas/distortion.html",
-    "revision": "fbe2c02899a9a58a1cbc1498c86456db"
+    "revision": "604aa96ad9def5f088aa8965ac1184ec"
   },
   {
     "url": "canvas/distortion2.html",
-    "revision": "c21802d7cc484cec9d9988457085f3ec"
+    "revision": "46b71004f45e195459224b411ea7d81a"
   },
   {
     "url": "canvas/drawImage.html",
-    "revision": "312c4e3a7718e1aeacbcdf7d2eae064f"
+    "revision": "4d733e94a79859dc538d2d0ca41feb20"
   },
   {
     "url": "canvas/fake3d.html",
-    "revision": "41a174b144d049840b1edf2d35702691"
+    "revision": "557066f85e2e38166410288051fc5617"
   },
   {
     "url": "canvas/fillText.html",
-    "revision": "46e15cc3b0c6a74beb859b87473d6d87"
+    "revision": "b5d99c45fc019d4b0343fa099ce083bc"
   },
   {
     "url": "canvas/glitchImage.html",
-    "revision": "589aaff9317ca5fd41248f12bdd0fe94"
+    "revision": "7bb6e8c1d1d072b014630ef0629397a7"
   },
   {
     "url": "canvas/index.html",
-    "revision": "21b6958e97785b305d49c231fce7fa63"
+    "revision": "eeefad893b2455ddb22678583dfa4766"
   },
   {
     "url": "canvas/P5/index.html",
-    "revision": "556fd499ea7ef35bbb8a802321af6ae0"
+    "revision": "c12c80df8c2c377a8a291a575cd23fc8"
   },
   {
     "url": "canvas/shiftImage.html",
-    "revision": "19f210819f40b3db668bee142f812aeb"
+    "revision": "6978bc80681bf8186a55c5fea455966f"
   },
   {
     "url": "canvas/three/index.html",
-    "revision": "b531e0a7533ac7cec59dbebec49d9b28"
+    "revision": "347c03c7c4f866b9d5b28670b5ed3977"
   },
   {
     "url": "canvas/three/scale.html",
-    "revision": "96d956c144f46927b67f85016e96c492"
+    "revision": "b1ad302eb1e3e13a7704eb7c76ffc73b"
   },
   {
     "url": "canvas/three/typo.html",
-    "revision": "aa8bb31df23b3d0561bd138e2471b2af"
+    "revision": "beb8d0a5d8b03a7c69fb0b23a02e9a69"
   },
   {
     "url": "canvas/three/video.html",
-    "revision": "85197030422a22c2a765c0250f8b7339"
+    "revision": "cf224a2ff959f5ea1b295747a410c2fd"
   },
   {
     "url": "effects/index.html",
-    "revision": "ca06465dc3dcbadd2ea58361a420a7b7"
+    "revision": "ebd777b43d95b857712e70bf65860843"
   },
   {
     "url": "effects/mouse.html",
-    "revision": "1ab74c40f0afa3b3e7786945e777e939"
+    "revision": "8cad98b8bd4f5b61ae6d77a426cc8135"
   },
   {
     "url": "effects/reveal.html",
-    "revision": "72ed204e867d135449d14c312925d88d"
+    "revision": "aa6ec89c3b28cf0535910c95b11c76b3"
   },
   {
     "url": "favicon.png",
@@ -591,11 +591,11 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "4132119d75968ef461a59cc6390c2413"
+    "revision": "8369814c763111a8b9441de09a7f1f11"
   },
   {
     "url": "info/index.html",
-    "revision": "489aabdf467b744565a993f7947bb382"
+    "revision": "ca04687cec06f5ebf6f8c5131fb2f504"
   },
   {
     "url": "logo.svg",
@@ -603,11 +603,11 @@ self.__precacheManifest = [
   },
   {
     "url": "UI/index.html",
-    "revision": "87aed690bb3045e219e94d1e17106bb5"
+    "revision": "9082d2037cf67a52701c2341873cc583"
   },
   {
     "url": "UI/virtualScroll.html",
-    "revision": "ee63fc0b9440ee2175585af21209699f"
+    "revision": "f7fda014731cf236b2256cafbcaf7e15"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
