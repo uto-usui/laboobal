@@ -27,7 +27,7 @@
     "eslint-plugin-vue": "^7.5.0",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "prettier": "^2.1.2",
     "raw-loader": "^4.0.1",
     "sass-loader": "^8.0.2",
